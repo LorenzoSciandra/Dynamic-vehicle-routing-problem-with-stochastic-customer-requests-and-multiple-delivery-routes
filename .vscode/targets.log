@@ -1,0 +1,307 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri Jul  8 18:03:03 2022
+
+# Variables
+
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# environment
+GNOME_SHELL_SESSION_MODE = pop
+# environment
+SSH_AGENT_LAUNCHER = gnome-keyring
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# environment
+MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
+# environment
+LC_NAME = it_IT.UTF-8
+# environment
+LC_NUMERIC = it_IT.UTF-8
+# environment
+VSCODE_CWD = /home/lorenzosciandra
+# environment
+WINDOWPATH = 2
+# environment
+LC_ADDRESS = it_IT.UTF-8
+# default
+MAKE_COMMAND := make
+# environment
+QT_ACCESSIBILITY = 1
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/lorenzosciandra/Documenti/Code/GithubProjects/TesinaMetodiModelliSupportoDecisioni
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+XDG_DATA_DIRS = /usr/share/pop:/usr/share/gnome:/home/lorenzosciandra/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /home/lorenzosciandra/.config/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+# environment
+LANG = C
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /home/lorenzosciandra/Documenti/Code/GithubProjects/TesinaMetodiModelliSupportoDecisioni
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-pop:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XDG_SESSION_DESKTOP = pop
+# makefile
+MAKEFILE_LIST := 
+# environment
+CONDA_SHLVL = 0
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_PID = 33078
+# environment
+XDG_SESSION_TYPE = x11
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+CONDA_PYTHON_EXE = /home/lorenzosciandra/anaconda3/bin/python
+# environment
+SESSION_MANAGER = local/popos:@/tmp/.ICE-unix/3248,unix/popos:/tmp/.ICE-unix/3248
+# automatic
+*F = $(notdir $*)
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+XMODIFIERS = @im=ibus
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# environment
+SHLVL = 0
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /home/lorenzosciandra/.local/bin:/home/lorenzosciandra/anaconda3/condabin:/home/lorenzosciandra/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+# default
+MAKEFILES := 
+# environment
+LANGUAGE = en_GB:en
+# environment
+LC_MONETARY = it_IT.UTF-8
+# automatic
+^F = $(notdir $^)
+# environment
+LC_TIME = it_IT.UTF-8
+# environment
+INVOCATION_ID = 0b7de0cfff1f4d8da1b30a54d315da8e
+# environment
+USERNAME = lorenzosciandra
+# environment
+LC_TELEPHONE = it_IT.UTF-8
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# automatic
+?F = $(notdir $?)
+# environment
+GTK_IM_MODULE = ibus
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+LS_COLORS = 
+# automatic
++F = $(notdir $+)
+# environment
+DESKTOP_SESSION = pop
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = pop:GNOME
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = lorenzosciandra
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# makefile
+.DEFAULT_GOAL := 
+# environment
+SYSTEMD_EXEC_PID = 3281
+# environment
+DISPLAY = :1
+# environment
+USER = lorenzosciandra
+# environment
+GTK_MODULES = gail:atk-bridge:appmenu-gtk-module
+# environment
+DEFAULTS_PATH = /usr/share/gconf/pop.default.path
+# default
+MAKE_VERSION := 4.3
+# environment
+MANAGERPID = 2995
+# environment
+LC_MEASUREMENT = it_IT.UTF-8
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 33078
+# environment
+_ = /usr/share/code/code
+# environment
+LC_PAPER = it_IT.UTF-8
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+_CE_M = 
+# environment
+JOURNAL_STREAM = 8:47215
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/lorenzosciandra
+# environment
+QT_IM_MODULE = ibus
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-3c2a5c20-1.69.0-main.sock
+# environment
+PAPERSIZE = a4
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+CONDA_EXE = /home/lorenzosciandra/anaconda3/bin/conda
+# environment
+_CE_CONDA = 
+# environment
+GDMSESSION = pop
+# environment
+LC_IDENTIFICATION = it_IT.UTF-8
+# variable set hash-table stats:
+# Load=111/1024=11%, Rehash=0, Collisions=4/138=3%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 66307, inode 6291627): 7 files, no impossibilities.
+
+# 7 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+GNUmakefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# files hash-table stats:
+# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+ 
+make: *** No rule to make target 'all'.  Stop.
+
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 15 / storage = 122 B / avg = 8 B
+# current buf: size = 8162 B / used = 122 B / count = 15 / avg = 8 B
+
+# strcache performance: lookups = 18 / hit rate = 16%
+# hash-table stats:
+# Load=15/8192=0%, Rehash=0, Collisions=0/18=0%
+# Finished Make data base on Fri Jul  8 18:03:03 2022
+
+ 
