@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul 12 10:52:54 2022
+# Make data base, printed on Tue Jul 12 11:59:26 2022
 
 # Variables
 
@@ -91,7 +91,7 @@ CONDA_SHLVL = 0
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 21764
+VSCODE_PID = 27222
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -187,7 +187,7 @@ MANAGERPID = 3335
 # environment
 LC_MEASUREMENT = it_IT.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 21764
+GIO_LAUNCHED_DESKTOP_FILE_PID = 27222
 # environment
 _ = /usr/share/code/code
 # environment
@@ -286,11 +286,11 @@ GNUmakefile:
 #  Failed to be updated.
 
 # files hash-table stats:
+# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# VPATH Search Paths
  
 make: *** No rule to make target 'all'.  Stop.
 
-# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
-# VPATH Search Paths
 
 # No 'vpath' search paths.
 
@@ -302,6 +302,6 @@ make: *** No rule to make target 'all'.  Stop.
 # strcache performance: lookups = 18 / hit rate = 16%
 # hash-table stats:
 # Load=15/8192=0%, Rehash=0, Collisions=0/18=0%
-# Finished Make data base on Tue Jul 12 10:52:54 2022
+# Finished Make data base on Tue Jul 12 11:59:26 2022
 
  
