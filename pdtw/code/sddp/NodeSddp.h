@@ -28,12 +28,12 @@ public:
     int pick_node_id;
     int del_node_id;
     int req_id;
-    double x;
-    double y;
-    double arrival_time;
+    double x; // x coordinate of the node
+    double y; // y coordinate of the node
+    double arrival_time; 
     double departure_time;    //time we are leaving the current node for the next one
     double prev_departure_time; //the time we left from the previous node to arrive at this node
-    double slack;
+    double slack; 
 
 
     bool is_real;                //if this node belong to a real request

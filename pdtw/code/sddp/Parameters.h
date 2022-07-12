@@ -23,6 +23,7 @@
 #define INSTANCE_TYPE_STACY 1
 #define INSTANCE_TYPE_ULMER 2
 
+
 class Parameters {
 
 public:

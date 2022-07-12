@@ -9,7 +9,7 @@
 #include <limits>
 #include "Decision.h"
 
-int Parameters::_static_alns_iterations = 2500;
+int Parameters::_static_alns_iterations = 2500; 
 int Parameters::_alns_iterations = 50;
 double Parameters::_time_horizon = -1;
 int Parameters::_driver_count = 10;

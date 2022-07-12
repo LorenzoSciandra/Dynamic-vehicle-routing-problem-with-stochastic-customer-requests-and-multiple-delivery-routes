@@ -16,7 +16,7 @@
 #include "Relatedness.h"
 #include "ISolutionList.h"
 #include <list>
-
+ 
 
 template<class NodeT, class DriverT>
 class BestSolutionList : public ISolutionList<NodeT, DriverT> {
