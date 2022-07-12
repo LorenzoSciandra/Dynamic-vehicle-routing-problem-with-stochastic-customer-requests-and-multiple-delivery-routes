@@ -11,8 +11,8 @@
 
 class Scenarios {
 private:
-    Scenario real;
-    std::vector <Scenario> scenarios;
+    Scenario real; //real scenario
+    std::vector <Scenario> scenarios; // list of possible future scenarios
     Node depot;
     Driver driver;
     double max_distance_from_depot;

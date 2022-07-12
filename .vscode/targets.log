@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jul  8 18:03:03 2022
+# Make data base, printed on Tue Jul 12 10:52:54 2022
 
 # Variables
 
@@ -91,7 +91,7 @@ CONDA_SHLVL = 0
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 33078
+VSCODE_PID = 21764
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -99,7 +99,7 @@ XDG_SESSION_TYPE = x11
 # environment
 CONDA_PYTHON_EXE = /home/lorenzosciandra/anaconda3/bin/python
 # environment
-SESSION_MANAGER = local/popos:@/tmp/.ICE-unix/3248,unix/popos:/tmp/.ICE-unix/3248
+SESSION_MANAGER = local/popos:@/tmp/.ICE-unix/3605,unix/popos:/tmp/.ICE-unix/3605
 # automatic
 *F = $(notdir $*)
 # environment
@@ -141,7 +141,7 @@ LC_MONETARY = it_IT.UTF-8
 # environment
 LC_TIME = it_IT.UTF-8
 # environment
-INVOCATION_ID = 0b7de0cfff1f4d8da1b30a54d315da8e
+INVOCATION_ID = ab6b314df9a04aa1824bd72d630ebf96
 # environment
 USERNAME = lorenzosciandra
 # environment
@@ -171,7 +171,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 3281
+SYSTEMD_EXEC_PID = 3635
 # environment
 DISPLAY = :1
 # environment
@@ -183,11 +183,11 @@ DEFAULTS_PATH = /usr/share/gconf/pop.default.path
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 2995
+MANAGERPID = 3335
 # environment
 LC_MEASUREMENT = it_IT.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 33078
+GIO_LAUNCHED_DESKTOP_FILE_PID = 21764
 # environment
 _ = /usr/share/code/code
 # environment
@@ -199,7 +199,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 _CE_M = 
 # environment
-JOURNAL_STREAM = 8:47215
+JOURNAL_STREAM = 8:50273
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -286,13 +286,13 @@ GNUmakefile:
 #  Failed to be updated.
 
 # files hash-table stats:
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
- 
-make: *** No rule to make target 'all'.  Stop.
-
 
 # No general ('VPATH' variable) search path.
 
@@ -302,6 +302,6 @@ make: *** No rule to make target 'all'.  Stop.
 # strcache performance: lookups = 18 / hit rate = 16%
 # hash-table stats:
 # Load=15/8192=0%, Rehash=0, Collisions=0/18=0%
-# Finished Make data base on Fri Jul  8 18:03:03 2022
+# Finished Make data base on Tue Jul 12 10:52:54 2022
 
  

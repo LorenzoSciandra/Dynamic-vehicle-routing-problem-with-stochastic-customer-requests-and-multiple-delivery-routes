@@ -15,16 +15,23 @@
 
 using namespace std;
 
+/**
+ * @brief The Solver class
+ *
+ * @tparam NodeT
+ * @tparam DriverT
+ */
+
 class Solver {
 
 private:
-    Sol<Node, Driver> sol;
-    CostFunctionSddp cost_func;
-    Prob<Node, Driver> &prob;
-    InsRmvMethodSddp method;
+    Sol<Node, Driver> sol; //solution courante
+    CostFunctionSddp cost_func; //fonction de cout
+    Prob<Node, Driver> &prob; //probleme
+    InsRmvMethodSddp method; //methode d'insertion/suppression
 
 public:
-    Solver(Prob<Node, Driver> &pr);
+    Solver(Prob<Node, Driver> &pr); 
 
     void Optimize();
 

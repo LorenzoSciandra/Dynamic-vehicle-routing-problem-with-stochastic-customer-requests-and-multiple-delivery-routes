@@ -22,6 +22,15 @@
 #include "StaticSimulation.h"
 #include "ConsensusSimulation.h"
 
+/**
+ * @brief  Main function for the SDDP algorithm.
+ * 
+ * @param arg 
+ * @param argv  
+ * @return int 
+ */
+
+
 int main(int arg, char **argv) {
     time_t tt = time(0);
     tt = 15646022;

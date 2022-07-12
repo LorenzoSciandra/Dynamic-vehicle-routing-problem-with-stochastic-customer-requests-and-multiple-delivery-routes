@@ -11,9 +11,9 @@
 
 class Scenario {
 public:
-    std::vector <Node> nodes;
-    int start_time;
-    int end_time;
+    std::vector <Node> nodes; // list of nodes in the scenario
+    int start_time; // start time of the scenario
+    int end_time; // end time of the scenario
 
     int GetNodeCount() { return (int) nodes.size(); }
 
