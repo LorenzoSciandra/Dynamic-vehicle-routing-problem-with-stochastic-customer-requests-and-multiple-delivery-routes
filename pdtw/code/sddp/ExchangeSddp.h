@@ -16,18 +16,17 @@
 #include "InsRmvMethodSddp.h"
 
 
-class ExchangeSddp : public IAlgorithm<Node,Driver>
-{
+class ExchangeSddp : public IAlgorithm<Node, Driver> {
 
 public:
-   ExchangeSddp(InsRmvMethod<Node,Driver,MoveSddp> * insrmv):_insrmv(insrmv){}
+    ExchangeSddp(InsRmvMethod<Node, Driver, MoveSddp> *insrmv) : _insrmv(insrmv) {}
 
 
-   void Optimize(Sol<Node,Driver> & s);
+    void Optimize(Sol<Node, Driver> &s);
 
-	private:
-		InsRmvMethod<Node,Driver,MoveSddp> * _insrmv;
-		std::vector< Request<Node>* > requests;
+private:
+    InsRmvMethod<Node, Driver, MoveSddp> *_insrmv;
+    std::vector<Request<Node> *> requests;
 };
 
 

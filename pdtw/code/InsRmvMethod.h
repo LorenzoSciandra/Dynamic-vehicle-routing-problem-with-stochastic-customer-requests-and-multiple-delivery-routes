@@ -16,30 +16,33 @@
 #include "Move.h"
 
 
-template< class NodeT, class DriverT, class MoveT>
-class InsRmvMethod
-{
-	public:
-	InsRmvMethod() : _noise(0){}
-	virtual ~InsRmvMethod(){}
-	virtual void InsertCost(Sol<NodeT,DriverT> & s, NodeT * n, DriverT * d, Move<NodeT,DriverT,MoveT> & m) = 0;
-	virtual void InsertCost(Sol<NodeT,DriverT> & s, Request<NodeT> * r, DriverT * d, Move<NodeT,DriverT,MoveT> & m)
-	{
-		InsertCost(s, r->GetParent(), d, m);
-	}
+template<class NodeT, class DriverT, class MoveT>
+class InsRmvMethod {
+public:
+    InsRmvMethod() : _noise(0) {}
 
-	virtual void ApplyInsertMove(Sol<NodeT,DriverT> & s, Move<NodeT,DriverT,MoveT> & m) = 0;
-	virtual void RemoveCost(Sol<NodeT,DriverT> & s, NodeT * n, Move<NodeT,DriverT,MoveT> & m) = 0;
-	virtual void RemoveCost(Sol<NodeT,DriverT> & s, Request<NodeT> * r, Move<NodeT,DriverT,MoveT> & m)
-	{
-		RemoveCost(s, r->GetParent(), m);
-	}
+    virtual ~InsRmvMethod() {}
 
-	void SetNoise(double noise){ _noise = noise; }
-	double GetNoise(){ return _noise;}
+    virtual void InsertCost(Sol<NodeT, DriverT> &s, NodeT *n, DriverT *d, Move<NodeT, DriverT, MoveT> &m) = 0;
 
-	private:
-		double _noise;
+    virtual void InsertCost(Sol<NodeT, DriverT> &s, Request<NodeT> *r, DriverT *d, Move<NodeT, DriverT, MoveT> &m) {
+        InsertCost(s, r->GetParent(), d, m);
+    }
+
+    virtual void ApplyInsertMove(Sol<NodeT, DriverT> &s, Move<NodeT, DriverT, MoveT> &m) = 0;
+
+    virtual void RemoveCost(Sol<NodeT, DriverT> &s, NodeT *n, Move<NodeT, DriverT, MoveT> &m) = 0;
+
+    virtual void RemoveCost(Sol<NodeT, DriverT> &s, Request<NodeT> *r, Move<NodeT, DriverT, MoveT> &m) {
+        RemoveCost(s, r->GetParent(), m);
+    }
+
+    void SetNoise(double noise) { _noise = noise; }
+
+    double GetNoise() { return _noise; }
+
+private:
+    double _noise;
 };
 
 #endif

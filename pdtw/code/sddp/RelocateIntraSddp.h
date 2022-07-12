@@ -17,25 +17,24 @@
 #include "DriverSddp.h"
 #include "InsRmvMethodSddp.h"
 
-class RelocateIntraSddp : public IAlgorithm<Node,Driver>
-{
+class RelocateIntraSddp : public IAlgorithm<Node, Driver> {
 
 public:
-	RelocateIntraSddp(InsRmvMethod<Node,Driver,MoveSddp> * insrmv):_insrmv(insrmv){}
+    RelocateIntraSddp(InsRmvMethod<Node, Driver, MoveSddp> *insrmv) : _insrmv(insrmv) {}
 
-	void Optimize(Sol<Node,Driver> & s, ISolutionList<Node,Driver> * list)
-	{
-		Optimize(s);
-		if(list != NULL && s.IsFeasible())
-			list->Add(s);
-	}
-	void Optimize(Sol<Node,Driver> & s);
+    void Optimize(Sol<Node, Driver> &s, ISolutionList<Node, Driver> *list) {
+        Optimize(s);
+        if (list != NULL && s.IsFeasible())
+            list->Add(s);
+    }
 
-	bool Optimize(Sol<Node,Driver> & s, Request<Node> * r);
+    void Optimize(Sol<Node, Driver> &s);
+
+    bool Optimize(Sol<Node, Driver> &s, Request<Node> *r);
 
 private:
-	InsRmvMethod<Node,Driver,MoveSddp> * _insrmv;
-	std::vector< Request<Node> * > requests;
+    InsRmvMethod<Node, Driver, MoveSddp> *_insrmv;
+    std::vector<Request<Node> *> requests;
 };
 
 

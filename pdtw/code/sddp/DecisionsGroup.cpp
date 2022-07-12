@@ -3,8 +3,6 @@
 #include "stdio.h"
 
 
-
-void DecisionsGroup::Show()
-{
+void DecisionsGroup::Show() {
 
 }

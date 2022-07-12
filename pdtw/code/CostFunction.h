@@ -16,34 +16,37 @@
 
 #include "ProblemDefinition.h"
 
-template <class NodeT, class DriverT> class Sol;
+template<class NodeT, class DriverT>
+class Sol;
 
 
-template <class NodeT, class DriverT>
+template<class NodeT, class DriverT>
 
-class CostFunction
-{
-	public:
-		CostFunction(){}
-		~CostFunction(){}
+class CostFunction {
+public:
+    CostFunction() {}
 
-		//return only the cost of a route or a solution
-		//no variables are updated
-		virtual double GetCost(Sol<NodeT,DriverT> & s) = 0;
-  		virtual double GetCost(Sol<NodeT,DriverT> & s, DriverT * d) = 0;
+    ~CostFunction() {}
 
-		//return the cost of a route or a solution
-		//and update temporary variables
-		virtual double Update(Sol<NodeT,DriverT> & s) = 0;
-		virtual double Update(Sol<NodeT,DriverT> & s, DriverT * d) = 0;
+    //return only the cost of a route or a solution
+    //no variables are updated
+    virtual double GetCost(Sol<NodeT, DriverT> &s) = 0;
 
-		virtual void Show(Sol<NodeT,DriverT> * s, DriverT * d){}
-		virtual void Show(Sol<NodeT,DriverT> * s)
-		{
-			printf("Please implement the show method\n");
-		}
+    virtual double GetCost(Sol<NodeT, DriverT> &s, DriverT *d) = 0;
 
-		virtual void MakeFeasible(Sol<NodeT,DriverT> & s, DriverT * d){}
+    //return the cost of a route or a solution
+    //and update temporary variables
+    virtual double Update(Sol<NodeT, DriverT> &s) = 0;
+
+    virtual double Update(Sol<NodeT, DriverT> &s, DriverT *d) = 0;
+
+    virtual void Show(Sol<NodeT, DriverT> *s, DriverT *d) {}
+
+    virtual void Show(Sol<NodeT, DriverT> *s) {
+        printf("Please implement the show method\n");
+    }
+
+    virtual void MakeFeasible(Sol<NodeT, DriverT> &s, DriverT *d) {}
 };
 
 

@@ -17,22 +17,23 @@
 #include "NodeSddp.h"
 #include "DriverSddp.h"
 
-class Report
-{
+class Report {
 
-	public:
-		void Show();
-		void Build(Sol<Node,Driver> & s);
+public:
+    void Show();
 
-		double GetIdleRate();
+    void Build(Sol<Node, Driver> &s);
 
-		std::vector<int> drivers_at_depot;
-		std::vector<int> waiting_at_delivery;
+    double GetIdleRate();
+
+    std::vector<int> drivers_at_depot;
+    std::vector<int> waiting_at_delivery;
 
 
-	private:
-		void GetDriverCountAtDepot(Sol<Node,Driver> & s);
-		void GetWaitingAtDelivery(Sol<Node,Driver> & s);
+private:
+    void GetDriverCountAtDepot(Sol<Node, Driver> &s);
+
+    void GetWaitingAtDelivery(Sol<Node, Driver> &s);
 };
 
 #endif

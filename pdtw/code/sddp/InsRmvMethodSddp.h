@@ -16,32 +16,33 @@
 #include "../ProblemDefinition.h"
 #include "CostFunctionSddp.h"
 
-class MoveSddp
-{
-	public:
-	Node * prev_pick;
-	Node * prev_drop;
+class MoveSddp {
+public:
+    Node *prev_pick;
+    Node *prev_drop;
 };
 
-class InsRmvMethodSddp : public InsRmvMethod<Node, Driver, MoveSddp>
-{
-	public:
-		InsRmvMethodSddp(Prob<Node,Driver> * prob, CostFunctionSddp & cost_func);
-		~InsRmvMethodSddp();
+class InsRmvMethodSddp : public InsRmvMethod<Node, Driver, MoveSddp> {
+public:
+    InsRmvMethodSddp(Prob<Node, Driver> *prob, CostFunctionSddp &cost_func);
 
-		void InsertCost(Sol<Node,Driver> & s, Node * n, Driver * d, Move<Node,Driver,MoveSddp> & m);
-		void InsertCostUlmer(Sol<Node,Driver> & s, Node * n, Driver * d, Move<Node,Driver,MoveSddp> & m);
+    ~InsRmvMethodSddp();
 
-		void ApplyInsertMove(Sol<Node,Driver> & s, Move<Node,Driver,MoveSddp> & m);
+    void InsertCost(Sol<Node, Driver> &s, Node *n, Driver *d, Move<Node, Driver, MoveSddp> &m);
 
-		void RemoveCost(Sol<Node,Driver> & s, Node * n, Move<Node,Driver,MoveSddp> & m);
+    void InsertCostUlmer(Sol<Node, Driver> &s, Node *n, Driver *d, Move<Node, Driver, MoveSddp> &m);
 
-		void CheckMove(Sol<Node,Driver> & s, Move<Node,Driver,MoveSddp> & m){};
+    void ApplyInsertMove(Sol<Node, Driver> &s, Move<Node, Driver, MoveSddp> &m);
 
-		bool show_output;
-	private:
-		Prob<Node,Driver> * p;
-		double _added_noise;
-		CostFunctionSddp _cost_func;
+    void RemoveCost(Sol<Node, Driver> &s, Node *n, Move<Node, Driver, MoveSddp> &m);
+
+    void CheckMove(Sol<Node, Driver> &s, Move<Node, Driver, MoveSddp> &m) {};
+
+    bool show_output;
+private:
+    Prob<Node, Driver> *p;
+    double _added_noise;
+    CostFunctionSddp _cost_func;
 };
+
 #endif

@@ -13,15 +13,17 @@
 #define CREATE_DRIVER_H
 
 
-template <class NodeT, class DriverT> class Sol;
+template<class NodeT, class DriverT>
+class Sol;
 
-template< class NodeT, class DriverT> 
-class CreateDriver
-{
-	public:
-		CreateDriver(){}
-		virtual ~CreateDriver(){}
-		virtual void Create(Sol<NodeT,DriverT> * p) = 0;
+template<class NodeT, class DriverT>
+class CreateDriver {
+public:
+    CreateDriver() {}
+
+    virtual ~CreateDriver() {}
+
+    virtual void Create(Sol<NodeT, DriverT> *p) = 0;
 };
 
 #endif

@@ -19,30 +19,29 @@
 #include <vector>
 #include <algorithm>
 
-template< class NodeT, class DriverT>
-class RemoveRandom : public RemoveOperator<NodeT,DriverT>
-{
-	public:
-		RemoveRandom(){}
-		~RemoveRandom(){}
+template<class NodeT, class DriverT>
+class RemoveRandom : public RemoveOperator<NodeT, DriverT> {
+public:
+    RemoveRandom() {}
 
-		void Remove(Sol<NodeT, DriverT> & s, int count)
-		{
-			requests.clear();
-			for(int i = 0 ; i < s.GetRequestCount() ; i++)
-				if(s.GetAssignedTo(s.GetProb()->GetRequest(i)) != NULL)
-					requests.push_back(s.GetProb()->GetRequest(i));
+    ~RemoveRandom() {}
 
-			int cpt = MIN_INT(count, (int)requests.size());
-			for(int i = 0 ; i < cpt ; i++)
-			{
-				int index = mat_func_get_rand_int(0, requests.size() - i);
-				s.RemoveAndUnassign( requests[index] );
-				requests[index] = requests[ requests.size() - i - 1];
-			}
-		}
-	private:
-		std::vector< Request<NodeT>* > requests;
+    void Remove(Sol<NodeT, DriverT> &s, int count) {
+        requests.clear();
+        for (int i = 0; i < s.GetRequestCount(); i++)
+            if (s.GetAssignedTo(s.GetProb()->GetRequest(i)) != NULL)
+                requests.push_back(s.GetProb()->GetRequest(i));
+
+        int cpt = MIN_INT(count, (int) requests.size());
+        for (int i = 0; i < cpt; i++) {
+            int index = mat_func_get_rand_int(0, requests.size() - i);
+            s.RemoveAndUnassign(requests[index]);
+            requests[index] = requests[requests.size() - i - 1];
+        }
+    }
+
+private:
+    std::vector<Request<NodeT> *> requests;
 };
 
 #endif

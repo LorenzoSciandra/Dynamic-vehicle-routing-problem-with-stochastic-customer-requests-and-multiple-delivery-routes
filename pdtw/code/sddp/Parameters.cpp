@@ -35,7 +35,7 @@ bool Parameters::_debug = false;
 
 int Parameters::_waiting_time = 1;
 int Parameters::_scenario_count = 30;
-int Parameters::_time_limit_seconds = 3600*24;
+int Parameters::_time_limit_seconds = 3600 * 24;
 bool Parameters::_minimize_waiting = true;
 
 bool Parameters::_gen_intelligent_scenarios = false;

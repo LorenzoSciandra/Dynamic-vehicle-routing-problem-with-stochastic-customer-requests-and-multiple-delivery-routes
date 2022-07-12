@@ -14,16 +14,20 @@
 
 #include "Solution.h"
 
-template <class NodeT, class DriverT>
-class SolutionList
-{
-	public : 
-		SolutionList(){}
-		virtual ~SolutionList(){}
-		virtual void Add(Sol<NodeT,DriverT> & s) = 0;
-		virtual Prob<NodeT,DriverT>* GetProblemDefinition() = 0;
-		virtual int GetSolutionCount() = 0;
-		virtual Sol<NodeT,DriverT>* GetSolution(int i) = 0;
+template<class NodeT, class DriverT>
+class SolutionList {
+public :
+    SolutionList() {}
+
+    virtual ~SolutionList() {}
+
+    virtual void Add(Sol<NodeT, DriverT> &s) = 0;
+
+    virtual Prob<NodeT, DriverT> *GetProblemDefinition() = 0;
+
+    virtual int GetSolutionCount() = 0;
+
+    virtual Sol<NodeT, DriverT> *GetSolution(int i) = 0;
 };
 
 #endif

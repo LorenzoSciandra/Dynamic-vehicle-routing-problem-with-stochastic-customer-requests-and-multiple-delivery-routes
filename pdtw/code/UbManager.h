@@ -16,23 +16,23 @@
 	to get the upper bound of the problem
 */
 
-class UbManager
-{
-	public:
-		UbManager(){}
-		~UbManager(){}
-	
-	
-		void Load(char * filename, bool has_vehicle_count);
-		double GetUpperBound(char * instance);
-		int GetVehicleCount(char * instance);
-	
-	private:
-		std::map<std::string, double> _bounds;
-		std::map<std::string, int> _vehicles;
+class UbManager {
+public:
+    UbManager() {}
+
+    ~UbManager() {}
+
+
+    void Load(char *filename, bool has_vehicle_count);
+
+    double GetUpperBound(char *instance);
+
+    int GetVehicleCount(char *instance);
+
+private:
+    std::map<std::string, double> _bounds;
+    std::map<std::string, int> _vehicles;
 };
-
-
 
 
 #endif

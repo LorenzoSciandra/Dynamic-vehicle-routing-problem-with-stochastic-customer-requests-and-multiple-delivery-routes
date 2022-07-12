@@ -15,27 +15,33 @@
 #include "../ProblemDefinition.h"
 #include "../CostFunction.h"
 
-class CostFunctionSddp: public CostFunction<Node,Driver>
-{
-	public:
-		CostFunctionSddp(Prob<Node,Driver> * prob): p(prob){}
-		~CostFunctionSddp(){}
+class CostFunctionSddp : public CostFunction<Node, Driver> {
+public:
+    CostFunctionSddp(Prob<Node, Driver> *prob) : p(prob) {}
 
-		double GetCost(Sol<Node,Driver> & s);
-		double GetCost(Sol<Node,Driver> & s, Driver * d);
+    ~CostFunctionSddp() {}
 
-		double Update(Sol<Node,Driver> & s);
-		double Update(Sol<Node,Driver> & s, Driver * d);
+    double GetCost(Sol<Node, Driver> &s);
 
-		//Similar to Update but push the arrival time the lastest possible to reducing waiting
-		double FinalUpdate(Sol<Node,Driver> & s);
-		double FinalUpdate(Sol<Node,Driver> & s, Driver * d);
+    double GetCost(Sol<Node, Driver> &s, Driver *d);
 
-		void Show(Sol<Node,Driver> * s, Driver * d);
-		void Show(Sol<Node,Driver> * s);
-		void MakeFeasible(Sol<Node,Driver> & s, Driver * d);
-    private:
-		Prob<Node,Driver> * p;
+    double Update(Sol<Node, Driver> &s);
+
+    double Update(Sol<Node, Driver> &s, Driver *d);
+
+    //Similar to Update but push the arrival time the lastest possible to reducing waiting
+    double FinalUpdate(Sol<Node, Driver> &s);
+
+    double FinalUpdate(Sol<Node, Driver> &s, Driver *d);
+
+    void Show(Sol<Node, Driver> *s, Driver *d);
+
+    void Show(Sol<Node, Driver> *s);
+
+    void MakeFeasible(Sol<Node, Driver> &s, Driver *d);
+
+private:
+    Prob<Node, Driver> *p;
 
 };
 

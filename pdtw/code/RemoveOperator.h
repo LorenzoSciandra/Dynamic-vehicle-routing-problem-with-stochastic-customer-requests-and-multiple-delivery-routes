@@ -15,14 +15,14 @@
 
 #include "Solution.h"
 
-template< class NodeT, class DriverT> 
-class RemoveOperator
-{
-	public:
-		RemoveOperator(){}
-		virtual ~RemoveOperator(){}	
-	
-		virtual void Remove(Sol<NodeT, DriverT> & s, int count) = 0;
+template<class NodeT, class DriverT>
+class RemoveOperator {
+public:
+    RemoveOperator() {}
+
+    virtual ~RemoveOperator() {}
+
+    virtual void Remove(Sol<NodeT, DriverT> &s, int count) = 0;
 };
 
 

@@ -18,10 +18,9 @@
 #include "DriverSddp.h"
 
 
-class LoadSddp
-{
-	public:
-		void Load(Prob<Node,Driver> & pr, char * filename);
+class LoadSddp {
+public:
+    void Load(Prob<Node, Driver> &pr, char *filename);
 
 };
 

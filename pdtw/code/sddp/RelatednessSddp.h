@@ -15,27 +15,28 @@
 #include "DriverSddp.h"
 
 
-class RelatednessSddp : public Relatedness<Node,Driver>
-{
-	public:
-		RelatednessSddp(Prob<Node, Driver> & pr) : _m(pr.GetDistances()), _prob(pr){}
-		~RelatednessSddp(){}
-		double GetRelatedness(Node* n1, Node* n2)
-		{
-			return _m[n1->distID][n2->distID];
-		}
-		double GetScore(Sol<Node,Driver> & s, Node* n1)
-		{
-			return 0;
-		}
+class RelatednessSddp : public Relatedness<Node, Driver> {
+public:
+    RelatednessSddp(Prob<Node, Driver> &pr) : _m(pr.GetDistances()), _prob(pr) {}
 
-		//for those with memory
-		void Increase(Sol<Node,Driver> & s){}
-		void Decrease(Sol<Node,Driver> & s){}
+    ~RelatednessSddp() {}
 
-	private:
-		double ** _m;
-		Prob<Node, Driver> & _prob;
+    double GetRelatedness(Node *n1, Node *n2) {
+        return _m[n1->distID][n2->distID];
+    }
+
+    double GetScore(Sol<Node, Driver> &s, Node *n1) {
+        return 0;
+    }
+
+    //for those with memory
+    void Increase(Sol<Node, Driver> &s) {}
+
+    void Decrease(Sol<Node, Driver> &s) {}
+
+private:
+    double **_m;
+    Prob<Node, Driver> &_prob;
 };
 
 #endif

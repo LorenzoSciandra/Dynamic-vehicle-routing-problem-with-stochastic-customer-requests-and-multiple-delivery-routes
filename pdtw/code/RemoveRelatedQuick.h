@@ -23,55 +23,52 @@
 #include <algorithm>
 
 
-template< class NodeT, class DriverT>
-class RemoveRelatedQuick : public RemoveOperator<NodeT,DriverT>
-{
-	public:
-		RemoveRelatedQuick(Relatedness<NodeT,DriverT> * rel):relatedness(rel){}
-		~RemoveRelatedQuick(){}
+template<class NodeT, class DriverT>
+class RemoveRelatedQuick : public RemoveOperator<NodeT, DriverT> {
+public:
+    RemoveRelatedQuick(Relatedness<NodeT, DriverT> *rel) : relatedness(rel) {}
 
-		void Remove(Sol<NodeT, DriverT> & s, int count)
-		{
-			//printf("RemoveRelated\n");
-			vect.clear();
-			for (int i = 0; i < s.GetRequestCount(); i++)
-			{
-				Request<NodeT>* r = s.GetRequest(i);
-				if (s.GetAssignedTo(r->GetParent()) != NULL)
-					vect.push_back(r);
-			}
-			if(vect.size() <= 1) return;
+    ~RemoveRelatedQuick() {}
 
-			int size = vect.size() - 1;
-			int index = mat_func_get_rand_int(0, vect.size());
-			Request<NodeT> * r = vect[index];
-			s.RemoveAndUnassign(r);
-			vect[index] = vect[size];
+    void Remove(Sol<NodeT, DriverT> &s, int count) {
+        //printf("RemoveRelated\n");
+        vect.clear();
+        for (int i = 0; i < s.GetRequestCount(); i++) {
+            Request<NodeT> *r = s.GetRequest(i);
+            if (s.GetAssignedTo(r->GetParent()) != NULL)
+                vect.push_back(r);
+        }
+        if (vect.size() <= 1) return;
 
-			RelatedPairSorterRequest<NodeT,DriverT> mysorter;
-			mysorter.rel = relatedness;
-			mysorter.selectedNode = r->GetNode(0);
+        int size = vect.size() - 1;
+        int index = mat_func_get_rand_int(0, vect.size());
+        Request<NodeT> *r = vect[index];
+        s.RemoveAndUnassign(r);
+        vect[index] = vect[size];
 
-			int cpt = std::min(count-1, (int)vect.size()-2);
-			//std::sort(vect.begin(), vect.begin()+size, mysorter);
-			std::partial_sort(vect.begin(),vect.begin()+std::min(2*cpt, size),vect.begin()+size, mysorter);
+        RelatedPairSorterRequest<NodeT, DriverT> mysorter;
+        mysorter.rel = relatedness;
+        mysorter.selectedNode = r->GetNode(0);
+
+        int cpt = std::min(count - 1, (int) vect.size() - 2);
+        //std::sort(vect.begin(), vect.begin()+size, mysorter);
+        std::partial_sort(vect.begin(), vect.begin() + std::min(2 * cpt, size), vect.begin() + size, mysorter);
 
 
-			size_t pos = 0;
-			while(cpt > 0 && pos < size)
-			{
-				double r = 	mat_func_get_rand_double();
-				if(r <= 0.9)
-				{
-					s.RemoveAndUnassign( vect[pos] );
-					cpt--;
-				}
-				pos++;
-			}
-		}
-	private:
-		std::vector< Request<NodeT>* > vect;
-		Relatedness<NodeT,DriverT> * relatedness;
+        size_t pos = 0;
+        while (cpt > 0 && pos < size) {
+            double r = mat_func_get_rand_double();
+            if (r <= 0.9) {
+                s.RemoveAndUnassign(vect[pos]);
+                cpt--;
+            }
+            pos++;
+        }
+    }
+
+private:
+    std::vector<Request<NodeT> *> vect;
+    Relatedness<NodeT, DriverT> *relatedness;
 
 
 };

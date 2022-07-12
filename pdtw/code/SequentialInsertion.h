@@ -14,53 +14,46 @@
 #include "../../lib/mathfunc.h"
 #include "InsertOperator.h"
 
-template <class NodeT, class DriverT, class MoveT>
-class SeqInsertion : public InsertOperator<NodeT, DriverT>
-{
-   public:
-   SeqInsertion(InsRmvMethod<NodeT, DriverT, MoveT> * insrmv): _insrmv(insrmv){}
+template<class NodeT, class DriverT, class MoveT>
+class SeqInsertion : public InsertOperator<NodeT, DriverT> {
+public:
+    SeqInsertion(InsRmvMethod<NodeT, DriverT, MoveT> *insrmv) : _insrmv(insrmv) {}
 
 
-   void Insert(Sol<NodeT,DriverT> & s)
-   {
-      s.Update();
-      std::vector< Request<NodeT>* > refused;
-      while(s.GetUnassignedCount() > 0)
-      {
-         NodeT * n = s.GetUnassigned(0);
-         Request<NodeT> * r = s.GetProb()->GetRequest(n);
+    void Insert(Sol<NodeT, DriverT> &s) {
+        s.Update();
+        std::vector < Request<NodeT> * > refused;
+        while (s.GetUnassignedCount() > 0) {
+            NodeT *n = s.GetUnassigned(0);
+            Request<NodeT> *r = s.GetProb()->GetRequest(n);
 
-         Move<NodeT,DriverT,MoveT> best;
-         best.IsFeasible = false;
-         best.DeltaCost = INFINITE;
+            Move<NodeT, DriverT, MoveT> best;
+            best.IsFeasible = false;
+            best.DeltaCost = INFINITE;
 
-         for (int j = 0; j <s.GetDriverCount(); j++)
-         {
-            Move<NodeT,DriverT,MoveT> m;
-            _insrmv->InsertCost(s, r, s.GetDriver(j), m);
-            if (m.IsFeasible && m.DeltaCost < best.DeltaCost)
-               best = m;
-         }
+            for (int j = 0; j < s.GetDriverCount(); j++) {
+                Move<NodeT, DriverT, MoveT> m;
+                _insrmv->InsertCost(s, r, s.GetDriver(j), m);
+                if (m.IsFeasible && m.DeltaCost < best.DeltaCost)
+                    best = m;
+            }
 
-         best.from = NULL;
-         if(best.IsFeasible)
-         {
-            _insrmv->ApplyInsertMove(s, best);
-            s.Update(best.to);
-         }
-         else
-         {
-            refused.push_back(r);
-            s.RemoveFromUnassigneds(r);
-         }
-      }
+            best.from = NULL;
+            if (best.IsFeasible) {
+                _insrmv->ApplyInsertMove(s, best);
+                s.Update(best.to);
+            } else {
+                refused.push_back(r);
+                s.RemoveFromUnassigneds(r);
+            }
+        }
 
-      for(size_t i = 0 ; i < refused.size() ; i++)
-         s.AddToUnassigneds( refused[i] );
-   }
+        for (size_t i = 0; i < refused.size(); i++)
+            s.AddToUnassigneds(refused[i]);
+    }
 
-   private:
-      InsRmvMethod<NodeT, DriverT, MoveT> * _insrmv;
+private:
+    InsRmvMethod<NodeT, DriverT, MoveT> *_insrmv;
 
 };
 

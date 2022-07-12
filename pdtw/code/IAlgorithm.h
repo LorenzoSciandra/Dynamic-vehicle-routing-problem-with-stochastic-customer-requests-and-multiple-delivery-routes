@@ -18,18 +18,18 @@
 #include <vector>
 #include <map>
 
-template <class NodeT, class DriverT>
-class IAlgorithm
-{
-	public : 
-		IAlgorithm(){}
-		virtual ~IAlgorithm(){}	
-		
-		virtual void Optimize(Sol<NodeT,DriverT> & sol) = 0;
-		
-		virtual void Optimize(Sol<NodeT,DriverT> & sol, ISolutionList<NodeT,DriverT> * list){};
-		
-		virtual void SetMaxTime(int maxtime){}
+template<class NodeT, class DriverT>
+class IAlgorithm {
+public :
+    IAlgorithm() {}
+
+    virtual ~IAlgorithm() {}
+
+    virtual void Optimize(Sol<NodeT, DriverT> &sol) = 0;
+
+    virtual void Optimize(Sol<NodeT, DriverT> &sol, ISolutionList<NodeT, DriverT> *list) {};
+
+    virtual void SetMaxTime(int maxtime) {}
 };
 
 #endif

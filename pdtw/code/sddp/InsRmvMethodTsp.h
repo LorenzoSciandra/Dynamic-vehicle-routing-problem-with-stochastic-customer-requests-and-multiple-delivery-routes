@@ -18,24 +18,26 @@
 #include "InsRmvMethodSddp.h"
 
 
-class InsRmvMethodTsp : public InsRmvMethod<Node, Driver, MoveSddp>
-{
-	public:
-		InsRmvMethodTsp(Prob<Node,Driver> * prob);
-		~InsRmvMethodTsp();
+class InsRmvMethodTsp : public InsRmvMethod<Node, Driver, MoveSddp> {
+public:
+    InsRmvMethodTsp(Prob<Node, Driver> *prob);
 
-		void InsertCost(Sol<Node,Driver> & s, Node * n, Driver * d, Move<Node,Driver,MoveSddp> & m);
-		void InsertCostUlmer(Sol<Node,Driver> & s, Node * n, Driver * d, Move<Node,Driver,MoveSddp> & m);
+    ~InsRmvMethodTsp();
 
-		void ApplyInsertMove(Sol<Node,Driver> & s, Move<Node,Driver,MoveSddp> & m);
+    void InsertCost(Sol<Node, Driver> &s, Node *n, Driver *d, Move<Node, Driver, MoveSddp> &m);
 
-		void RemoveCost(Sol<Node,Driver> & s, Node * n, Move<Node,Driver,MoveSddp> & m);
+    void InsertCostUlmer(Sol<Node, Driver> &s, Node *n, Driver *d, Move<Node, Driver, MoveSddp> &m);
 
-		void CheckMove(Sol<Node,Driver> & s, Move<Node,Driver,MoveSddp> & m){};
+    void ApplyInsertMove(Sol<Node, Driver> &s, Move<Node, Driver, MoveSddp> &m);
 
-		bool show_output;
-	private:
-		Prob<Node,Driver> * p;
-		double _added_noise;
+    void RemoveCost(Sol<Node, Driver> &s, Node *n, Move<Node, Driver, MoveSddp> &m);
+
+    void CheckMove(Sol<Node, Driver> &s, Move<Node, Driver, MoveSddp> &m) {};
+
+    bool show_output;
+private:
+    Prob<Node, Driver> *p;
+    double _added_noise;
 };
+
 #endif

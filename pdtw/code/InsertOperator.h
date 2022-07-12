@@ -14,13 +14,14 @@
 
 #include "Solution.h"
 
-template< class NodeT, class DriverT> 
-class InsertOperator
-{
-	public:
-		InsertOperator(){}
-		virtual ~InsertOperator(){}
-		virtual void Insert(Sol<NodeT, DriverT> & s) = 0;
+template<class NodeT, class DriverT>
+class InsertOperator {
+public:
+    InsertOperator() {}
+
+    virtual ~InsertOperator() {}
+
+    virtual void Insert(Sol<NodeT, DriverT> &s) = 0;
 };
 
 #endif
