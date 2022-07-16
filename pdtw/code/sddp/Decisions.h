@@ -17,6 +17,12 @@ public:
 
     void Add(Decisions *decs) { for (int i = 0; i < decs->GetCount(); i++)Add(decs->Get(i)); }
 
+    void AddAll(std::vector<Decision> decs) {
+        for (const auto &item: decs) {
+            decs.push_back(item);
+        }
+    }
+
     int GetCount() { return (int) decisions.size(); }
 
     int GetUnassignedCount();
@@ -73,13 +79,24 @@ public:
 
     double GetNextEvent();
 
+    std::vector<Decision> GetRealDecisions() {
+        std::vector<Decision> real_decisions;
+        for (const auto &item: decisions) {
+            if (item.is_real) {
+                real_decisions.push_back(item);
+            }
+        }
+
+        return real_decisions;
+    };
+
     double cost;
     int nb_unassigneds;
     int nb_real_unassigneds;
     double distances;
 private:
-    std::vector <Decision> decisions;
-    std::vector <std::vector<Decision *>> drivers_decisions;
+    std::vector<Decision> decisions;
+    std::vector<std::vector<Decision *>> drivers_decisions;
 };
 
 #endif

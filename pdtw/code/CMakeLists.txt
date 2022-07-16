@@ -35,7 +35,7 @@ add_executable(exec_sddp ${LIBS}
         sddp/InsRmvMethodSddp.cpp
         sddp/InsRmvMethodUlmer.cpp
         sddp/InsRmvMethodTsp.cpp
-        sddp/Scenario.cpp
+        sddp/Scenario.h
         sddp/Scenarios.cpp
         sddp/Decisions.cpp
         sddp/Solver.cpp
@@ -52,4 +52,5 @@ add_executable(exec_sddp ${LIBS}
         sddp/Solver.cpp
         sddp/Report.cpp
         sddp/main_sddp.cpp
-        )
+        sddp/ProgressiveSimulation.cpp
+        sddp/ProgressiveSimulation.h)

@@ -153,11 +153,19 @@ public:
     static void SetBranchAndRegret(bool b) {
         _is_branch_and_regret = b;
         if (b) _is_sbpa = false;
+        if (b) _is_progressive = false;
     }
 
     static void SetSBPA(bool b) {
         _is_sbpa = b;
         if (b) _is_branch_and_regret = false;
+        if (b) _is_progressive = false;
+    }
+
+    static void SetProgressive(bool b) {
+        _is_progressive = b;
+        if (b) _is_branch_and_regret = false;
+        if (b) _is_sbpa = false;
     }
 
     static void SetRealRequestCount(int r) { _nb_real_requests = r; }
@@ -176,6 +184,7 @@ private:
 
     static bool _is_branch_and_regret;
     static bool _is_sbpa;
+    static bool _is_progressive;
 
 
     static int p;
