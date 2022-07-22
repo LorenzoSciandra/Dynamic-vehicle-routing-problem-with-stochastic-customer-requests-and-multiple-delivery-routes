@@ -76,6 +76,8 @@ public:
         return c / reports.size();
     }
 
+    bool GetNextDecisionProgressive(Decisions &decisions, Decision &decision);
+
 private:
     std::vector <Decisions> reports;
 };

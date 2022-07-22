@@ -30,73 +30,45 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     Decisions prev_decisions;
     for (nb_events = 1; cur_time <= Parameters::GetTimeHorizon(); nb_events++) {
         Parameters::SetCurrentTime(cur_time);
-        //printf("\n\n\nTime:%.1lf Unassigned:%d\n", cur_time, prev_decisions.GetUnassignedCount());
-        //prev_decisions.Show();
+        printf("\n\n\nTime:%.1lf Unassigned:%d\n", cur_time, prev_decisions.GetUnassignedCount());
+        prev_decisions.Show();
 
         std::vector<Prob<Node, Driver>> probs;
         scenarios.Generate(probs, cur_time);
         DecisionMultiSet dec_progressive;
 
-        // for all real request
-        unsigned long j = 0;
-        Decisions fixed_decisions; //principally acceptancy decisions
-        while (j < scenarios.GetRealScenarioCustomerCount()) {
-            for (int i = 0; i < Parameters::GetScenarioCount(); i++) {
-                Solver solver(probs[i]);
-                solver.SetDecisions(prev_decisions);
-                solver.SetDecisions(fixed_decisions);
-                solver.Optimize();
-                //printf("Scenario:%d Cost:%.1lf\n", i, solver.cost);
-                //solver.Show();
-                //solver.ShowCost();
-
-                Decisions decisions;
-                solver.GetDecisions(decisions);
-                dec_progressive.Add(decisions);
-                //solver.Optimize();
-                //decisions.Show();
-                //decisions.ShowByDriver(8);
-            }
-
-            std::vector<Decision> common_decisions = dec_progressive.GetDecisions(0)->GetRealDecisions();
-
-            // Find the decisions that occur in all scenarios
-            for (int i = 1; i < dec_progressive.GetReportCount(); ++i) {
-                std::vector<Decision> cur_real = dec_progressive.GetDecisions(i)->GetRealDecisions();
-                for (const auto &item: cur_real) {
-                    // search for same node_id; if action type is not the same, remove.
-                    bool item_corresponds = true;
-                    int index = 0;
-                    for (; index < common_decisions.size(); index++) {
-                        Decision common_item = common_decisions.at(index);
-
-                        if (item.node_id == common_item.node_id) {
-                            if (item.action_type != common_item.action_type) {
-                                item_corresponds = false;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (!item_corresponds) {
-                        common_decisions.erase(common_decisions.begin() + index);
-                    }
-                }
-            }
-
-            j += common_decisions.size();
-            fixed_decisions.AddAll(common_decisions);
-
-            //dec_progressive.Show();
+        for (int i = 0; i < Parameters::GetScenarioCount(); i++) {
+            Solver solver(probs[i]);
+            solver.SetDecisions(prev_decisions);
+            solver.Optimize();
+            Decisions decisions;
+            solver.GetDecisions(decisions);
+            dec_progressive.Add(decisions);
         }
 
-        //cur_time = scenarios.GetNextEvent(cur_time);
-        //prev_decisions.Show();
+        Decisions fixed_decisions;
+        Decision fixed_decision;
+
+        bool has_next = dec_progressive.GetNextDecisionProgressive(fixed_decisions, fixed_decision);
+        while (has_next) {
+            fixed_decisions.Add(fixed_decision);
+            DecisionMultiSet multiset;
+            for (int i = 0; i < Parameters::GetScenarioCount(); i++) {
+                Solver solver(probs[i]);
+                Decisions dd = prev_decisions;
+                dd.Add(fixed_decisions);
+                solver.SetDecisions(dd);
+                solver.Optimize();
+                Decisions decisions;
+                solver.GetDecisions(decisions);
+                multiset.Add(decisions);
+            }
+
+            has_next = multiset.GetNextDecisionProgressive(fixed_decisions, fixed_decision);
+        }
         cur_time = GetNextEvent(scenarios, prev_decisions, cur_time);
-        //printf("Next Time:%.1lf \n", cur_time);
 
         prev_decisions.Remove(cur_time);
-        //printf("\n\n");
     }
 
     _forbid_stochastic_drop_after_real = Parameters::ForbidStochasticDropAfterReal();

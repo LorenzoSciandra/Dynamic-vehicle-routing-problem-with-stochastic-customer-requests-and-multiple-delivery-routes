@@ -18,6 +18,7 @@
 #include "Scenarios.h"
 #include "Solver.h"
 #include "BranchRegretSimulation.h"
+#include "ProgressiveSimulation.h"
 #include "DynSimulation.h"
 #include "StaticSimulation.h"
 #include "ConsensusSimulation.h"
@@ -71,7 +72,18 @@ int main(int arg, char **argv) {
     StaticSimulation ssim;
     //ssim.Optimize(scenarios);
 
+    ProgressiveSimulation ps;
+    Parameters::SetAllowEnRouteDepotReturns(false);
+    Parameters::SetForbidStochasticDropAfterReal(true);
+    ps.Optimize(scenarios);
+    results.push_back(ps.GetResult());
 
+    printf("File:%s\nInstance:%s Customers:%d\n", argv[1], scenarios.problem_name_tw.c_str(),
+           scenarios.nb_real_requests_instance);
+    for (auto & result : results)
+        result.Show();
+
+/*
     DynSimulation dsim1;
     Parameters::SetAllowEnRouteDepotReturns(false);
     dsim1.Optimize(scenarios);
@@ -137,6 +149,7 @@ int main(int arg, char **argv) {
            scenarios.nb_real_requests_instance);
     for (size_t i = 0; i < results.size(); i++)
         results[i].Show();
+*/
 
     /*
     printf("%%Offline\n\\addplot[color=black, solid] ");

@@ -54,7 +54,7 @@ void DecisionMultiSet::GetConsensusStacy(Decisions &decisions) {
     for (size_t i = 0; i < reports.size(); i++)
         reports[i].FillDecisionsByDrivers();
 
-    std::vector < std::vector < std::vector < int > > > routes_sets(reports.size());
+    std::vector<std::vector<std::vector<int> > > routes_sets(reports.size());
 
     for (size_t i = 0; i < reports.size(); i++) {
         routes_sets[i].resize(Parameters::GetDriverCount());
@@ -166,7 +166,7 @@ void DecisionMultiSet::GetConsensusMinimalDistance(Decisions &decisions) {
     for (size_t i = 0; i < reports.size(); i++)
         reports[i].FillDecisionsByDrivers();
 
-    std::vector < std::vector < std::vector < int > > > routes_sets(reports.size());
+    std::vector<std::vector<std::vector<int> > > routes_sets(reports.size());
 
     for (size_t i = 0; i < reports.size(); i++) {
         routes_sets[i].resize(Parameters::GetDriverCount());
@@ -244,7 +244,7 @@ void DecisionMultiSet::GetConsensusMinimalDistance(Decisions &decisions) {
         for (size_t j = 0; j < reports.size(); j++) {
             if (i == j) continue;
 
-            std::vector <std::vector<int>> cost_trans_matrix(Parameters::GetDriverCount());
+            std::vector<std::vector<int>> cost_trans_matrix(Parameters::GetDriverCount());
             for (int k = 0; k < Parameters::GetDriverCount(); k++)
                 cost_trans_matrix[k].resize(Parameters::GetDriverCount());
 
@@ -311,7 +311,7 @@ int DecisionMultiSet::GetConsensusLevel() {
     for (size_t i = 0; i < reports.size(); i++)
         reports[i].FillDecisionsByDrivers();
 
-    std::vector < std::vector < std::vector < int > > > routes_sets(reports.size());
+    std::vector<std::vector<std::vector<int> > > routes_sets(reports.size());
 
     for (size_t i = 0; i < reports.size(); i++) {
         routes_sets[i].resize(Parameters::GetDriverCount());
@@ -404,7 +404,7 @@ void DecisionMultiSet::Show() {
             max_req_id = std::max(max_req_id, reports[i].Get(k)->req_id);
         }
 
-    std::vector <std::vector<int>> assignments(max_req_id + 1);
+    std::vector<std::vector<int> > assignments(max_req_id + 1);
     for (int i = 0; i < assignments.size(); i++)
         assignments[i].resize(Parameters::GetDriverCount() + 1);
 
@@ -414,7 +414,7 @@ void DecisionMultiSet::Show() {
         //	if(reports[i].Get(k)->node_type == NODE_TYPE_DROP)
         //		printf("Client:%d	Driver:%d\n",reports[i].Get(k)->req_id, reports[i].Get(k)->driver_id);
 
-        std::vector <std::vector<int>> routes(Parameters::GetDriverCount() + 1);
+        std::vector<std::vector<int> > routes(Parameters::GetDriverCount() + 1);
         std::vector<int> unassigned;
 
 
@@ -648,7 +648,7 @@ DecisionMultiSet::GetNextAssignmentDecisions(Decisions &taken_decisions, Decisio
             max_req_id = std::max(max_req_id, reports[i].Get(k)->req_id);
         }
 
-    std::vector <std::vector<int>> assignments(max_req_id + 1);
+    std::vector<std::vector<int> > assignments(max_req_id + 1);
     for (int i = 0; i < assignments.size(); i++)
         assignments[i].resize(Parameters::GetDriverCount() + 1);
 
@@ -732,7 +732,7 @@ void DecisionMultiSet::GetNextAssignmentDecisions2(Decisions &taken_decisions, D
             max_req_id = std::max(max_req_id, reports[i].Get(k)->req_id);
         }
 
-    std::vector <std::vector<int>> assignments(max_req_id + 1);
+    std::vector<std::vector<int> > assignments(max_req_id + 1);
     for (int i = 0; i < assignments.size(); i++)
         assignments[i].resize(Parameters::GetDriverCount() + 1);
 
@@ -836,7 +836,7 @@ DecisionMultiSet::GetNextActionDecisions(Decisions &taken_decisions, Decisions &
         }
 
 
-    std::vector <std::vector<int>> assignments(max_req_id + 1);
+    std::vector<std::vector<int> > assignments(max_req_id + 1);
     for (int i = 0; i < assignments.size(); i++)
         assignments[i].resize(Parameters::GetDriverCount() + 1);
 
@@ -958,7 +958,7 @@ DecisionMultiSet::GetMajorityActionDecisions(Decisions &taken_decisions, Decisio
         }
 
 
-    std::vector <std::vector<int>> assignments(max_req_id + 1);
+    std::vector<std::vector<int> > assignments(max_req_id + 1);
     for (int i = 0; i < assignments.size(); i++)
         assignments[i].resize(Parameters::GetDriverCount() + 1);
 
@@ -1035,4 +1035,87 @@ void DecisionMultiSet::ShowOnlyForDriver(int driver_id) {
         printf("Report:%d\n", (int) i);
         reports[i].ShowByDriver(driver_id);
     }
+}
+
+bool DecisionMultiSet::GetNextDecisionProgressive(Decisions &decisions, Decision &decision) {
+    int max_req_id = -1;
+    for (auto &report: reports)
+        for (int k = 0; k < report.GetCount(); k++) {
+            if (!report.Get(k)->is_real) continue;
+            max_req_id = std::max(max_req_id, report.Get(k)->req_id);
+        }
+
+    std::vector<int> go_now_requests(max_req_id + 1, 0);
+    std::vector<int> wait_requests(max_req_id + 1, 0);
+    std::vector<int> dont_deliver_requests(max_req_id + 1, 0);
+
+    for (auto &report: reports)
+        for (int j = 0; j < report.GetCount(); j++) {
+            Decision *d = report.Get(j);
+
+            if (!d->is_real) continue;
+            if (d->decision_type != DECISION_TYPE_ROUTING) continue;
+            if (d->departure_time < Parameters::GetCurrentTime() && d->driver_id != -1) continue;
+            if (d->node_type != NODE_TYPE_PICKUP) continue;
+            if (d->driver_id == -1 && !d->is_still_feasible) continue;
+
+            if (d->node_type == NODE_TYPE_PICKUP && d->arrival_time == Parameters::GetCurrentTime())
+                go_now_requests[d->req_id]++;
+
+            if (d->node_type == NODE_TYPE_PICKUP && d->arrival_time > Parameters::GetCurrentTime())
+                wait_requests[d->req_id]++;
+
+            if (d->node_type == NODE_TYPE_PICKUP && d->driver_id == -1)
+                dont_deliver_requests[d->req_id]++;
+        }
+
+    int best_req = -1;
+    int best_type = -1;
+    int best_obj = (int) reports.size();
+    if (Parameters::GetDecisionSelectionMode() == DECISION_SELECTION_MODE_MOST_COMMON)
+        best_obj = -1;
+
+    for (int i = 0; i <= max_req_id; i++) {
+        if (decisions.HasActionDecisionReqExceptDontUnassign(i)) continue;
+
+        int max_v = std::max(go_now_requests[i], std::max(wait_requests[i], dont_deliver_requests[i]));
+
+        int type = -1;
+
+        if (go_now_requests[i] > 0) {
+            type = DECISION_ACTION_GO_NOW;
+        } else if (wait_requests[i] > 0) {
+            type = DECISION_ACTION_WAIT;
+        } else if (dont_deliver_requests[i] > 0) {
+            type = DECISION_ACTION_DONT_DELIVER;
+        }
+
+        if (type >= DECISION_ACTION_GO_NOW && max_v < best_obj && max_v > 0 &&
+            Parameters::GetDecisionSelectionMode() == DECISION_SELECTION_MODE_LEAST_COMMON) {
+            best_req = i;
+            best_type = type;
+        }
+
+        if (type >= DECISION_ACTION_GO_NOW && max_v > best_obj && max_v < reports.size() && max_v > 0 &&
+            Parameters::GetDecisionSelectionMode() == DECISION_SELECTION_MODE_MOST_COMMON) {
+            best_req = i;
+            best_type = type;
+        }
+    }
+
+    if (best_req != -1) {
+        decision.req_id = best_req;
+        decision.decision_type = DECISION_TYPE_ACTION;
+
+        decision.action_type = best_type;
+
+        if (!Parameters::PerformOrderAcceptancy() &&
+            (!Parameters::EvaluateRejectOnlyIfNot0() || dont_deliver_requests[best_req] >= 1)) {
+            decision.decision_type = DECISION_TYPE_ASSIGNMENT;
+            decision.driver_id = -1;
+        }
+        return true;
+    }
+
+    return false;
 }

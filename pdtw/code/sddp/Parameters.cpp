@@ -49,3 +49,4 @@ int Parameters::_ulmer_depot_location = 1;
 
 bool Parameters::_is_branch_and_regret = false;
 bool Parameters::_is_sbpa = false;
+bool Parameters::_is_progressive = false;
