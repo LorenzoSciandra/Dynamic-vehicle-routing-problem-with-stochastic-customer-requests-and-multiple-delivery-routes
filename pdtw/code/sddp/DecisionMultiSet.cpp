@@ -1082,6 +1082,13 @@ bool DecisionMultiSet::GetNextDecisionProgressive(Decisions &decisions, Decision
 
         int type = -1;
 
+        if (go_now_requests[i] == max_v)
+            type = DECISION_ACTION_GO_NOW;
+        else if (wait_requests[i] == max_v)
+            type = DECISION_ACTION_WAIT;
+        else if (dont_deliver_requests[i] == max_v)
+            type = DECISION_ACTION_DONT_DELIVER;
+
         if (go_now_requests[i] > 0) {
             type = DECISION_ACTION_GO_NOW;
         } else if (wait_requests[i] > 0) {
