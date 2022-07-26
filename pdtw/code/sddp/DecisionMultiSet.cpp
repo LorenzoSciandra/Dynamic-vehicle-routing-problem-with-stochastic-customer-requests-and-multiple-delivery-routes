@@ -1079,6 +1079,7 @@ bool DecisionMultiSet::GetNextDecisionProgressive(Decisions &decisions, Decision
         if (decisions.HasActionDecisionReqExceptDontUnassign(i)) continue;
 
         int max_v = std::max(go_now_requests[i], std::max(wait_requests[i], dont_deliver_requests[i]));
+        // int max_v = go_now_requests[i];
 
         int type = -1;
 

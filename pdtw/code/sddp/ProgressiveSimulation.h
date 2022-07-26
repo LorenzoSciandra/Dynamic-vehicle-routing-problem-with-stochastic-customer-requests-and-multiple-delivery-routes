@@ -27,6 +27,10 @@ public:
 
     void Optimize(Scenarios &scenarios);
 
+    DecisionMultiSet BranchAndBound(Scenarios &scenarios);
+
+    DecisionMultiSet RecursiveExploration(vector<Prob<Node, Driver>> &probs, DecisionMultiSet &multiset, Decisions &fixed_decisions, DecisionMultiSet &solution);
+
     double GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time);
 
     // to change?
