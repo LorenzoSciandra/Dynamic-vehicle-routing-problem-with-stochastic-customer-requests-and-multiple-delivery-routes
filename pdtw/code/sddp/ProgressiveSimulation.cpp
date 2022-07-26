@@ -205,7 +205,7 @@ DecisionMultiSet ProgressiveSimulation::RecursiveExploration(vector<Prob<Node, D
                 solution.Add(fixed_decisions);
             }
             else if(j == 2){
-                dont_deliver_decisions.Add(dont_deliver);
+                fixed_decisions.Add(dont_deliver);
                 solution.Add(fixed_decisions);
             }
             DecisionMultiSet multiset;
@@ -219,15 +219,15 @@ DecisionMultiSet ProgressiveSimulation::RecursiveExploration(vector<Prob<Node, D
             }
             if(j == 0){
                 go_now_solution = RecursiveExploration(probs, multiset, fixed_decisions, solution);
-                fixed_decisions.Remove(go_now);
+                fixed_decisions.pop_back();
             }
             else if(j == 1){
                 wait_solution = RecursiveExploration(probs, multiset, fixed_decisions, solution);
-                fixed_decisions.Remove(wait);
+                fixed_decisions.pop_back();
             }
             else if(j == 2){
                 dont_deliver_solution = RecursiveExploration(probs, multiset, fixed_decisions, solution);
-                fixed_decisions.Remove(dont_deliver);
+                fixed_decisions.pop_back();
             }
         }
         

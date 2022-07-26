@@ -2,10 +2,13 @@
 
 #include "Scenarios.h"
 #include "Decisions.h"
+#include "DecisionMultiSet.h"
 #include "Parameters.h"
 #include "../SolCompact.h"
 #include "Report.h"
 #include "Test.h"
+#include <vector>
+#include <stdio.h>
 
 class ProgressiveSimulation {
 public:
@@ -29,7 +32,7 @@ public:
 
     DecisionMultiSet BranchAndBound(Scenarios &scenarios);
 
-    DecisionMultiSet RecursiveExploration(vector<Prob<Node, Driver>> &probs, DecisionMultiSet &multiset, Decisions &fixed_decisions, DecisionMultiSet &solution);
+    DecisionMultiSet RecursiveExploration(std::vector<Prob<Node, Driver>> &probs, DecisionMultiSet &multiset, Decisions &fixed_decisions, DecisionMultiSet &solution);
 
     double GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time);
 

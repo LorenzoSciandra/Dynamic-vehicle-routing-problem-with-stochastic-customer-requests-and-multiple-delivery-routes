@@ -61,6 +61,8 @@ public:
 
     void Remove(double time);
 
+    void pop_back() { decisions.pop_back(); }
+
     void Show();
 
     void ShowOnlyReal();
