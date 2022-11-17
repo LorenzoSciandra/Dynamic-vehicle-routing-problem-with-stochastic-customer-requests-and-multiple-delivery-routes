@@ -27,12 +27,11 @@ public:
 
     ProgressiveSimulation() {}
 
-
     void Optimize(Scenarios &scenarios);
 
-    DecisionMultiSet BranchAndBound(Scenarios &scenarios);
+    void BranchAndBound(Scenarios &scenarios);
 
-    DecisionMultiSet RecursiveExploration(std::vector<Prob<Node, Driver>> &probs, DecisionMultiSet &multiset, Decisions &fixed_decisions, DecisionMultiSet &solution);
+    Decisions RecursiveExploration(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution, Decisions working_decisions, Scenarios &scenarios, std::vector<Prob<Node, Driver>> probs);
 
     double GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time);
 
