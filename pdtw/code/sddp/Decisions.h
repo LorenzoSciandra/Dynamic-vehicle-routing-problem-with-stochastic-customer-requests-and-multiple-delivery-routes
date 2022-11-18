@@ -3,6 +3,8 @@
 
 #include "Decision.h"
 #include "Parameters.h"
+#include "Scenario.h"
+
 #include <vector>
 #include <map>
 
@@ -79,7 +81,7 @@ public:
 
     void FillMap(std::map<int, Decision *> &map_dec, int type);
 
-    double GetNextEvent();
+    double GetNextEvent(Scenario &real);
 
     std::vector<Decision> GetRealDecisions() {
         std::vector<Decision> real_decisions;

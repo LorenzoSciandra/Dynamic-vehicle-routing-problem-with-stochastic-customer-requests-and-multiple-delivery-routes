@@ -39,10 +39,10 @@ int main(int arg, char **argv) {
     printf("Seed:%ld\n", tt);
     //srand(1304445903);
 
-    Parameters::SetAlnsIterations(100);
+    Parameters::SetAlnsIterations(10);
     Parameters::SetDriverCount(10);
     Parameters::SetP(0);
-    Parameters::SetScenarioCount(30);
+    Parameters::SetScenarioCount(10);
     Parameters::SetGenerateIntelligentScenario(true);
 
 

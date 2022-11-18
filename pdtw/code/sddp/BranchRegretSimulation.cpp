@@ -292,7 +292,7 @@ void BranchRegretSimulation::Optimize(Scenarios &scenarios) {
 // 3) a driver has finished its waiting period at the depot
 double BranchRegretSimulation::GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time) {
     double next_request = scenarios.GetNextEvent(cur_time);
-    double ne = decs.GetNextEvent();
+    double ne = decs.GetNextEvent(scenarios.real);
     return std::min(ne, next_request);
 }
 

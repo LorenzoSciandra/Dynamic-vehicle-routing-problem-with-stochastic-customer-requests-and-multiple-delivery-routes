@@ -10,7 +10,7 @@
 
 
 class Scenarios {
-private:
+public:
     Scenario real; //real scenario
     std::vector <Scenario> scenarios; // list of possible future scenarios
     Node depot;
@@ -25,7 +25,7 @@ private:
     int service_time_customer;
 
 
-public:
+
     Scenarios() {
         depot_start_time = 0;
         depot_end_time = 9999999;

@@ -4,6 +4,8 @@
 #include "Parameters.h"
 #include "stdlib.h"
 #include "stdio.h"
+#include "Scenario.h"
+
 #include <algorithm>
 #include <map>
 #include <cmath>
@@ -92,7 +94,10 @@ bool Decisions::IsDriverAtDepot(int drv) {
         return false;
 }
 
-double Decisions::GetNextEvent() {
+double Decisions::GetNextEvent(Scenario & real)
+{
+    printf("GetNextEvent() time:%.0lf\n", Parameters::GetCurrentTime());
+    //Show();
     double cur_time = Parameters::GetCurrentTime();
     FillDecisionsByDrivers();
     /*printf("Drivers at depot:");
@@ -101,74 +106,104 @@ double Decisions::GetNextEvent() {
             printf("%d ", i);
     printf("\n");*/
     int max_req_id = -1;
-    for (size_t j = 0; j < decisions.size(); j++)
-        if (decisions[j].is_real)
+    for(size_t j=0;j<decisions.size();j++)
+        if(decisions[j].is_real)
             max_req_id = std::max(max_req_id, decisions[j].req_id);
     max_req_id++;
 
     bool has_free_request = false;
     bool has_vehicle_at_depot = false;
-    double next_stochastic_pickup_depot = Parameters::GetTimeHorizon() + 100;
-    double next_arrival_depot = Parameters::GetTimeHorizon() + 100;
-    double next_wait = Parameters::GetTimeHorizon() + 100;
+    double next_stochastic_pickup_depot = Parameters::GetTimeHorizon()+100;
+    double next_arrival_depot = Parameters::GetTimeHorizon()+100;
+    double next_wait = Parameters::GetTimeHorizon()+100;
+    bool has_routing_wait_decision = false;
 
-    for (size_t i = 0; i < decisions.size(); i++)
-        if (decisions[i].decision_type == DECISION_TYPE_GLOBAL && decisions[i].action_type == DECISION_ACTION_WAIT)
-            next_wait = std::min(next_wait, decisions[i].departure_time);
+    std::map<int, bool> is_routed;
 
-    for (int i = 0; i < Parameters::GetDriverCount(); i++) {
+    for(size_t i=0;i<decisions.size();i++)
+    {
+        Decision & d = decisions[i];
+        if(d.decision_type == DECISION_TYPE_ROUTING && d.is_real && d.node_type == NODE_TYPE_PICKUP)
+            is_routed[d.node_id] = true;
+
+        if(d.decision_type == DECISION_TYPE_GLOBAL && d.action_type == DECISION_ACTION_WAIT)
+            next_wait = std::min(next_wait, d.departure_time);
+        else if(d.decision_type == DECISION_TYPE_ROUTING && d.driver_id == -1 &&
+                d.is_real && d.node_type == NODE_TYPE_PICKUP && d.is_still_feasible)
+            has_free_request = true;
+        else if(d.decision_type == DECISION_TYPE_ACTION && d.action_type == DECISION_ACTION_WAIT)
+        {
+            has_routing_wait_decision = true;
+            next_wait = cur_time + Parameters::GetWaitingTime();
+        }
+    }
+
+    for(int j = 0; j < real.GetNodeCount(); j++)
+        if(real.GetNode(j)->release_time <= cur_time && real.GetNode(j)->type == NODE_TYPE_PICKUP)
+        {
+            Node * n = real.GetNode(j);
+            if(!is_routed[n->id])
+            {
+                has_free_request = true;
+                break;
+            }
+        }
+
+    for(int i=0;i<Parameters::GetDriverCount();i++)
+    {
         bool vehicle_at_depot = IsDriverAtDepot(i);
         has_vehicle_at_depot = has_vehicle_at_depot | vehicle_at_depot;
 
-        if (vehicle_at_depot &&
-            (Parameters::IsSBPA() || (Parameters::IsBranchAndRegret() && !Parameters::EvaluateWaitingStrategy())))
-            next_wait = cur_time + 1;
+        if(vehicle_at_depot && Parameters::IsSBPA())// || (Parameters::IsBranchAndRegret() && !Parameters::EvaluateWaitingStrategy())))
+            next_wait = cur_time+1;
 
         bool found_stoc = false;
-        for (size_t j = 0; j < drivers_decisions[i].size(); j++) {
-            Decision *d = drivers_decisions[i][j];
-            if (d->decision_type != DECISION_TYPE_ROUTING) continue;
+        for(size_t j=0;j<drivers_decisions[i].size();j++)
+        {
+            Decision * d = drivers_decisions[i][j];
+            if(d->decision_type != DECISION_TYPE_ROUTING) continue;
 
-            if (d->driver_id == -1 && d->is_real && d->node_type == NODE_TYPE_PICKUP &&
-                d->is_still_feasible)
-                has_free_request = true;
-            if (d->driver_id == -1) continue;
+            if(d->driver_id == -1 && d->is_real && d->node_type == NODE_TYPE_PICKUP && d->is_still_feasible) has_free_request = true;
+            if(d->driver_id == -1) continue;
 
-            if (d->node_type == NODE_TYPE_PICKUP && !d->is_real)
-                next_stochastic_pickup_depot = std::min(next_stochastic_pickup_depot,
-                                                        std::max(d->arrival_time, d->release_time));
+            if(d->node_type == NODE_TYPE_PICKUP && !d->is_real)
+                next_stochastic_pickup_depot = std::min(next_stochastic_pickup_depot, std::max(d->arrival_time, d->release_time) );
 
-            if (d->is_real && d->node_type == NODE_TYPE_PICKUP && d->arrival_time > cur_time)
+            if(d->is_real && d->node_type == NODE_TYPE_PICKUP && d->arrival_time > cur_time)
+            {
                 next_arrival_depot = std::min(next_arrival_depot, d->arrival_time);
+                has_free_request = true;
+            }
 
-            if (d->is_real && d->is_going_to_depot && d->departure_time + d->time_to_next > cur_time)
+            if(d->is_real && d->is_going_to_depot && d->departure_time + d->time_to_next > cur_time)
                 next_arrival_depot = std::min(next_arrival_depot, d->departure_time + d->time_to_next);
 
-            if (!d->is_real) found_stoc = true;
-            if (d->is_real && found_stoc) has_free_request = true;
-            if (d->is_real && d->node_type == NODE_TYPE_PICKUP && d->arrival_time > cur_time)has_free_request = true;
+            if(!d->is_real) found_stoc = true;
+            if(d->is_real && found_stoc) has_free_request = true;
+            if(d->is_real && d->node_type == NODE_TYPE_PICKUP && d->arrival_time > cur_time)has_free_request = true;
 
-            if (!Parameters::EvaluateWaitingStrategy() &&
-                d->is_real &&
-                vehicle_at_depot &&
-                (d->node_type == NODE_TYPE_PICKUP || d->is_going_to_depot) &&
-                d->arrival_time <= cur_time && (d->next_arrival_time > cur_time || !d->next_is_real)) {
+            if(!Parameters::EvaluateWaitingStrategy() &&
+               d->is_real &&
+               vehicle_at_depot &&
+               (d->node_type == NODE_TYPE_PICKUP || d->is_going_to_depot) &&
+               d->arrival_time <= cur_time && (d->next_arrival_time > cur_time || !d->next_is_real))
+            {
                 double next = d->arrival_time;
-                if (d->is_going_to_depot) next = d->departure_time + d->time_to_next;
-                for (; next - 0.01 < cur_time + 1; next++);
-                next_wait = std::min(next_wait, next);
+                if(d->is_going_to_depot) next = d->departure_time + d->time_to_next;
+                for(;next-0.01 < cur_time+1;next++);
+                next_wait = std::min(next_wait,next);
             }
         }
     }
-    //printf("GetNextEvent free_request:%d vehicle at depot:%d next_wait:%.1lf ",(int)has_free_request,(int)has_vehicle_at_depot,next_wait);
-    //printf("next stoc_pickup:%.1lf next_arrival:%.1lf\n", next_stochastic_pickup_depot, next_arrival_depot);
+    printf("GetNextEvent free_request:%d vehicle at depot:%d next_wait:%.1lf ",(int)has_free_request,(int)has_vehicle_at_depot,next_wait);
+    printf("next stoc_pickup:%.1lf next_arrival_dep:%.1lf\n", next_stochastic_pickup_depot, next_arrival_depot);
 
-    if (has_free_request && has_vehicle_at_depot)
-        return std::min(next_stochastic_pickup_depot, next_wait);
-    else if (has_free_request)
+    if(has_free_request && has_vehicle_at_depot)
+        return std::min(next_stochastic_pickup_depot, std::min(next_arrival_depot,next_wait));
+    else if(has_free_request)
         return std::min(next_stochastic_pickup_depot, next_arrival_depot);
     else
-        return Parameters::GetTimeHorizon() + 1;
+        return Parameters::GetTimeHorizon()+1;
 }
 
 void Decisions::Show() {

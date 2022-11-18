@@ -1,4 +1,6 @@
-#pragma once
+//#pragma once
+#ifndef PROG_SIM
+#define PROG_SIM
 
 #include "Scenarios.h"
 #include "Decisions.h"
@@ -31,7 +33,7 @@ public:
 
     void BranchAndBound(Scenarios &scenarios);
 
-    Decisions RecursiveExploration(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution, Decisions working_decisions, Scenarios &scenarios, std::vector<Prob<Node, Driver>> probs);
+    void BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution, Decisions &working_decisions, Scenarios &scenarios, std::vector<Prob<Node, Driver>> &probs);
 
     double GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time);
 
@@ -69,3 +71,5 @@ public:
         return r;
     }
 };
+
+#endif

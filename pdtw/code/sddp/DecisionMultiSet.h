@@ -54,9 +54,6 @@ public:
     int GetReportCount() { return (int) reports.size(); }
 
     double GetAverageCost() {
-        if(reports.size()==0){
-            return DBL_MAX;
-        }
         double c = 0;
         for (size_t i = 0; i < reports.size(); i++) c += reports[i].cost;
         return c / reports.size();
