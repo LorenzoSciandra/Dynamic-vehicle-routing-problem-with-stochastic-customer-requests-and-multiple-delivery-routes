@@ -25,7 +25,7 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     for (nb_events = 1; cur_time <= Parameters::GetTimeHorizon(); nb_events++) {
         Parameters::SetCurrentTime(cur_time);
         printf("\n\n\nTime:%.1lf Unassigned:%d\n", cur_time, prev_decisions.GetUnassignedCount());
-        prev_decisions.Show();
+//        prev_decisions.Show();
 
         std::vector<Prob<Node, Driver>> probs;
         scenarios.Generate(probs, cur_time);
@@ -57,6 +57,10 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
                 break;
         }
 
+//        prev_decisions.Show();
+
+//        getchar();
+
         //new_dd.Show();
 
         cur_time = GetNextEvent(scenarios, prev_decisions, cur_time);
@@ -81,6 +85,8 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
         }
     }
 
+    prev_decisions.Show();
+
     Prob<Node, Driver> real;
     scenarios.GenerateReal(real, Parameters::GetTimeHorizon() + 1);
     Parameters::SetCurrentTime(0);
@@ -88,7 +94,7 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     solver.SetDecisions(prev_decisions);
     //solver.Optimize();
     solver.Unfix();
-    //solver.Show();
+    solver.Show();
     //prev_decisions.Show();
 
     solver.Update();
@@ -122,6 +128,7 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     Parameters::SetBranchAndRegret(false);
 
     solver.GetReport(report);
+    prev_decisions.GenerateGraph();
 }
 
 void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
@@ -136,7 +143,7 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
 //    getchar();
     if (dd.GetCount() == 0) {
         if (best_integer_solution.GetReportCount() == 0 || best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
-//            printf("Updating integer: ")
+            printf("Updating integer: ");
             best_integer_solution = current_multiset;
         }
     } else {

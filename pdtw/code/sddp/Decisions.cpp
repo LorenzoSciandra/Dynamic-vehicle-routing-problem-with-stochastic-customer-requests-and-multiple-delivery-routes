@@ -211,6 +211,17 @@ void Decisions::Show() {
         decisions[i].Show();
 }
 
+void Decisions::GenerateGraph() {
+    printf("===========================================================\nBEGINNING DOT GRAPH\n=================================================================\n");
+    printf("digraph G {\n");
+    printf("labelloc=\"t\";\nlabel=\"Cost: %f\";\n", cost);
+    for (auto &decision: decisions) {
+        decision.PrintForGraph();
+    }
+    printf("}\n\n\n\n");
+    printf("===========================================================\nEND DOT GRAPH\n=================================================================\n");
+}
+
 void Decisions::ShowOnlyReal() {
     for (size_t i = 0; i < decisions.size(); i++)
         if (decisions[i].is_real)

@@ -83,6 +83,8 @@ public:
 
     double GetNextEvent(Scenario &real);
 
+    void GenerateGraph();
+
     std::vector<Decision> GetRealDecisions() {
         std::vector<Decision> real_decisions;
         for (const auto &item: decisions) {

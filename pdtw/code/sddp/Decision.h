@@ -100,6 +100,10 @@ public:
     double time_to_next;
     int action_type;
     bool is_still_feasible; //if current_time + distance to node < upper tw
+
+    void PrintForGraph() {
+        printf("%d->%d [ label=\"%d\" ];\n", prev_node_id, node_id, action_type);
+    }
 };
 
 struct DecisionSorter {
