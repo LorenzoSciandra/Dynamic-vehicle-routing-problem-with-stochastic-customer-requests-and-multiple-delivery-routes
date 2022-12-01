@@ -96,7 +96,7 @@ bool Decisions::IsDriverAtDepot(int drv) {
 
 double Decisions::GetNextEvent(Scenario & real)
 {
-    printf("GetNextEvent() time:%.0lf\n", Parameters::GetCurrentTime());
+//    printf("GetNextEvent() time:%.0lf\n", Parameters::GetCurrentTime());
     //Show();
     double cur_time = Parameters::GetCurrentTime();
     FillDecisionsByDrivers();
@@ -195,8 +195,8 @@ double Decisions::GetNextEvent(Scenario & real)
             }
         }
     }
-    printf("GetNextEvent free_request:%d vehicle at depot:%d next_wait:%.1lf ",(int)has_free_request,(int)has_vehicle_at_depot,next_wait);
-    printf("next stoc_pickup:%.1lf next_arrival_dep:%.1lf\n", next_stochastic_pickup_depot, next_arrival_depot);
+//    printf("GetNextEvent free_request:%d vehicle at depot:%d next_wait:%.1lf ",(int)has_free_request,(int)has_vehicle_at_depot,next_wait);
+//    printf("next stoc_pickup:%.1lf next_arrival_dep:%.1lf\n", next_stochastic_pickup_depot, next_arrival_depot);
 
     if(has_free_request && has_vehicle_at_depot)
         return std::min(next_stochastic_pickup_depot, std::min(next_arrival_depot,next_wait));

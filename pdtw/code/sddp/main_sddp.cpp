@@ -33,16 +33,17 @@
 
 
 int main(int arg, char **argv) {
+    freopen("./output.txt", "w", stdout);
     time_t tt = time(0);
     tt = 15646022;
     srand(tt);
     printf("Seed:%ld\n", tt);
     //srand(1304445903);
 
-    Parameters::SetAlnsIterations(100);
+    Parameters::SetAlnsIterations(10);
     Parameters::SetDriverCount(10);
     Parameters::SetP(0);
-    Parameters::SetScenarioCount(30);
+    Parameters::SetScenarioCount(10);
     Parameters::SetGenerateIntelligentScenario(true);
 
 
@@ -53,7 +54,7 @@ int main(int arg, char **argv) {
         scenarios.LoadStacyVoccia(argv[1]);
         //scenarios_ulmer.LoadUlmer(argv[1]);
         //scenarios_ulmer.GenerateUlmerScenarios(scenarios, 0);
-        //scenarios.Show();
+        //scenarios.ToGraph();
     } else {
         printf("Provide an instance as parameter\n");
         exit(1);
@@ -64,7 +65,7 @@ int main(int arg, char **argv) {
 
     /*Prob<Node,Driver> pr;
     scenarios.GenerateReal(pr, 9999999);
-    pr.Show();
+    pr.ToGraph();
     pr.ShowMatrices();*/
 
     std::vector <result> results;
@@ -148,7 +149,7 @@ int main(int arg, char **argv) {
     printf("File:%s\nInstance:%s Customers:%d\n", argv[1], scenarios.problem_name_tw.c_str(),
            scenarios.nb_real_requests_instance);
     for (size_t i = 0; i < results.size(); i++)
-        results[i].Show();
+        results[i].ToGraph();
 */
 
     /*
@@ -220,7 +221,7 @@ int main(int arg, char **argv) {
     //con1.Show();
     //con2.Show();
     //con3.Show();
-    //con4.Show();
+    //con4.ToGraph();
     con5.Show();
     br.Show();
     //br2.Show();

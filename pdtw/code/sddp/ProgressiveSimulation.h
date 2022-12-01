@@ -21,6 +21,29 @@ public:
     double cost;
 
     BBNode() {};
+
+    void DeclareNode() {
+        printf("%d [label=\"Req=%d\"]\n", id, request_id);
+    }
+
+    void ToGraph() {
+        std::string decisionTypeString;
+        switch (decision_type) {
+            case DECISION_ACTION_GO_NOW:
+                decisionTypeString = "Go Now";
+                break;
+            case DECISION_ACTION_WAIT:
+                decisionTypeString = "Wait";
+                break;
+            case DECISION_ACTION_DONT_DELIVER:
+                decisionTypeString = "Don't Deliver";
+                break;
+            default:
+                decisionTypeString = std::to_string(decision_type);
+                break;
+        }
+        printf("%d -> %d [label=\"%s\\n%.1lf\"]\n", parent_id, id, decisionTypeString.c_str(), cost);
+    }
 };
 
 class ProgressiveSimulation {
@@ -84,6 +107,10 @@ public:
 
         return r;
     }
+
+    void PrintBBNodes();
+
+    int BBnodesPrintCount = 0;
 };
 
 #endif

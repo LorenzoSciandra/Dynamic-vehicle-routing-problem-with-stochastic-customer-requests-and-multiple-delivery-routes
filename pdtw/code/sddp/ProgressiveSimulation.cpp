@@ -24,8 +24,8 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
     for (nb_events = 1; cur_time <= Parameters::GetTimeHorizon(); nb_events++) {
         Parameters::SetCurrentTime(cur_time);
-        printf("\n\n\nTime:%.1lf Unassigned:%d\n", cur_time, prev_decisions.GetUnassignedCount());
-//        prev_decisions.Show();
+//        printf("\n\n\nTime:%.1lf Unassigned:%d\n", cur_time, prev_decisions.GetUnassignedCount());
+//        prev_decisions.ToGraph();
 
         std::vector<Prob<Node, Driver>> probs;
         scenarios.Generate(probs, cur_time);
@@ -49,6 +49,8 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
         BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs, best_decisions, node);
 
+        PrintBBNodes();
+
         prev_decisions = best_decisions;
 
         switch (Parameters::GetConsensusToUse()) {
@@ -63,20 +65,20 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
                 break;
         }
 
-        best_decisions.Show();
+//        best_decisions.ToGraph();
 //        prev_decisions.GenerateGraph();
-        getchar();
+//        getchar();
 
-        //new_dd.Show();
+        //new_dd.ToGraph();
 
         cur_time = GetNextEvent(scenarios, prev_decisions, cur_time);
-        //prev_decisions.Show();
+        //prev_decisions.ToGraph();
 
         prev_decisions.Remove(cur_time);
         //printf("\n\n");
 
-        //prev_decisions.Show();
-        //new_dd.Show();
+        //prev_decisions.ToGraph();
+        //new_dd.ToGraph();
 
         //printf("Computation time:%.4lf\n", chrono.getTime()-chrono_cur_time);
         //getchar();
@@ -91,7 +93,7 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
         }
     }
 
-    prev_decisions.Show();
+//    prev_decisions.ToGraph();
 
     Prob<Node, Driver> real;
     scenarios.GenerateReal(real, Parameters::GetTimeHorizon() + 1);
@@ -101,7 +103,7 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     //solver.Optimize();
     solver.Unfix();
     solver.Show();
-    //prev_decisions.Show();
+    //prev_decisions.ToGraph();
 
     solver.Update();
     cost = solver.cost;
@@ -134,7 +136,7 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     Parameters::SetBranchAndRegret(false);
 
     solver.GetReport(report);
-    prev_decisions.GenerateGraph();
+//    prev_decisions.GenerateGraph();
 }
 
 void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
@@ -144,8 +146,8 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
     Decisions dd;
 
     current_multiset.GetNextActionDecisions(working_decisions, dd, scenarios);
-    printf("dd.GetCount: %d\n", dd.GetCount());
-    printf("Avg_cost: %lf\n", current_multiset.GetAverageCost());
+//    printf("dd.GetCount: %d\n", dd.GetCount());
+//    printf("Avg_cost: %lf\n", current_multiset.GetAverageCost());
 //    getchar();
     if (dd.GetCount() == 0) {
         if (best_integer_solution.GetReportCount() == 0 ||
@@ -174,7 +176,7 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
             BBNode new_node;
             new_node.id = BBNodes.size();
             new_node.parent_id = node.id;
-            new_node.decision_type = dd.Get(i)->decision_type;
+            new_node.decision_type = dd.Get(i)->action_type;
             new_node.request_id = dd.Get(i)->req_id;
             new_node.cost = BB_multiset.GetAverageCost();
             BBNodes.push_back(new_node);
@@ -193,4 +195,21 @@ double ProgressiveSimulation::GetNextEvent(Scenarios &scenarios, Decisions &decs
     double ne = decs.GetNextEvent(scenarios.real);
 
     return std::min(ne, next_request);
+}
+
+void ProgressiveSimulation::PrintBBNodes() {
+    if (BBNodes.size() < 1) {
+        return;
+    }
+
+    printf("\ndigraph G%d {\nlabelloc=\"t\";\n", BBnodesPrintCount);
+    printf("-1 [label=\"Depot\"]\n");
+    for (BBNode item: BBNodes) {
+        item.DeclareNode();
+    }
+    for (BBNode item: BBNodes) {
+        item.ToGraph();
+    }
+    printf("}\n\n");
+    BBnodesPrintCount++;
 }
