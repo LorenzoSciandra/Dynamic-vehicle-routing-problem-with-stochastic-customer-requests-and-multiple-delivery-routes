@@ -12,6 +12,17 @@
 #include <vector>
 #include <stdio.h>
 
+class BBNode {
+public:
+    int id = -1;
+    int parent_id;
+    int decision_type;
+    int request_id;
+    double cost;
+
+    BBNode() {};
+};
+
 class ProgressiveSimulation {
 public:
 
@@ -21,6 +32,7 @@ public:
     double distance;
     int nb_routes;
     int nb_events;
+    std::vector<BBNode> BBNodes;
 
     bool _forbid_stochastic_drop_after_real;
     bool _allow_en_route_returns;
@@ -33,7 +45,9 @@ public:
 
     void BranchAndBound(Scenarios &scenarios);
 
-    void BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution, Decisions &working_decisions, Scenarios &scenarios, std::vector<Prob<Node, Driver>> &probs);
+    void BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
+                        Decisions &working_decisions, Scenarios &scenarios, std::vector<Prob<Node, Driver>> &probs,
+                        Decisions &best_decisions, BBNode node);
 
     double GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time);
 

@@ -42,8 +42,14 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
         }
 
         DecisionMultiSet best_integer_solution;
+        Decisions best_decisions;
+        BBNode node;
 
-        BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs);
+        BBNodes.clear();
+
+        BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs, best_decisions, node);
+
+        prev_decisions = best_decisions;
 
         switch (Parameters::GetConsensusToUse()) {
             case CONSENSUS_STACY:
@@ -57,9 +63,9 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
                 break;
         }
 
-//        prev_decisions.Show();
-
-//        getchar();
+        best_decisions.Show();
+//        prev_decisions.GenerateGraph();
+        getchar();
 
         //new_dd.Show();
 
@@ -131,20 +137,22 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     prev_decisions.GenerateGraph();
 }
 
-void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
-                                           DecisionMultiSet &best_integer_solution,
-                                           Decisions &working_decisions,
-                                           Scenarios &scenarios,
-                                           std::vector<Prob<Node, Driver>> &probs) {
+void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
+                                           Decisions &working_decisions, Scenarios &scenarios,
+                                           std::vector<Prob<Node, Driver>> &probs,
+                                           Decisions &best_decisions, BBNode node) {
     Decisions dd;
 
     current_multiset.GetNextActionDecisions(working_decisions, dd, scenarios);
     printf("dd.GetCount: %d\n", dd.GetCount());
+    printf("Avg_cost: %lf\n", current_multiset.GetAverageCost());
 //    getchar();
     if (dd.GetCount() == 0) {
-        if (best_integer_solution.GetReportCount() == 0 || best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
-            printf("Updating integer: ");
+        if (best_integer_solution.GetReportCount() == 0 ||
+            best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
+//            printf("Updating integer: ");
             best_integer_solution = current_multiset;
+            best_decisions = working_decisions;
         }
     } else {
         for (int i = 0; i < dd.GetCount(); i++) {
@@ -163,7 +171,15 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
                 BB_multiset.Add(decisions);
             }
 
-            BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs);
+            BBNode new_node;
+            new_node.id = BBNodes.size();
+            new_node.parent_id = node.id;
+            new_node.decision_type = dd.Get(i)->decision_type;
+            new_node.request_id = dd.Get(i)->req_id;
+            new_node.cost = BB_multiset.GetAverageCost();
+            BBNodes.push_back(new_node);
+
+            BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
         }
     }
 }
