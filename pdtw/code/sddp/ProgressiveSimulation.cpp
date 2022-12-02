@@ -5,6 +5,7 @@
 #include "Solver.h"
 #include "Parameters.h"
 #include "../../../lib/Chrono.h"
+#include "BBNode.h"
 #include <stdlib.h>
 
 void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
@@ -43,13 +44,14 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
         DecisionMultiSet best_integer_solution;
         Decisions best_decisions;
-        BBNode node;
 
         BBNodes.clear();
+        BBNode node;
+        BBNodes.push_back(node);
 
         BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs, best_decisions, node);
 
-        PrintBBNodes();
+        PrintBBNodes(cur_time);
 
         prev_decisions = best_decisions;
 
@@ -142,17 +144,13 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
                                            Decisions &working_decisions, Scenarios &scenarios,
                                            std::vector<Prob<Node, Driver>> &probs,
-                                           Decisions &best_decisions, BBNode node) {
+                                           Decisions &best_decisions, BBNode &node) {
     Decisions dd;
 
     current_multiset.GetNextActionDecisions(working_decisions, dd, scenarios);
-//    printf("dd.GetCount: %d\n", dd.GetCount());
-//    printf("Avg_cost: %lf\n", current_multiset.GetAverageCost());
-//    getchar();
     if (dd.GetCount() == 0) {
         if (best_integer_solution.GetReportCount() == 0 ||
             best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
-//            printf("Updating integer: ");
             best_integer_solution = current_multiset;
             best_decisions = working_decisions;
         }
@@ -161,7 +159,6 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
             Decisions curr = working_decisions;
             curr.Add(dd.Get(i));
 
-            // Impostare una decisione -> Risolvere scenari -> recuperare ogni soluzione -> passiamo l'insieme di soluzioni al nodo successivo
             DecisionMultiSet BB_multiset;
 
             for (int j = 0; j < Parameters::GetScenarioCount(); j++) {
@@ -175,13 +172,25 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
 
             BBNode new_node;
             new_node.id = BBNodes.size();
+            // Added to have a back reference to the children
             new_node.parent_id = node.id;
             new_node.decision_type = dd.Get(i)->action_type;
             new_node.request_id = dd.Get(i)->req_id;
             new_node.cost = BB_multiset.GetAverageCost();
             BBNodes.push_back(new_node);
 
+            for (BBNode &item: BBNodes) {
+                if (item.id == node.id)
+                    item.children.push_back(new_node);
+            }
+
+//            node.children.push_back(new_node);
+
+            // Fathoming?
+//            if (best_integer_solution.GetReportCount() != 0 &&
+//                best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
             BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
+//            }
         }
     }
 }
@@ -197,19 +206,49 @@ double ProgressiveSimulation::GetNextEvent(Scenarios &scenarios, Decisions &decs
     return std::min(ne, next_request);
 }
 
-void ProgressiveSimulation::PrintBBNodes() {
+void ProgressiveSimulation::PrintBBNodes(double time) {
     if (BBNodes.size() < 1) {
         return;
     }
 
     printf("\ndigraph G%d {\nlabelloc=\"t\";\n", BBnodesPrintCount);
-    printf("-1 [label=\"Depot\"]\n");
-    for (BBNode item: BBNodes) {
+    printf("-1 [label=\"Depot\\nTime: %.0lf\"]\n", time);
+    for (BBNode &item: BBNodes) {
         item.DeclareNode();
     }
-    for (BBNode item: BBNodes) {
-        item.ToGraph();
+
+    int best_regret_path_node = -1;
+
+    for (BBNode &item: BBNodes) {
+        int newvalue = item.ToGraph2(best_regret_path_node);
+
+        if (newvalue != -2) {
+            best_regret_path_node = newvalue;
+        }
     }
+
+    printf("subgraph structs {\n"
+           "    node [shape=plaintext]\n"
+           "    struct1 [label=<\n"
+           "        <TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\">\n"
+           "    <tr>\n"
+           "    <td colspan=\"2\">Legend</td>\n"
+           "  </tr>\n"
+           "            <tr>\n"
+           "    <td>Algorithm</td>\n"
+           "    <td>Color</td>\n"
+           "  </tr>\n"
+           "  <tr>\n"
+           "    <td>Branch &amp; Regret</td>\n"
+           "    <td BGCOLOR=\"red\"></td>\n"
+           "  </tr>\n"
+           "  <tr>\n"
+           "    <td>Best Path</td>\n"
+           "    <td BGCOLOR=\"blue\"></td>\n"
+           "  </tr>\n"
+           "        </TABLE>>];\n"
+           "}");
+
     printf("}\n\n");
     BBnodesPrintCount++;
 }

@@ -9,42 +9,9 @@
 #include "../SolCompact.h"
 #include "Report.h"
 #include "Test.h"
+#include "BBNode.h"
 #include <vector>
 #include <stdio.h>
-
-class BBNode {
-public:
-    int id = -1;
-    int parent_id;
-    int decision_type;
-    int request_id;
-    double cost;
-
-    BBNode() {};
-
-    void DeclareNode() {
-        printf("%d [label=\"Req=%d\"]\n", id, request_id);
-    }
-
-    void ToGraph() {
-        std::string decisionTypeString;
-        switch (decision_type) {
-            case DECISION_ACTION_GO_NOW:
-                decisionTypeString = "Go Now";
-                break;
-            case DECISION_ACTION_WAIT:
-                decisionTypeString = "Wait";
-                break;
-            case DECISION_ACTION_DONT_DELIVER:
-                decisionTypeString = "Don't Deliver";
-                break;
-            default:
-                decisionTypeString = std::to_string(decision_type);
-                break;
-        }
-        printf("%d -> %d [label=\"%s\\n%.1lf\"]\n", parent_id, id, decisionTypeString.c_str(), cost);
-    }
-};
 
 class ProgressiveSimulation {
 public:
@@ -70,7 +37,7 @@ public:
 
     void BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
                         Decisions &working_decisions, Scenarios &scenarios, std::vector<Prob<Node, Driver>> &probs,
-                        Decisions &best_decisions, BBNode node);
+                        Decisions &best_decisions, BBNode &node);
 
     double GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time);
 
@@ -108,7 +75,7 @@ public:
         return r;
     }
 
-    void PrintBBNodes();
+    void PrintBBNodes(double time);
 
     int BBnodesPrintCount = 0;
 };
