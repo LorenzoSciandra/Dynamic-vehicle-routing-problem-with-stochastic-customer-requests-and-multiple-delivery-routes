@@ -187,10 +187,10 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
 //            node.children.push_back(new_node);
 
             // Fathoming?
-//            if (best_integer_solution.GetReportCount() != 0 &&
-//                best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
+            if (best_integer_solution.GetReportCount() == 0 ||
+                best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
             BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
-//            }
+            }
         }
     }
 }
