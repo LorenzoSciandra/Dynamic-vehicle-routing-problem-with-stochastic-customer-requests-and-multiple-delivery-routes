@@ -30,8 +30,6 @@
  * @param argv  
  * @return int 
  */
-
-
 int main(int arg, char **argv) {
     freopen("./output.txt", "w", stdout);
     time_t tt = time(0);

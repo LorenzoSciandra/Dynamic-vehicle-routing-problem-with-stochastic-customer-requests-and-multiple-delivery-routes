@@ -22,6 +22,10 @@ public:
     int decision_type;
     int request_id;
     double cost;
+    int tree_level = 0;
+    // The edge that points to THIS node.
+    bool edge_best = false;
+    bool edge_regret = false;
     std::vector<BBNode> children;
 
     BBNode() {};
@@ -32,7 +36,8 @@ public:
 
     std::string DecisionToString();
 
-    int ToGraph2(int best_regret_path_node);
+    int ToGraph(int best_regret_path_node);
+
 };
 
 #endif //SDDP_APP_BBNODE_H

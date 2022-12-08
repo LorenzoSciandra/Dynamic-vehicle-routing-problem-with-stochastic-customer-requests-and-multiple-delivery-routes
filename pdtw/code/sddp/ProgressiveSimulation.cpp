@@ -51,6 +51,8 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
         BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs, best_decisions, node);
 
+        PreprocessBBNodes(best_integer_solution.GetAverageCost());
+
         PrintBBNodes(cur_time);
 
         prev_decisions = best_decisions;
@@ -172,6 +174,7 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
 
             BBNode new_node;
             new_node.id = BBNodes.size();
+            new_node.tree_level = node.tree_level + 1;
             // Added to have a back reference to the children
             new_node.parent_id = node.id;
             new_node.decision_type = dd.Get(i)->action_type;
@@ -189,7 +192,7 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
             // Fathoming?
             if (best_integer_solution.GetReportCount() == 0 ||
                 best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
-            BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
+                BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
             }
         }
     }
@@ -206,8 +209,35 @@ double ProgressiveSimulation::GetNextEvent(Scenarios &scenarios, Decisions &decs
     return std::min(ne, next_request);
 }
 
+void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost) {
+    printf("%zu", BBNodes.size());
+    for (auto &item: BBNodes) {
+        if (item.children.empty() && std::abs(item.cost - best_integer_solution_cost) < DBL_EPSILON) {
+            item.edge_best = true;
+
+            int index = item.parent_id;
+            while (index != -1) {
+                BBNodes.at(index).edge_best = true;
+                index = BBNodes.at(index).parent_id;
+            }
+        }
+
+        if (item.edge_regret || item.id == -1) {
+            BBNode &best = item.children.at(0);
+            // find the best node that would be used by B&R
+            for (BBNode &item2: item.children) {
+                if (item.cost < best.cost) {
+                    best = item2;
+                }
+            }
+
+            BBNodes.at(best.id).edge_regret = true;
+        }
+    }
+}
+
 void ProgressiveSimulation::PrintBBNodes(double time) {
-    if (BBNodes.size() < 1) {
+    if (BBNodes.empty()) {
         return;
     }
 
@@ -217,14 +247,8 @@ void ProgressiveSimulation::PrintBBNodes(double time) {
         item.DeclareNode();
     }
 
-    int best_regret_path_node = -1;
-
     for (BBNode &item: BBNodes) {
-        int newvalue = item.ToGraph2(best_regret_path_node);
-
-        if (newvalue != -2) {
-            best_regret_path_node = newvalue;
-        }
+        item.ToGraph();
     }
 
     printf("subgraph structs {\n"

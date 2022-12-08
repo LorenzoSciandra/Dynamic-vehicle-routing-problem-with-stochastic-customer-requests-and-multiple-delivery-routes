@@ -78,6 +78,8 @@ public:
     void PrintBBNodes(double time);
 
     int BBnodesPrintCount = 0;
+
+    void PreprocessBBNodes(double best_integer_solution);
 };
 
 #endif
