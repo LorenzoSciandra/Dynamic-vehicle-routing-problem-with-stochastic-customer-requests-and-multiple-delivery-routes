@@ -75,7 +75,7 @@ public:
         return r;
     }
 
-    void PrintBBNodes(double time);
+    void PrintBBNodes(double time, double best_integer_solution_avg_cost);
 
     int BBnodesPrintCount = 0;
 

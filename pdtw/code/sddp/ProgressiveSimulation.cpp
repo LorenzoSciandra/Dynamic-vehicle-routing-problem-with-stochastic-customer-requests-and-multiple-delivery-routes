@@ -53,7 +53,7 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
         PreprocessBBNodes(best_integer_solution.GetAverageCost());
 
-        PrintBBNodes(cur_time);
+        PrintBBNodes(cur_time, best_integer_solution.GetAverageCost());
 
         prev_decisions = best_decisions;
 
@@ -189,7 +189,7 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
 
 //            node.children.push_back(new_node);
 
-            // Fathoming?
+            // Fathoming
             if (best_integer_solution.GetReportCount() == 0 ||
                 best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
                 BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
@@ -210,7 +210,6 @@ double ProgressiveSimulation::GetNextEvent(Scenarios &scenarios, Decisions &decs
 }
 
 void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost) {
-    printf("%zu", BBNodes.size());
     for (auto &item: BBNodes) {
         if (item.children.empty() && std::abs(item.cost - best_integer_solution_cost) < DBL_EPSILON) {
             item.edge_best = true;
@@ -222,7 +221,7 @@ void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost)
             }
         }
 
-        if (item.edge_regret || item.id == -1) {
+        if (!item.children.empty() && (item.edge_regret || item.id == -1)) {
             BBNode &best = item.children.at(0);
             // find the best node that would be used by B&R
             for (BBNode &item2: item.children) {
@@ -236,13 +235,13 @@ void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost)
     }
 }
 
-void ProgressiveSimulation::PrintBBNodes(double time) {
+void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_solution_avg_cost) {
     if (BBNodes.empty()) {
         return;
     }
 
-    printf("\ndigraph G%d {\nlabelloc=\"t\";\n", BBnodesPrintCount);
-    printf("-1 [label=\"Depot\\nTime: %.0lf\"]\n", time);
+    printf("\ndigraph G%best_integer_solution_avg_cost {\nlabelloc=\"t\";\n", BBnodesPrintCount);
+    printf("-1 [label=\"Depot\\nTime: %.0lf\\nBest: %lf\"]\n", time, best_integer_solution_avg_cost);
     for (BBNode &item: BBNodes) {
         item.DeclareNode();
     }

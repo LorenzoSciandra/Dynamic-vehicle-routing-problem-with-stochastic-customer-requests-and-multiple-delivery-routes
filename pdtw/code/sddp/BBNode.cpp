@@ -9,6 +9,10 @@ void BBNode::DeclareNode() {
 }
 
 void BBNode::ToGraph() {
+    if (id == -1) {
+        return;
+    }
+
     std::string style;
 
     if (edge_best && !edge_regret) {
