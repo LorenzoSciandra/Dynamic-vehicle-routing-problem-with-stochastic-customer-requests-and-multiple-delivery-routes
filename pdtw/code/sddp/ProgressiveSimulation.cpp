@@ -25,8 +25,6 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
     for (nb_events = 1; cur_time <= Parameters::GetTimeHorizon(); nb_events++) {
         Parameters::SetCurrentTime(cur_time);
-//        printf("\n\n\nTime:%.1lf Unassigned:%d\n", cur_time, prev_decisions.GetUnassignedCount());
-//        prev_decisions.ToGraph();
 
         std::vector<Prob<Node, Driver>> probs;
         scenarios.Generate(probs, cur_time);
@@ -71,23 +69,9 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
                 break;
         }
 
-//        best_decisions.ToGraph();
-//        prev_decisions.GenerateGraph();
-//        getchar();
-
-        //new_dd.ToGraph();
-
         cur_time = GetNextEvent(scenarios, prev_decisions, cur_time);
-        //prev_decisions.ToGraph();
 
         prev_decisions.Remove(cur_time);
-        //printf("\n\n");
-
-        //prev_decisions.ToGraph();
-        //new_dd.ToGraph();
-
-        //printf("Computation time:%.4lf\n", chrono.getTime()-chrono_cur_time);
-        //getchar();
 
         if (chrono.getTime() > Parameters::GetTimeLimitSeconds()) {
             cost = 0;
@@ -99,17 +83,13 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
         }
     }
 
-//    prev_decisions.ToGraph();
-
     Prob<Node, Driver> real;
     scenarios.GenerateReal(real, Parameters::GetTimeHorizon() + 1);
     Parameters::SetCurrentTime(0);
     Solver solver(real);
     solver.SetDecisions(prev_decisions);
-    //solver.Optimize();
     solver.Unfix();
     solver.Show();
-    //prev_decisions.ToGraph();
 
     solver.Update();
     cost = solver.cost;
@@ -118,8 +98,6 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     nb_routes = solver.GetRouteCount();
     time_taken = chrono.getTime();
 
-//    _branching_to_use = Parameters::GetBranchAndRegretToUse();
-//    _consensus_to_use = Parameters::GetConsensusToUse();
     _forbid_stochastic_drop_after_real = Parameters::ForbidStochasticDropAfterReal();
     _allow_en_route_returns = Parameters::AllowEnRouteDepotReturns();
     Show();
@@ -142,7 +120,6 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     Parameters::SetBranchAndRegret(false);
 
     solver.GetReport(report);
-//    prev_decisions.GenerateGraph();
 }
 
 void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,

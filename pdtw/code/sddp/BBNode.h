@@ -17,8 +17,8 @@
 
 class BBNode {
 public:
-    int id = -1;
-    int parent_id;
+    unsigned long id = -1;
+    unsigned long parent_id;
     int decision_type;
     int request_id;
     double cost;
