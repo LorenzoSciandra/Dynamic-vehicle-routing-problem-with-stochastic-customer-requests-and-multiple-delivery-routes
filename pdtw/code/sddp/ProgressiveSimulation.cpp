@@ -191,7 +191,7 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
 
             // Fathoming
             if (best_integer_solution.GetReportCount() == 0 ||
-                best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
+                best_integer_solution.GetAverageCost() > BB_multiset.GetAverageCost()) {
                 BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
             }
         }
@@ -240,7 +240,7 @@ void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_soluti
         return;
     }
 
-    printf("\ndigraph G%best_integer_solution_avg_cost {\nlabelloc=\"t\";\n", BBnodesPrintCount);
+    printf("\ndigraph G%d {\nlabelloc=\"t\";\n", BBnodesPrintCount);
     printf("-1 [label=\"Depot\\nTime: %.0lf\\nBest: %lf\"]\n", time, best_integer_solution_avg_cost);
     for (BBNode &item: BBNodes) {
         item.DeclareNode();
