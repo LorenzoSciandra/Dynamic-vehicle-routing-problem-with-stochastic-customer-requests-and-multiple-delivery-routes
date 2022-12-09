@@ -5,7 +5,7 @@
 
 void BBNode::DeclareNode() {
     if (id != -1)
-        printf("%lu [label=\"Req=%d\\nOV: %ld\"]\n", id, request_id, visit_order);
+        printf("%lu [label=\"Req=%d\\nVisit: %ld\"]\n", id, request_id, visit_order);
 }
 
 void BBNode::ToGraph() {

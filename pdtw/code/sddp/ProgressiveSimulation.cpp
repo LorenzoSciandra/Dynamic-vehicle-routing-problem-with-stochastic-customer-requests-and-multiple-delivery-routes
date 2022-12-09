@@ -268,7 +268,7 @@ void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_soluti
            "    <td BGCOLOR=\"blue\"></td>\n"
            "  </tr>\n"
            "        </TABLE>>];\n"
-           "}", Parameters::IsBestFirstUsedInBnB() ? "BF " : "DF");
+           "}", Parameters::IsBestFirstUsedInBnB() ? "BF " : "DF ");
 
     printf("}\n\n");
     BBnodesPrintCount++;
