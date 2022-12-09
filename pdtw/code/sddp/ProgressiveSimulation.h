@@ -17,10 +17,10 @@ class BBBestPriorityItem {
 public:
     DecisionMultiSet multiSet;
     Decisions decisions;
-    BBNode bbNode;
+    BBNode *bbNode;
     double value;
 
-    BBBestPriorityItem(const DecisionMultiSet &multiSet, const Decisions &decisions, const BBNode &bbNode);
+    BBBestPriorityItem(const DecisionMultiSet &multiSet, const Decisions &decisions, BBNode *bbNode);
 
     static bool comparator(const BBBestPriorityItem& item1, const BBBestPriorityItem& item2);
 };
@@ -34,7 +34,7 @@ public:
     double distance;
     int nb_routes;
     int nb_events;
-    std::vector<BBNode> BBNodes;
+    std::vector<BBNode*> BBNodes;
     unsigned long BBNode_total_count = 0;
     long visit_order_counter = 0;
 
@@ -46,13 +46,6 @@ public:
     ProgressiveSimulation() {}
 
     void Optimize(Scenarios &scenarios);
-
-    void BranchAndBound(Scenarios &scenarios);
-
-    void BranchAndBoundDepthFirst(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
-                                  Decisions &working_decisions, Scenarios &scenarios,
-                                  std::vector<Prob<Node, Driver>> &probs,
-                                  Decisions &best_decisions, BBNode &node);
 
     double GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time);
 
@@ -98,7 +91,7 @@ public:
 
     void BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
                         Decisions &working_decisions, Scenarios &scenarios, std::vector<Prob<Node, Driver>> &probs,
-                        Decisions &best_decisions, BBNode &node);
+                        Decisions &best_decisions, BBNode *node);
 
     void ResetBB();
 };

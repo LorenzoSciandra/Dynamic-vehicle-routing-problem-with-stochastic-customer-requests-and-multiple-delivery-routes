@@ -26,7 +26,7 @@ public:
     // The edge that points to THIS node.
     bool edge_best = false;
     bool edge_regret = false;
-    std::vector<BBNode> children;
+    std::vector<BBNode*> children;
     long visit_order = 0;
 
     BBNode() {};

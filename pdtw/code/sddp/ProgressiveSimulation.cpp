@@ -47,7 +47,7 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
         ResetBB();
 
-        BBNode node;
+        BBNode* node = new BBNode();
         BBNodes.push_back(node);
 
         BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs, best_decisions, node);
@@ -131,7 +131,7 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
                                            Scenarios &scenarios,
                                            std::vector<Prob<Node, Driver>> &probs,
                                            Decisions &best_decisions,
-                                           BBNode &node) {
+                                           BBNode *node) {
     Decisions dd;
 
     current_multiset.GetNextActionDecisions(working_decisions, dd, scenarios);
@@ -159,21 +159,21 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
                 BB_multiset.Add(decisions);
             }
 
-            BBNode new_node;
-            new_node.id = BBNodes.size();
-            new_node.tree_level = node.tree_level + 1;
+            BBNode* new_node = new BBNode();
+            new_node->id = BBNodes.size();
+            new_node->tree_level = node->tree_level + 1;
             // Added to have a back reference to the children
-            new_node.parent_id = node.id;
-            new_node.decision_type = dd.Get(i)->action_type;
-            new_node.request_id = dd.Get(i)->req_id;
-            new_node.cost = BB_multiset.GetAverageCost();
+            new_node->parent_id = node->id;
+            new_node->decision_type = dd.Get(i)->action_type;
+            new_node->request_id = dd.Get(i)->req_id;
+            new_node->cost = BB_multiset.GetAverageCost();
             BBNodes.push_back(new_node);
 
             all_decisions.emplace_back(BB_multiset, curr, new_node);
 
-            for (BBNode &item: BBNodes) {
-                if (item.id == node.id)
-                    item.children.push_back(new_node);
+            for (BBNode *item: BBNodes) {
+                if (item->id == node->id)
+                    item->children.push_back(new_node);
             }
         }
 
@@ -182,7 +182,7 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
 
         // Fathoming
         for (BBBestPriorityItem &item: all_decisions) {
-            item.bbNode.visit_order = visit_order_counter++;
+            item.bbNode->visit_order = visit_order_counter++;
 
             if (!Parameters::IsFathomingInBnBEnabled()) {
                 BranchAndBound(item.multiSet, best_integer_solution, item.decisions, scenarios, probs, best_decisions,
@@ -209,26 +209,26 @@ double ProgressiveSimulation::GetNextEvent(Scenarios &scenarios, Decisions &decs
 
 void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost) {
     for (auto &item: BBNodes) {
-        if (item.children.empty() && std::abs(item.cost - best_integer_solution_cost) < DBL_EPSILON) {
-            item.edge_best = true;
+        if (item->children.empty() && std::abs(item->cost - best_integer_solution_cost) < DBL_EPSILON) {
+            item->edge_best = true;
 
-            int index = item.parent_id;
+            int index = item->parent_id;
             while (index != -1) {
-                BBNodes.at(index).edge_best = true;
-                index = BBNodes.at(index).parent_id;
+                BBNodes.at(index)->edge_best = true;
+                index = BBNodes.at(index)->parent_id;
             }
         }
 
-        if (!item.children.empty() && (item.edge_regret || item.id == -1)) {
-            BBNode &best = item.children.at(0);
+        if (!item->children.empty() && (item->edge_regret || item->id == -1)) {
+            BBNode *best = item->children.at(0);
             // find the best node that would be used by B&R
-            for (BBNode &item2: item.children) {
-                if (item.cost < best.cost) {
+            for (BBNode *item2: item->children) {
+                if (item->cost < best->cost) {
                     best = item2;
                 }
             }
 
-            BBNodes.at(best.id).edge_regret = true;
+            BBNodes.at(best->id)->edge_regret = true;
         }
     }
 }
@@ -240,12 +240,12 @@ void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_soluti
 
     printf("\ndigraph G%d {\nlabelloc=\"t\";\n", BBnodesPrintCount);
     printf("-1 [label=\"Depot\\nTime: %.0lf\\nBest: %lf\"]\n", time, best_integer_solution_avg_cost);
-    for (BBNode &item: BBNodes) {
-        item.DeclareNode();
+    for (BBNode *item: BBNodes) {
+        item->DeclareNode();
     }
 
-    for (BBNode &item: BBNodes) {
-        item.ToGraph();
+    for (BBNode *item: BBNodes) {
+        item->ToGraph();
     }
 
     printf("subgraph structs {\n"
@@ -280,7 +280,7 @@ void ProgressiveSimulation::ResetBB() {
 }
 
 BBBestPriorityItem::BBBestPriorityItem(const DecisionMultiSet &multiSet, const Decisions &decisions,
-                                       const BBNode &bbNode)
+                                       BBNode* bbNode)
         : multiSet(multiSet), decisions(decisions), bbNode(bbNode) {
     value = this->multiSet.GetAverageCost();
 }
