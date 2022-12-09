@@ -53,6 +53,8 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
         PreprocessBBNodes(best_integer_solution.GetAverageCost());
 
+        BBNode_total_count += BBNodes.size();
+
         PrintBBNodes(cur_time, best_integer_solution.GetAverageCost());
 
         prev_decisions = best_decisions;
@@ -190,8 +192,10 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
 //            node.children.push_back(new_node);
 
             // Fathoming
-            if (best_integer_solution.GetReportCount() == 0 ||
-                best_integer_solution.GetAverageCost() > BB_multiset.GetAverageCost()) {
+            if (!Parameters::IsFathomingInBnBEnabled()) {
+                BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
+            } else if ((best_integer_solution.GetReportCount() == 0 ||
+                        best_integer_solution.GetAverageCost() > BB_multiset.GetAverageCost())) {
                 BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
             }
         }

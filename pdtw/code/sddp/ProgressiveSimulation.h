@@ -23,6 +23,7 @@ public:
     int nb_routes;
     int nb_events;
     std::vector<BBNode> BBNodes;
+    unsigned long BBNode_total_count = 0;
 
     bool _forbid_stochastic_drop_after_real;
     bool _allow_en_route_returns;

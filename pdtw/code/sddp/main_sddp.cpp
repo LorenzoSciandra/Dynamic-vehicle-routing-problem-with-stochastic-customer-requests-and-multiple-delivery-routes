@@ -41,8 +41,9 @@ int main(int arg, char **argv) {
     Parameters::SetAlnsIterations(100);
     Parameters::SetDriverCount(10);
     Parameters::SetP(0);
-    Parameters::SetScenarioCount(10);
+    Parameters::SetScenarioCount(30);
     Parameters::SetGenerateIntelligentScenario(true);
+    Parameters::SetFathomingInBnB(true);
 
 
     Scenarios scenarios_ulmer;
@@ -79,6 +80,7 @@ int main(int arg, char **argv) {
 
     printf("File:%s\nInstance:%s Customers:%d\n", argv[1], scenarios.problem_name_tw.c_str(),
            scenarios.nb_real_requests_instance);
+    printf("BBNode count: %lu\n", ps.BBNode_total_count);
     for (auto & result : results)
         result.Show();
 

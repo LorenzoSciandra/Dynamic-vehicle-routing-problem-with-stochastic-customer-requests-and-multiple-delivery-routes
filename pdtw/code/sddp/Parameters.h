@@ -150,6 +150,10 @@ public:
 
     static void SetInstanceType(int t) { _instance_type = t; }
 
+    static bool IsFathomingInBnBEnabled() { return _use_fathoming_in_branch_and_bound; }
+
+    static void SetFathomingInBnB(bool enable) { _use_fathoming_in_branch_and_bound = enable; }
+
     static void SetBranchAndRegret(bool b) {
         _is_branch_and_regret = b;
         if (b) _is_sbpa = false;
@@ -185,7 +189,7 @@ private:
     static bool _is_branch_and_regret;
     static bool _is_sbpa;
     static bool _is_progressive;
-
+    static bool _use_fathoming_in_branch_and_bound;
 
     static int p;
     static int p2;
