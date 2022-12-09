@@ -50,3 +50,5 @@ int Parameters::_ulmer_depot_location = 1;
 bool Parameters::_is_branch_and_regret = false;
 bool Parameters::_is_sbpa = false;
 bool Parameters::_is_progressive = false;
+bool Parameters::_use_fathoming_in_branch_and_bound = true;
+bool Parameters::_use_best_first_in_branch_and_bound = true;

@@ -5,7 +5,7 @@
 
 void BBNode::DeclareNode() {
     if (id != -1)
-        printf("%d [label=\"Req=%d\"]\n", id, request_id);
+        printf("%lu [label=\"Req=%d\\nOV: %ld\"]\n", id, request_id, visit_order);
 }
 
 void BBNode::ToGraph() {
@@ -23,7 +23,7 @@ void BBNode::ToGraph() {
         style = " color=\"red:blue\" penwidth=4";
     }
 
-    printf("%d -> %d [label=\"%s\\n%.2lf\"%s]\n", parent_id, id, DecisionToString().c_str(), cost, style.c_str());
+    printf("%ld -> %ld [label=\"%s\\n%.2lf\"%s]\n", parent_id, id, DecisionToString().c_str(), cost, style.c_str());
 }
 
 std::string BBNode::DecisionToString() {

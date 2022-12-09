@@ -79,8 +79,11 @@ public:
 
     bool GetNextDecisionProgressive(Decisions &decisions, Decision &decision);
 
+    bool operator< (DecisionMultiSet &other);
+    bool operator> (DecisionMultiSet &other);
+
 private:
-    std::vector <Decisions> reports;
+    std::vector<Decisions> reports;
 };
 
 #endif

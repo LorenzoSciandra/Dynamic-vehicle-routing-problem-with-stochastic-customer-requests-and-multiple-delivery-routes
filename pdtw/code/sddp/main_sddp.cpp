@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-
+#include "Parameters.h"
 #include "Scenarios.h"
 #include "Solver.h"
 #include "BranchRegretSimulation.h"
@@ -44,6 +44,7 @@ int main(int arg, char **argv) {
     Parameters::SetScenarioCount(30);
     Parameters::SetGenerateIntelligentScenario(true);
     Parameters::SetFathomingInBnB(true);
+    Parameters::SetBestFirstForBnB(true);
 
 
     Scenarios scenarios_ulmer;

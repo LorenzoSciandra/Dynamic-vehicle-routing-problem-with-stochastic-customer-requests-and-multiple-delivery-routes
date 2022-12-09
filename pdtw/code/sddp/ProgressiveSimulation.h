@@ -13,6 +13,18 @@
 #include <vector>
 #include <stdio.h>
 
+class BBBestPriorityItem {
+public:
+    DecisionMultiSet multiSet;
+    Decisions decisions;
+    BBNode bbNode;
+    double value;
+
+    BBBestPriorityItem(const DecisionMultiSet &multiSet, const Decisions &decisions, const BBNode &bbNode);
+
+    static bool comparator(const BBBestPriorityItem& item1, const BBBestPriorityItem& item2);
+};
+
 class ProgressiveSimulation {
 public:
 
@@ -24,6 +36,7 @@ public:
     int nb_events;
     std::vector<BBNode> BBNodes;
     unsigned long BBNode_total_count = 0;
+    long visit_order_counter = 0;
 
     bool _forbid_stochastic_drop_after_real;
     bool _allow_en_route_returns;
@@ -36,9 +49,10 @@ public:
 
     void BranchAndBound(Scenarios &scenarios);
 
-    void BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
-                        Decisions &working_decisions, Scenarios &scenarios, std::vector<Prob<Node, Driver>> &probs,
-                        Decisions &best_decisions, BBNode &node);
+    void BranchAndBoundDepthFirst(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
+                                  Decisions &working_decisions, Scenarios &scenarios,
+                                  std::vector<Prob<Node, Driver>> &probs,
+                                  Decisions &best_decisions, BBNode &node);
 
     double GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time);
 
@@ -81,6 +95,12 @@ public:
     int BBnodesPrintCount = 0;
 
     void PreprocessBBNodes(double best_integer_solution);
+
+    void BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
+                        Decisions &working_decisions, Scenarios &scenarios, std::vector<Prob<Node, Driver>> &probs,
+                        Decisions &best_decisions, BBNode &node);
+
+    void ResetBB();
 };
 
 #endif

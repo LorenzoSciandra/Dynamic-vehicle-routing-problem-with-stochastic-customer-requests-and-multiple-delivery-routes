@@ -154,6 +154,10 @@ public:
 
     static void SetFathomingInBnB(bool enable) { _use_fathoming_in_branch_and_bound = enable; }
 
+    static bool IsBestFirstUsedInBnB() { return _use_best_first_in_branch_and_bound; }
+
+    static void SetBestFirstForBnB(bool enable) { _use_best_first_in_branch_and_bound = enable; }
+
     static void SetBranchAndRegret(bool b) {
         _is_branch_and_regret = b;
         if (b) _is_sbpa = false;
@@ -225,6 +229,7 @@ private:
     static int _instance_type; //1 is stacy, 2 is ulmer
 
     static int _nb_real_requests;
+    static bool _use_best_first_in_branch_and_bound;
 };
 
 

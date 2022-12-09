@@ -17,8 +17,8 @@
 
 class BBNode {
 public:
-    unsigned long id = -1;
-    unsigned long parent_id;
+    long id = -1;
+    long parent_id;
     int decision_type;
     int request_id;
     double cost;
@@ -27,6 +27,7 @@ public:
     bool edge_best = false;
     bool edge_regret = false;
     std::vector<BBNode> children;
+    long visit_order = 0;
 
     BBNode() {};
 

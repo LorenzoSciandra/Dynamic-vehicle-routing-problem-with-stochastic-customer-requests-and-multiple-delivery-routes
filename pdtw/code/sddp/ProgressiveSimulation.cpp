@@ -7,6 +7,8 @@
 #include "../../../lib/Chrono.h"
 #include "BBNode.h"
 #include <stdlib.h>
+#include <queue>
+#include <algorithm>
 
 void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     Parameters::SetProgressive(true);
@@ -43,7 +45,8 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
         DecisionMultiSet best_integer_solution;
         Decisions best_decisions;
 
-        BBNodes.clear();
+        ResetBB();
+
         BBNode node;
         BBNodes.push_back(node);
 
@@ -122,10 +125,13 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     solver.GetReport(report);
 }
 
-void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
-                                           Decisions &working_decisions, Scenarios &scenarios,
+void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
+                                           DecisionMultiSet &best_integer_solution,
+                                           Decisions &working_decisions,
+                                           Scenarios &scenarios,
                                            std::vector<Prob<Node, Driver>> &probs,
-                                           Decisions &best_decisions, BBNode &node) {
+                                           Decisions &best_decisions,
+                                           BBNode &node) {
     Decisions dd;
 
     current_multiset.GetNextActionDecisions(working_decisions, dd, scenarios);
@@ -136,6 +142,8 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
             best_decisions = working_decisions;
         }
     } else {
+        std::vector<BBBestPriorityItem> all_decisions;
+
         for (int i = 0; i < dd.GetCount(); i++) {
             Decisions curr = working_decisions;
             curr.Add(dd.Get(i));
@@ -161,19 +169,28 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset, D
             new_node.cost = BB_multiset.GetAverageCost();
             BBNodes.push_back(new_node);
 
+            all_decisions.emplace_back(BB_multiset, curr, new_node);
+
             for (BBNode &item: BBNodes) {
                 if (item.id == node.id)
                     item.children.push_back(new_node);
             }
+        }
 
-//            node.children.push_back(new_node);
+        if (Parameters::IsBestFirstUsedInBnB())
+            std::sort(all_decisions.begin(), all_decisions.end(), &BBBestPriorityItem::comparator);
 
-            // Fathoming
+        // Fathoming
+        for (BBBestPriorityItem &item: all_decisions) {
+            item.bbNode.visit_order = visit_order_counter++;
+
             if (!Parameters::IsFathomingInBnBEnabled()) {
-                BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
+                BranchAndBound(item.multiSet, best_integer_solution, item.decisions, scenarios, probs, best_decisions,
+                               item.bbNode);
             } else if ((best_integer_solution.GetReportCount() == 0 ||
-                        best_integer_solution.GetAverageCost() > BB_multiset.GetAverageCost())) {
-                BranchAndBound(BB_multiset, best_integer_solution, curr, scenarios, probs, best_decisions, new_node);
+                        best_integer_solution.GetAverageCost() > item.value)) {
+                BranchAndBound(item.multiSet, best_integer_solution, item.decisions, scenarios, probs, best_decisions,
+                               item.bbNode);
             }
         }
     }
@@ -247,12 +264,27 @@ void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_soluti
            "    <td BGCOLOR=\"red\"></td>\n"
            "  </tr>\n"
            "  <tr>\n"
-           "    <td>Best Path</td>\n"
+           "    <td>%sBest Path</td>\n"
            "    <td BGCOLOR=\"blue\"></td>\n"
            "  </tr>\n"
            "        </TABLE>>];\n"
-           "}");
+           "}", Parameters::IsBestFirstUsedInBnB() ? "BF " : "DF");
 
     printf("}\n\n");
     BBnodesPrintCount++;
+}
+
+void ProgressiveSimulation::ResetBB() {
+    BBNodes.clear();
+    visit_order_counter = 0;
+}
+
+BBBestPriorityItem::BBBestPriorityItem(const DecisionMultiSet &multiSet, const Decisions &decisions,
+                                       const BBNode &bbNode)
+        : multiSet(multiSet), decisions(decisions), bbNode(bbNode) {
+    value = this->multiSet.GetAverageCost();
+}
+
+bool BBBestPriorityItem::comparator(const BBBestPriorityItem &item1, const BBBestPriorityItem &item2) {
+    return item1.value < item2.value;
 }

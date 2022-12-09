@@ -10,6 +10,14 @@
 
 using namespace AssignmentProblemSolver;
 
+bool DecisionMultiSet::operator<(DecisionMultiSet &other) {
+    return GetAverageCost() < other.GetAverageCost();
+}
+
+bool DecisionMultiSet::operator>(DecisionMultiSet &other) {
+    return GetAverageCost() > other.GetAverageCost();
+}
+
 void DecisionMultiSet::GetConsensusByDrivers(Decisions &decisions) {
     //printf("GetConsensus\n");
     int best_score = -1;
