@@ -23,6 +23,8 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     ChronoCpuNoStop chrono;
     chrono.start();
 
+    int skipped = 0;
+
     Decisions prev_decisions;
 
     for (nb_events = 1; cur_time <= Parameters::GetTimeHorizon(); nb_events++) {
@@ -33,43 +35,97 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
         DecisionMultiSet BB_multiset;
 
-        for (int i = 0; i < Parameters::GetScenarioCount(); i++) {
+/*        for (int i = 0; i < Parameters::GetScenarioCount(); i++) {
             Solver solver(probs[i]);
             solver.SetDecisions(prev_decisions);
             solver.Optimize();
             Decisions decisions;
             solver.GetDecisions(decisions);
             BB_multiset.Add(decisions);
-        }
+        }*/
 
-        DecisionMultiSet best_integer_solution;
-        Decisions best_decisions;
+        if (Parameters::PerformOrderAcceptancy())
+            PerformOrderAcceptancy(probs, prev_decisions, cur_time, BB_multiset, prev_decisions);
 
-        ResetBB();
+        bool wait_to_next_event = false;
 
-        BBNode* node = new BBNode();
-        BBNodes.push_back(node);
-
-        BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs, best_decisions, node);
-
-        PreprocessBBNodes(best_integer_solution.GetAverageCost());
-
-        BBNode_total_count += BBNodes.size();
-
-        PrintBBNodes(cur_time, best_integer_solution.GetAverageCost());
-
-        prev_decisions = best_decisions;
-
-        switch (Parameters::GetConsensusToUse()) {
-            case CONSENSUS_STACY:
-                best_integer_solution.GetConsensusStacy(prev_decisions);
+        //check if we can arrive inside the time window of a real request, if we can't we go the next event
+        bool cant_wait_to_serve_a_request = true;
+        for (int i = 0; i < probs[0].GetRequestCount(); i++)
+            if (probs[0].GetRequest(i)->GetNode(0)->is_real && !scenarios.CanWait(probs[0].GetRequest(i)->GetNode(1))) {
+                cant_wait_to_serve_a_request = false;
                 break;
-            case CONSENSUS_BY_DRIVERS:
-                best_integer_solution.GetConsensusByDrivers(prev_decisions);
-                break;
-            case CONSENSUS_BY_MINIMAL_CHANGE:
-                best_integer_solution.GetConsensusMinimalDistance(prev_decisions);
-                break;
+            }
+        if (cant_wait_to_serve_a_request)
+            wait_to_next_event = true;
+
+        //Evaluate the cost of waiting
+        if (!wait_to_next_event) {
+            DecisionMultiSet multiset_wait;
+            int min_waiting_time = Parameters::GetTimeHorizon();
+            for (int i = 0; i < Parameters::GetScenarioCount(); i++) {
+                Solver solver(probs[i]);
+                solver.SetDecisions(prev_decisions);
+                solver.Optimize();
+                //printf("Scenario:%d Cost:%.1lf\n", i, solver.cost);
+                Decisions decisions;
+                solver.GetDecisions(decisions);
+                BB_multiset.Add(decisions);
+
+                if (Parameters::EvaluateWaitingStrategy()) {
+                    int wait = solver.EvaluateAllWait();
+                    min_waiting_time = std::min(min_waiting_time, wait);
+                    solver.GetDecisions(decisions);
+                    multiset_wait.Add(decisions);
+                }
+            }
+
+//            if (Parameters::EvaluateWaitingStrategy())
+//                printf("Initial Average:%.1lf AverageWait:%.1lf MinWait:%d\n", BB_multiset.GetAverageCost(),
+//                       multiset_wait.GetAverageCost(), min_waiting_time);
+
+            if (Parameters::EvaluateWaitingStrategy() &&
+                multiset_wait.GetAverageCost() <= 1.001 * BB_multiset.GetAverageCost()) {
+                BB_multiset = multiset_wait;
+                wait_to_next_event = true;
+            }
+
+            if (!wait_to_next_event) {
+                DecisionMultiSet best_integer_solution;
+                Decisions best_decisions;
+
+                ResetBB();
+
+                BBNode *node = new BBNode();
+                BBNodes.push_back(node);
+
+                BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs, best_decisions,
+                               node);
+
+                PreprocessBBNodes(best_integer_solution.GetAverageCost());
+
+                BBNode_total_count += BBNodes.size();
+
+                PrintBBNodes(cur_time, best_integer_solution.GetAverageCost());
+
+                prev_decisions = best_decisions;
+
+                switch (Parameters::GetConsensusToUse()) {
+                    case CONSENSUS_STACY:
+                        best_integer_solution.GetConsensusStacy(prev_decisions);
+                        break;
+                    case CONSENSUS_BY_DRIVERS:
+                        best_integer_solution.GetConsensusByDrivers(prev_decisions);
+                        break;
+                    case CONSENSUS_BY_MINIMAL_CHANGE:
+                        best_integer_solution.GetConsensusMinimalDistance(prev_decisions);
+                        break;
+                }
+            } else {
+                skipped++;
+            }
+        } else {
+            skipped++;
         }
 
         cur_time = GetNextEvent(scenarios, prev_decisions, cur_time);
@@ -123,6 +179,95 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     Parameters::SetBranchAndRegret(false);
 
     solver.GetReport(report);
+    printf("Skipped: %d\n", skipped);
+}
+
+void ProgressiveSimulation::PerformOrderAcceptancy(std::vector<Prob<Node, Driver>> &probs, Decisions &decs,
+                                                   double cur_time, DecisionMultiSet &multiset,
+                                                   Decisions &fixed_decisions) {
+    //printf("PerformOrderAcceptancy curtime:%.2lf\n", cur_time);
+    std::vector<int> new_requests;
+    for (int i = 0; i < probs[0].GetCustomerCount(); i++) {
+        Node *n = probs[0].GetCustomer(i);
+        if (n->type != NODE_TYPE_PICKUP) continue;
+        if (!n->is_real) continue;
+        if (n->release_time < cur_time - 0.001) continue;
+        if (n->release_time > cur_time + 0.001) continue;
+
+        new_requests.push_back(n->req_id);
+    }
+    if (new_requests.size() == 0) return;
+
+    //printf("Requests:");
+    //for(size_t r=0;r<new_requests.size();r++)
+    //	printf("%d ",new_requests[r]);
+    //printf("\n");
+
+    for (size_t r = 0; r < new_requests.size(); r++) {
+        Decision d1;
+        d1.req_id = new_requests[r];
+        d1.decision_type = DECISION_TYPE_ACTION;
+        d1.action_type = DECISION_ACTION_DONT_UNASSIGN;
+        Decisions decs1 = decs;
+        decs1.Add(d1);
+
+        double cost_assign = 0;
+        int sum_real_un = 0;
+        DecisionMultiSet multiset1;
+        for (int i = 0; i < Parameters::GetScenarioCount(); i++) {
+            Solver solver(probs[i]);
+            solver.SetDecisions(decs1);
+            solver.Optimize();
+            cost_assign += solver.cost / Parameters::GetScenarioCount();
+            sum_real_un += solver.nb_real_unassigneds;
+
+            if (r + 1 == new_requests.size()) {
+                Decisions decisions;
+                solver.GetDecisions(decisions);
+                multiset1.Add(decisions);
+            }
+        }
+
+
+        Decision d2;
+        d2.req_id = new_requests[r];
+        d2.decision_type = DECISION_TYPE_ASSIGNMENT;
+        d2.driver_id = -1;
+        Decisions decs2 = decs;
+        decs2.Add(d2);
+
+        double cost_unassign = 0;
+        DecisionMultiSet multiset2;
+        if (sum_real_un >= 1)
+            for (int i = 0; i < Parameters::GetScenarioCount(); i++) {
+                Solver solver(probs[i]);
+                solver.SetDecisions(decs2);
+                solver.Optimize();
+                cost_unassign += solver.cost / Parameters::GetScenarioCount();
+
+                if (r + 1 == new_requests.size()) {
+                    Decisions decisions;
+                    solver.GetDecisions(decisions);
+                    multiset2.Add(decisions);
+                }
+            }
+
+        //printf("Order to accept req:%d Assign:%.3lf SumRealUn:%d Unassign:%.3lf -> Assign\n",new_requests[r], cost_assign,sum_real_un, cost_unassign);
+
+        if (cost_assign < cost_unassign || sum_real_un == 0) {
+            decs.Add(d1);
+            fixed_decisions.Add(d1);
+            if (r + 1 == new_requests.size())
+                multiset = multiset1;
+        } else {
+            decs.Add(d2);
+            fixed_decisions.Add(d2);
+            if (r + 1 == new_requests.size())
+                multiset = multiset2;
+        }
+
+    }
+
 }
 
 void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
@@ -159,7 +304,7 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
                 BB_multiset.Add(decisions);
             }
 
-            BBNode* new_node = new BBNode();
+            BBNode *new_node = new BBNode();
             new_node->id = BBNodes.size();
             new_node->tree_level = node->tree_level + 1;
             // Added to have a back reference to the children
@@ -209,6 +354,7 @@ double ProgressiveSimulation::GetNextEvent(Scenarios &scenarios, Decisions &decs
 
 void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost) {
     for (auto &item: BBNodes) {
+        // Best Path
         if (item->children.empty() && std::abs(item->cost - best_integer_solution_cost) < DBL_EPSILON) {
             item->edge_best = true;
 
@@ -219,16 +365,22 @@ void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost)
             }
         }
 
-        if (!item->children.empty() && (item->edge_regret || item->id == -1)) {
-            BBNode *best = item->children.at(0);
-            // find the best node that would be used by B&R
-            for (BBNode *item2: item->children) {
-                if (item->cost < best->cost) {
-                    best = item2;
-                }
-            }
 
-            BBNodes.at(best->id)->edge_regret = true;
+        // B&R Path; run only when the current BBNode is the depot
+        if (item->id == -1) {
+            BBNode *item2 = item;
+
+            while (!item2->children.empty()) {
+                BBNode *best = item2->children.at(0);
+
+                for (BBNode *item3: item2->children) {
+                    if (item3->cost < best->cost) {
+                        best = item3;
+                    }
+                }
+                BBNodes.at(best->id)->edge_regret = true;
+                item2 = best;
+            }
         }
     }
 }
@@ -280,7 +432,7 @@ void ProgressiveSimulation::ResetBB() {
 }
 
 BBBestPriorityItem::BBBestPriorityItem(const DecisionMultiSet &multiSet, const Decisions &decisions,
-                                       BBNode* bbNode)
+                                       BBNode *bbNode)
         : multiSet(multiSet), decisions(decisions), bbNode(bbNode) {
     value = this->multiSet.GetAverageCost();
 }

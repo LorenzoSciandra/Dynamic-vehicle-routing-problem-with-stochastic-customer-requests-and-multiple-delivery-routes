@@ -94,6 +94,9 @@ public:
                         Decisions &best_decisions, BBNode *node);
 
     void ResetBB();
+
+    void PerformOrderAcceptancy(std::vector<Prob<Node, Driver>> &probs, Decisions &decs, double cur_time,
+                                DecisionMultiSet &multiset, Decisions &fixed_decisions);
 };
 
 #endif
