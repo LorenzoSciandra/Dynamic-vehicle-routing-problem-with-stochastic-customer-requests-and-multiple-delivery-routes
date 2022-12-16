@@ -35,15 +35,6 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
 
         DecisionMultiSet BB_multiset;
 
-/*        for (int i = 0; i < Parameters::GetScenarioCount(); i++) {
-            Solver solver(probs[i]);
-            solver.SetDecisions(prev_decisions);
-            solver.Optimize();
-            Decisions decisions;
-            solver.GetDecisions(decisions);
-            BB_multiset.Add(decisions);
-        }*/
-
         if (Parameters::PerformOrderAcceptancy())
             PerformOrderAcceptancy(probs, prev_decisions, cur_time, BB_multiset, prev_decisions);
 
