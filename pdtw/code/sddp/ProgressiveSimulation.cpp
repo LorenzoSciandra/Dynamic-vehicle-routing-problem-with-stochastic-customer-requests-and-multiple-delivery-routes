@@ -391,7 +391,7 @@ void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_soluti
     }
 
     printf("\ndigraph G%d {\nlabelloc=\"t\";\n", BBnodesPrintCount);
-    printf("-1 [label=\"Depot\\nTime: %.0lf\\nBest: %lf\"]\n", time, best_integer_solution_avg_cost);
+    printf("-1 [label=\"Depot\\nTime: %.0lf\\nBest: %.1lf\"]\n", time, best_integer_solution_avg_cost);
     for (BBNode *item: BBNodes) {
         item->DeclareNode();
     }

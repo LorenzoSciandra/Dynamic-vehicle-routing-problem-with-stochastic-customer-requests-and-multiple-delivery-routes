@@ -23,7 +23,7 @@ void BBNode::ToGraph() {
         style = " color=\"red:blue\" penwidth=4";
     }
 
-    printf("%ld -> %ld [label=\"%s\\n%.2lf\"%s]\n", parent_id, id, DecisionToString().c_str(), cost, style.c_str());
+    printf("%ld -> %ld [label=\"%s\\n%.1lf\"%s]\n", parent_id, id, DecisionToString().c_str(), cost, style.c_str());
 }
 
 std::string BBNode::DecisionToString() {
