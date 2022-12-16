@@ -947,6 +947,7 @@ DecisionMultiSet::GetNextActionDecisions(Decisions &taken_decisions, Decisions &
         if (!Parameters::PerformOrderAcceptancy() &&
             (!Parameters::EvaluateRejectOnlyIfNot0() || dont_deliver_requests[best_req] >= 1)) {
             d.decision_type = DECISION_TYPE_ASSIGNMENT;
+            d.action_type = DECISION_ACTION_DONT_DELIVER;
             d.driver_id = -1;
             decisions_to_value.Add(d);
         }
