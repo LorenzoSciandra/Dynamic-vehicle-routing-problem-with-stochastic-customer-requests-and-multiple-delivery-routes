@@ -268,10 +268,10 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
                                            std::vector<Prob<Node, Driver>> &probs,
                                            Decisions &best_decisions,
                                            BBNode *node) {
-    Decisions dd;
+    Decisions current_decisions;
 
-    current_multiset.GetNextActionDecisions(working_decisions, dd, scenarios);
-    if (dd.GetCount() == 0) {
+    current_multiset.GetNextActionDecisions(working_decisions, current_decisions, scenarios);
+    if (current_decisions.GetCount() == 0) {
         if (best_integer_solution.GetReportCount() == 0 ||
             best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
             best_integer_solution = current_multiset;
@@ -280,9 +280,9 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
     } else {
         std::vector<BBBestPriorityItem> all_decisions;
 
-        for (int i = 0; i < dd.GetCount(); i++) {
+        for (int i = 0; i < current_decisions.GetCount(); i++) {
             Decisions curr = working_decisions;
-            curr.Add(dd.Get(i));
+            curr.Add(current_decisions.Get(i));
 
             DecisionMultiSet BB_multiset;
 
@@ -300,8 +300,8 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
             new_node->tree_level = node->tree_level + 1;
             // Added to have a back reference to the children
             new_node->parent_id = node->id;
-            new_node->decision_type = dd.Get(i)->action_type;
-            new_node->request_id = dd.Get(i)->req_id;
+            new_node->decision_type = current_decisions.Get(i)->action_type;
+            new_node->request_id = current_decisions.Get(i)->req_id;
             new_node->cost = BB_multiset.GetAverageCost();
             BBNodes.push_back(new_node);
 
