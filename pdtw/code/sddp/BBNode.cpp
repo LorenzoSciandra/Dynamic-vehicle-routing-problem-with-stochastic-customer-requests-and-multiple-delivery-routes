@@ -4,14 +4,28 @@
 #include "BBNode.h"
 
 void BBNode::DeclareNode() {
-    if (id != -1)
-        printf("%lu [label=\"Req=%d\\nVisit: %ld\"]\n", id, request_id, visit_order);
+    if (id == -1)
+        return;
+
+    std::string style;
+    switch (decision_type) {
+        case DECISION_ACTION_GO_NOW:
+            style = "color=green fillcolor=white";
+            break;
+        case DECISION_ACTION_WAIT:
+            style = "color=orange fillcolor=white";
+            break;
+        case DECISION_ACTION_DONT_DELIVER:
+            style = "color=red fillcolor=white";
+            break;
+    }
+
+    printf("%lu [label=\"Req=%d\\nVisit: %ld\" %s]\n", id, request_id, visit_order, style.c_str());
 }
 
 void BBNode::ToGraph() {
-    if (id == -1) {
+    if (id == -1)
         return;
-    }
 
     std::string style;
 
