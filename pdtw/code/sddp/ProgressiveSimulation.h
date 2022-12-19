@@ -97,6 +97,11 @@ public:
 
     void PerformOrderAcceptancy(std::vector<Prob<Node, Driver>> &probs, Decisions &decs, double cur_time,
                                 DecisionMultiSet &multiset, Decisions &fixed_decisions);
+
+    void IterativeBranchAndBound(DecisionMultiSet &current_multiset, DecisionMultiSet &best_integer_solution,
+                                 Decisions &working_decisions, Scenarios &scenarios,
+                                 std::vector<Prob<Node, Driver>> &probs,
+                                 Decisions &best_decisions, BBNode *node);
 };
 
 #endif

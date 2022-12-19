@@ -90,8 +90,8 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
                 BBNode *node = new BBNode();
                 BBNodes.push_back(node);
 
-                BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs, best_decisions,
-                               node);
+                IterativeBranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs,
+                                        best_decisions, node);
 
                 PreprocessBBNodes(best_integer_solution.GetAverageCost());
 
@@ -332,6 +332,97 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
     }
 }
 
+void ProgressiveSimulation::IterativeBranchAndBound(DecisionMultiSet &current_multiset,
+                                                    DecisionMultiSet &best_integer_solution,
+                                                    Decisions &working_decisions,
+                                                    Scenarios &scenarios,
+                                                    std::vector<Prob<Node, Driver>> &probs,
+                                                    Decisions &best_decisions,
+                                                    BBNode *node) {
+
+    std::vector<BBBestPriorityItem> all_decisions;
+
+    do {
+        Decisions current_decisions;
+        current_multiset.GetNextActionDecisions(working_decisions, current_decisions, scenarios);
+
+        if (current_decisions.GetCount() == 0) {
+            if (best_integer_solution.GetReportCount() == 0 ||
+                best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
+                best_integer_solution = current_multiset;
+                best_decisions = working_decisions;
+            }
+
+//            std::printf("Terminato nodo %ld, numero nodi: %ld\n", node->id, all_decisions.size());
+
+            if (!all_decisions.empty()) {
+                BBBestPriorityItem &nextDecision = all_decisions.at(all_decisions.size() - 1);
+
+                nextDecision.bbNode->visit_order = visit_order_counter++;
+                current_multiset = nextDecision.multiSet;
+                working_decisions = nextDecision.decisions;
+                node = nextDecision.bbNode;
+
+                all_decisions.pop_back();
+            }
+
+            continue;
+        }
+
+
+        for (int i = 0; i < current_decisions.GetCount(); i++) {
+            Decisions curr = working_decisions;
+            curr.Add(current_decisions.Get(i));
+
+            DecisionMultiSet BB_multiset;
+
+            for (int j = 0; j < Parameters::GetScenarioCount(); j++) {
+                Solver solver(probs[j]);
+                solver.SetDecisions(curr);
+                solver.Optimize();
+                Decisions decisions;
+                solver.GetDecisions(decisions);
+                BB_multiset.Add(decisions);
+            }
+
+            // Fathoming
+            if (!Parameters::IsFathomingInBnBEnabled() ||
+                best_integer_solution.GetReportCount() == 0 ||
+                best_integer_solution.GetAverageCost() > BB_multiset.GetAverageCost()) {
+
+                BBNode *new_node = new BBNode();
+                new_node->id = BBNodes.size();
+                new_node->tree_level = node->tree_level + 1;
+                // Added to have a back reference to the children
+                new_node->parent_id = node->id;
+                new_node->decision_type = current_decisions.Get(i)->action_type;
+                new_node->request_id = current_decisions.Get(i)->req_id;
+                new_node->cost = BB_multiset.GetAverageCost();
+                BBNodes.push_back(new_node);
+
+                all_decisions.emplace_back(BB_multiset, curr, new_node);
+
+                for (BBNode *item: BBNodes) {
+                    if (item->id == node->id)
+                        item->children.push_back(new_node);
+                }
+            }
+        }
+
+        if (Parameters::IsBestFirstUsedInBnB())
+            std::sort(all_decisions.begin(), all_decisions.end(), &BBBestPriorityItem::comparator);
+
+        BBBestPriorityItem &nextDecision = all_decisions.at(all_decisions.size() - 1);
+
+        nextDecision.bbNode->visit_order = visit_order_counter++;
+        current_multiset = nextDecision.multiSet;
+        working_decisions = nextDecision.decisions;
+        node = nextDecision.bbNode;
+
+        all_decisions.pop_back();
+    } while (!all_decisions.empty());
+}
+
 //	Types of event :
 //	1) A new request arrived
 //	2) A driver arrives at the depot
@@ -349,7 +440,7 @@ void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost)
         if (item->children.empty() && std::abs(item->cost - best_integer_solution_cost) < DBL_EPSILON) {
             item->edge_best = true;
 
-            int index = item->parent_id;
+            long index = item->parent_id;
             while (index != -1) {
                 BBNodes.at(index)->edge_best = true;
                 index = BBNodes.at(index)->parent_id;
@@ -433,7 +524,7 @@ void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_soluti
            "    <td BGCOLOR=\"red\"></td>\n"
            "  </tr>\n"
            "        </TABLE>>];\n"
-           "}}", Parameters::IsBestFirstUsedInBnB() ? "BF " : "DF ");
+           "}", Parameters::IsBestFirstUsedInBnB() ? "BF " : "DF ");
 
     printf("}\n\n");
     BBnodesPrintCount++;
@@ -444,12 +535,14 @@ void ProgressiveSimulation::ResetBB() {
     visit_order_counter = 0;
 }
 
-BBBestPriorityItem::BBBestPriorityItem(const DecisionMultiSet &multiSet, const Decisions &decisions,
-                                       BBNode *bbNode)
+BBBestPriorityItem::BBBestPriorityItem(
+        const DecisionMultiSet &multiSet,
+        const Decisions &decisions,
+        BBNode *bbNode)
         : multiSet(multiSet), decisions(decisions), bbNode(bbNode) {
     value = this->multiSet.GetAverageCost();
 }
 
 bool BBBestPriorityItem::comparator(const BBBestPriorityItem &item1, const BBBestPriorityItem &item2) {
-    return item1.value < item2.value;
+    return item1.value > item2.value;
 }

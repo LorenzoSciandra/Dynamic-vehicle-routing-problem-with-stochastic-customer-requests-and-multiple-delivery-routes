@@ -32,10 +32,10 @@
  */
 int main(int arg, char **argv) {
     freopen("./output.txt", "w", stdout);
-    time_t tt = time(0);
-    tt = 15646022;
-    srand(tt);
-    printf("Seed:%ld\n", tt);
+    time_t start_time = time(nullptr);
+//    start_time = 15646022;
+    srand(15646022);
+    printf("Seed:%ld\n", start_time);
     //srand(1304445903);
 
     Parameters::SetAlnsIterations(100);
@@ -44,7 +44,7 @@ int main(int arg, char **argv) {
     Parameters::SetScenarioCount(30);
     Parameters::SetGenerateIntelligentScenario(true);
     Parameters::SetFathomingInBnB(true);
-    Parameters::SetBestFirstForBnB(true);
+    Parameters::SetBestFirstForBnB(false);
 
 
     Scenarios scenarios_ulmer;
@@ -84,6 +84,9 @@ int main(int arg, char **argv) {
     printf("BBNode count: %lu\n", ps.BBNode_total_count);
     for (auto & result : results)
         result.Show();
+
+    double seconds = difftime(time(nullptr), start_time);
+    std::printf("Elapsed time: %lf", seconds);
 
 /*
     DynSimulation dsim1;
