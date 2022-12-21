@@ -30,13 +30,7 @@
  */
 int main(int arg, char **argv) {
 
-    std::stringstream sstm;
-    sstm << "./Results/" << argv[1] << ".txt";
-
-//    freopen(sstm.str().c_str(), "w+", stdout);
-    auto computation_start = std::chrono::system_clock::now();
     srand(15646022);
-    printf("Seed: 15646022\n");
 
     Parameters::SetAlnsIterations(100);
     Parameters::SetDriverCount(10);
@@ -46,11 +40,9 @@ int main(int arg, char **argv) {
     Parameters::SetFathomingInBnB(true);
     Parameters::SetBestFirstForBnB(true);
     Parameters::SetShouldPrintBBTrees(false);
-    Parameters::SetStartComputationTime(computation_start);
 
     Parameters::PrintCurrentElapsedTime();
 
-    Scenarios scenarios_ulmer;
     Scenarios scenarios;
 
     if (arg > 1) {
@@ -59,6 +51,15 @@ int main(int arg, char **argv) {
         printf("Provide an instance as parameter\n");
         exit(1);
     }
+
+    std::stringstream sstm;
+    sstm << "./Results/" << scenarios.problem_name_tw.c_str() << "_" << scenarios.actual_scenario_id << ".txt";
+
+    freopen(sstm.str().c_str(), "w+", stdout);
+
+    auto computation_start = std::chrono::system_clock::now();
+    Parameters::SetStartComputationTime(computation_start);
+
     printf("File:%s\nInstance:%s\n", argv[1], scenarios.problem_name_tw.c_str());
     printf("AlnsIterations:%d Drivers:%d ", Parameters::GetAlnsIterations(), Parameters::GetDriverCount());
     printf("P:%d Scenarios:%d \n", Parameters::GetP(), Parameters::GetScenarioCount());
