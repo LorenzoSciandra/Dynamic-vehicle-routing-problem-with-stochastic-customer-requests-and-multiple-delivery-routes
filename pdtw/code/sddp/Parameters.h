@@ -188,7 +188,7 @@ public:
         return _start_computation_time;
     }
 
-    static std::string GetCurrentElapsedTime() {
+    static std::string PrintCurrentElapsedTime() {
         auto now = std::chrono::system_clock::now();
         auto now_time_t = std::chrono::system_clock::to_time_t(now);
 
@@ -204,6 +204,14 @@ public:
              << " seconds and " << millis.count() << " milliseconds." << "(" << std::ctime(&now_time_t);
 
         return sstm.str();
+    }
+
+    static void SetShouldPrintBBTrees(bool should) {
+        _print_BB_tree = should;
+    }
+
+    static bool ShouldPrintBBTrees() {
+        return _print_BB_tree;
     }
 
 private:
@@ -259,6 +267,7 @@ private:
     static int _nb_real_requests;
     static bool _use_best_first_in_branch_and_bound;
     static std::chrono::time_point<std::chrono::system_clock> _start_computation_time;
+    static bool _print_BB_tree;
 };
 
 

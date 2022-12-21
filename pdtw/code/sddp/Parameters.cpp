@@ -54,3 +54,4 @@ bool Parameters::_use_fathoming_in_branch_and_bound = true;
 bool Parameters::_use_best_first_in_branch_and_bound = true;
 
 std::chrono::time_point<std::chrono::system_clock> Parameters::_start_computation_time;
+bool Parameters::_print_BB_tree = true;

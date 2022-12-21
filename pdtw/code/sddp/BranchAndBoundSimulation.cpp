@@ -90,14 +90,15 @@ void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
                 BBNode *node = new BBNode();
                 BBNodes.push_back(node);
 
-                IterativeBranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios, probs,
-                                        best_decisions, node);
-
-                PreprocessBBNodes(best_integer_solution.GetAverageCost());
+                IterativeBranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
+                                        probs, best_decisions, node);
 
                 BBNode_total_count += BBNodes.size();
 
-                PrintBBNodes(cur_time, best_integer_solution.GetAverageCost());
+                if (Parameters::ShouldPrintBBTrees()) {
+                    PreprocessBBNodes(best_integer_solution.GetAverageCost());
+                    PrintBBNodes(cur_time, best_integer_solution.GetAverageCost());
+                }
 
                 prev_decisions = best_decisions;
 
@@ -472,7 +473,7 @@ void BranchAndBoundSimulation::PrintBBNodes(double time, double best_integer_sol
         return;
     }
 
-    printf("%s", Parameters::GetCurrentElapsedTime().c_str());
+    printf("%s", Parameters::PrintCurrentElapsedTime().c_str());
     printf("\ndigraph G%d {\nlabelloc=\"t\";\n", BBnodesPrintCount);
     printf("-1 [label=\"Depot\\nTime: %.0lf\\nBest: %.1lf\"]\n", time, best_integer_solution_avg_cost);
     for (BBNode *item: BBNodes) {

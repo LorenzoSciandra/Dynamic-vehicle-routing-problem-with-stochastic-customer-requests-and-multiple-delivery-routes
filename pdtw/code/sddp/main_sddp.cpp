@@ -45,8 +45,10 @@ int main(int arg, char **argv) {
     Parameters::SetGenerateIntelligentScenario(true);
     Parameters::SetFathomingInBnB(true);
     Parameters::SetBestFirstForBnB(true);
+    Parameters::SetShouldPrintBBTrees(false);
     Parameters::SetStartComputationTime(computation_start);
 
+    Parameters::PrintCurrentElapsedTime();
 
     Scenarios scenarios_ulmer;
     Scenarios scenarios;
@@ -83,7 +85,7 @@ int main(int arg, char **argv) {
     for (auto & result : results)
         result.Show();
 
-    printf("%s", Parameters::GetCurrentElapsedTime().c_str());
+    printf("%s", Parameters::PrintCurrentElapsedTime().c_str());
 
 /*
     DynSimulation dsim1;
