@@ -9,7 +9,7 @@
 #include <limits>
 #include "Decision.h"
 
-int Parameters::_static_alns_iterations = 2500; 
+int Parameters::_static_alns_iterations = 2500;
 int Parameters::_alns_iterations = 50;
 double Parameters::_time_horizon = -1;
 int Parameters::_driver_count = 10;
@@ -52,3 +52,5 @@ bool Parameters::_is_sbpa = false;
 bool Parameters::_is_progressive = false;
 bool Parameters::_use_fathoming_in_branch_and_bound = true;
 bool Parameters::_use_best_first_in_branch_and_bound = true;
+
+std::chrono::time_point<std::chrono::system_clock> Parameters::_start_computation_time;

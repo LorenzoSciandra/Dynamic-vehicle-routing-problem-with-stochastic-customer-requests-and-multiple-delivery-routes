@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <sstream>
+#include <chrono>
 
 #define CONSENSUS_STACY 1
 #define CONSENSUS_BY_DRIVERS 2
@@ -178,6 +180,32 @@ public:
 
     static void SetRealRequestCount(int r) { _nb_real_requests = r; }
 
+    static void SetStartComputationTime(std::chrono::time_point<std::chrono::system_clock> start_time) {
+        _start_computation_time = start_time;
+    }
+
+    static std::chrono::time_point<std::chrono::system_clock> GetStartComputationTime() {
+        return _start_computation_time;
+    }
+
+    static std::string GetCurrentElapsedTime() {
+        auto now = std::chrono::system_clock::now();
+        auto now_time_t = std::chrono::system_clock::to_time_t(now);
+
+        auto difference = now - _start_computation_time;
+
+        auto hours = std::chrono::duration_cast<std::chrono::hours>(difference);
+        auto minutes = std::chrono::duration_cast<std::chrono::minutes>(difference - hours);
+        auto seconds = std::chrono::duration_cast<std::chrono::seconds>(difference - hours - minutes);
+        auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(difference - hours - minutes - seconds);
+
+        std::stringstream sstm;
+        sstm << "Elapsed time: " << hours.count() << " hours, " << minutes.count() << " minutes, " << seconds.count()
+             << " seconds and " << millis.count() << " milliseconds." << "(" << std::ctime(&now_time_t);
+
+        return sstm.str();
+    }
+
 private:
 
     static int _alns_iterations;
@@ -230,6 +258,7 @@ private:
 
     static int _nb_real_requests;
     static bool _use_best_first_in_branch_and_bound;
+    static std::chrono::time_point<std::chrono::system_clock> _start_computation_time;
 };
 
 

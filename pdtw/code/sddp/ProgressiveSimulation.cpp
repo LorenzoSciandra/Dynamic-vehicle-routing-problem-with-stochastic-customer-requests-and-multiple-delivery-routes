@@ -472,6 +472,7 @@ void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_soluti
         return;
     }
 
+    printf("%s", Parameters::GetCurrentElapsedTime().c_str());
     printf("\ndigraph G%d {\nlabelloc=\"t\";\n", BBnodesPrintCount);
     printf("-1 [label=\"Depot\\nTime: %.0lf\\nBest: %.1lf\"]\n", time, best_integer_solution_avg_cost);
     for (BBNode *item: BBNodes) {
@@ -527,6 +528,7 @@ void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_soluti
            "}", Parameters::IsBestFirstUsedInBnB() ? "BF " : "DF ");
 
     printf("}\n\n");
+    fflush(stdout);
     BBnodesPrintCount++;
 }
 

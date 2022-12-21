@@ -12,16 +12,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 #include "Parameters.h"
 #include "Scenarios.h"
 #include "Solver.h"
-#include "BranchRegretSimulation.h"
 #include "ProgressiveSimulation.h"
 #include "DynSimulation.h"
 #include "StaticSimulation.h"
-#include "ConsensusSimulation.h"
+#include <chrono>
 
 /**
  * @brief  Main function for the SDDP algorithm.
@@ -31,12 +29,14 @@
  * @return int 
  */
 int main(int arg, char **argv) {
-    freopen("./output.txt", "w", stdout);
-    time_t start_time = time(nullptr);
-//    start_time = 15646022;
+
+    std::stringstream sstm;
+    sstm << "./Results/" << argv[1] << ".txt";
+
+//    freopen(sstm.str().c_str(), "w+", stdout);
+    auto computation_start = std::chrono::system_clock::now();
     srand(15646022);
-    printf("Seed:%ld\n", start_time);
-    //srand(1304445903);
+    printf("Seed: 15646022\n");
 
     Parameters::SetAlnsIterations(100);
     Parameters::SetDriverCount(10);
@@ -44,7 +44,8 @@ int main(int arg, char **argv) {
     Parameters::SetScenarioCount(30);
     Parameters::SetGenerateIntelligentScenario(true);
     Parameters::SetFathomingInBnB(true);
-    Parameters::SetBestFirstForBnB(false);
+    Parameters::SetBestFirstForBnB(true);
+    Parameters::SetStartComputationTime(computation_start);
 
 
     Scenarios scenarios_ulmer;
@@ -52,9 +53,6 @@ int main(int arg, char **argv) {
 
     if (arg > 1) {
         scenarios.LoadStacyVoccia(argv[1]);
-        //scenarios_ulmer.LoadUlmer(argv[1]);
-        //scenarios_ulmer.GenerateUlmerScenarios(scenarios, 0);
-        //scenarios.ToGraph();
     } else {
         printf("Provide an instance as parameter\n");
         exit(1);
@@ -85,8 +83,7 @@ int main(int arg, char **argv) {
     for (auto & result : results)
         result.Show();
 
-    double seconds = difftime(time(nullptr), start_time);
-    std::printf("Elapsed time: %lf", seconds);
+    printf("%s", Parameters::GetCurrentElapsedTime().c_str());
 
 /*
     DynSimulation dsim1;
