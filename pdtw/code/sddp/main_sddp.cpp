@@ -16,7 +16,7 @@
 #include "Parameters.h"
 #include "Scenarios.h"
 #include "Solver.h"
-#include "ProgressiveSimulation.h"
+#include "BranchAndBoundSimulation.h"
 #include "DynSimulation.h"
 #include "StaticSimulation.h"
 #include <chrono>
@@ -71,7 +71,7 @@ int main(int arg, char **argv) {
     StaticSimulation ssim;
     //ssim.Optimize(scenarios);
 
-    ProgressiveSimulation ps;
+    BranchAndBoundSimulation ps;
     Parameters::SetAllowEnRouteDepotReturns(false);
     Parameters::SetForbidStochasticDropAfterReal(true);
     ps.Optimize(scenarios);

@@ -1,5 +1,5 @@
 
-#include "ProgressiveSimulation.h"
+#include "BranchAndBoundSimulation.h"
 #include "Decisions.h"
 #include "DecisionMultiSet.h"
 #include "Solver.h"
@@ -10,7 +10,7 @@
 #include <queue>
 #include <algorithm>
 
-void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
+void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
     Parameters::SetProgressive(true);
     srand(Parameters::GetSeed());
     double cur_time = Parameters::GetTimeHorizonStartTime();
@@ -19,7 +19,7 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
         if (t > cur_time) //there are no customer at the beginning
             cur_time = t;
     }
-    printf("ProgressiveSimulation StartTime:%.1lf \n", cur_time);
+    printf("BranchAndBoundSimulation StartTime:%.1lf \n", cur_time);
     ChronoCpuNoStop chrono;
     chrono.start();
 
@@ -173,9 +173,9 @@ void ProgressiveSimulation::Optimize(Scenarios &scenarios) {
     printf("Skipped: %d\n", skipped);
 }
 
-void ProgressiveSimulation::PerformOrderAcceptancy(std::vector<Prob<Node, Driver>> &probs, Decisions &decs,
-                                                   double cur_time, DecisionMultiSet &multiset,
-                                                   Decisions &fixed_decisions) {
+void BranchAndBoundSimulation::PerformOrderAcceptancy(std::vector<Prob<Node, Driver>> &probs, Decisions &decs,
+                                                      double cur_time, DecisionMultiSet &multiset,
+                                                      Decisions &fixed_decisions) {
     //printf("PerformOrderAcceptancy curtime:%.2lf\n", cur_time);
     std::vector<int> new_requests;
     for (int i = 0; i < probs[0].GetCustomerCount(); i++) {
@@ -261,13 +261,13 @@ void ProgressiveSimulation::PerformOrderAcceptancy(std::vector<Prob<Node, Driver
 
 }
 
-void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
-                                           DecisionMultiSet &best_integer_solution,
-                                           Decisions &working_decisions,
-                                           Scenarios &scenarios,
-                                           std::vector<Prob<Node, Driver>> &probs,
-                                           Decisions &best_decisions,
-                                           BBNode *node) {
+void BranchAndBoundSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
+                                              DecisionMultiSet &best_integer_solution,
+                                              Decisions &working_decisions,
+                                              Scenarios &scenarios,
+                                              std::vector<Prob<Node, Driver>> &probs,
+                                              Decisions &best_decisions,
+                                              BBNode *node) {
     Decisions current_decisions;
 
     current_multiset.GetNextActionDecisions(working_decisions, current_decisions, scenarios);
@@ -332,13 +332,13 @@ void ProgressiveSimulation::BranchAndBound(DecisionMultiSet &current_multiset,
     }
 }
 
-void ProgressiveSimulation::IterativeBranchAndBound(DecisionMultiSet &current_multiset,
-                                                    DecisionMultiSet &best_integer_solution,
-                                                    Decisions &working_decisions,
-                                                    Scenarios &scenarios,
-                                                    std::vector<Prob<Node, Driver>> &probs,
-                                                    Decisions &best_decisions,
-                                                    BBNode *node) {
+void BranchAndBoundSimulation::IterativeBranchAndBound(DecisionMultiSet &current_multiset,
+                                                       DecisionMultiSet &best_integer_solution,
+                                                       Decisions &working_decisions,
+                                                       Scenarios &scenarios,
+                                                       std::vector<Prob<Node, Driver>> &probs,
+                                                       Decisions &best_decisions,
+                                                       BBNode *node) {
 
     std::vector<BBBestPriorityItem> all_decisions;
 
@@ -427,14 +427,14 @@ void ProgressiveSimulation::IterativeBranchAndBound(DecisionMultiSet &current_mu
 //	1) A new request arrived
 //	2) A driver arrives at the depot
 // 3) a driver has finished its waiting period at the depot
-double ProgressiveSimulation::GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time) {
+double BranchAndBoundSimulation::GetNextEvent(Scenarios &scenarios, Decisions &decs, double cur_time) {
     double next_request = scenarios.GetNextEvent(cur_time);
     double ne = decs.GetNextEvent(scenarios.real);
 
     return std::min(ne, next_request);
 }
 
-void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost) {
+void BranchAndBoundSimulation::PreprocessBBNodes(double best_integer_solution_cost) {
     for (auto &item: BBNodes) {
         // Best Path
         if (item->children.empty() && std::abs(item->cost - best_integer_solution_cost) < DBL_EPSILON) {
@@ -467,7 +467,7 @@ void ProgressiveSimulation::PreprocessBBNodes(double best_integer_solution_cost)
     }
 }
 
-void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_solution_avg_cost) {
+void BranchAndBoundSimulation::PrintBBNodes(double time, double best_integer_solution_avg_cost) {
     if (BBNodes.empty()) {
         return;
     }
@@ -532,7 +532,7 @@ void ProgressiveSimulation::PrintBBNodes(double time, double best_integer_soluti
     BBnodesPrintCount++;
 }
 
-void ProgressiveSimulation::ResetBB() {
+void BranchAndBoundSimulation::ResetBB() {
     BBNodes.clear();
     visit_order_counter = 0;
 }

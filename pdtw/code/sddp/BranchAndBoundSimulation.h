@@ -25,7 +25,7 @@ public:
     static bool comparator(const BBBestPriorityItem& item1, const BBBestPriorityItem& item2);
 };
 
-class ProgressiveSimulation {
+class BranchAndBoundSimulation {
 public:
 
     double cost;
@@ -43,7 +43,7 @@ public:
     SolCompact<Node, Driver> final_solution;
     Report report;
 
-    ProgressiveSimulation() {}
+    BranchAndBoundSimulation() {}
 
     void Optimize(Scenarios &scenarios);
 

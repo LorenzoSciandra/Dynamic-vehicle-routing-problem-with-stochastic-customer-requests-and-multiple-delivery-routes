@@ -52,5 +52,5 @@ add_executable(exec_sddp ${LIBS}
         sddp/Solver.cpp
         sddp/Report.cpp
         sddp/main_sddp.cpp
-        sddp/ProgressiveSimulation.cpp
-        sddp/ProgressiveSimulation.h sddp/BBNode.cpp)
+        sddp/BranchAndBoundSimulation.cpp
+        sddp/BranchAndBoundSimulation.h sddp/BBNode.cpp)
