@@ -26,7 +26,7 @@ SET(LIBS
         )
 
 
-add_executable(exec_sddp ${LIBS}
+add_executable(branch_and_bound_solver ${LIBS}
         ${UD}/SolveAssignmentProblem.cpp
         ${UD}/SolveAssignmentProblem.h
         sddp/Parameters.cpp
@@ -54,3 +54,33 @@ add_executable(exec_sddp ${LIBS}
         sddp/main_sddp.cpp
         sddp/BranchAndBoundSimulation.cpp
         sddp/BranchAndBoundSimulation.h sddp/BBNode.cpp)
+
+add_executable(branch_and_regret_solver ${LIBS}
+        ${UD}/SolveAssignmentProblem.cpp
+        ${UD}/SolveAssignmentProblem.h
+        sddp/Parameters.cpp
+        sddp/CostFunctionSddp.cpp
+        sddp/LoadSddp.cpp
+        sddp/InsRmvMethodSddp.cpp
+        sddp/InsRmvMethodUlmer.cpp
+        sddp/InsRmvMethodTsp.cpp
+        sddp/Scenario.h
+        sddp/Scenarios.cpp
+        sddp/Decisions.cpp
+        sddp/Solver.cpp
+        sddp/SolverUlmer.cpp
+        sddp/DecisionMultiSet.cpp
+        sddp/DecisionsGroup.cpp
+        sddp/BranchRegretSimulation.cpp
+        sddp/DynSimulation.cpp
+        sddp/DynSimulationUlmer.cpp
+        sddp/StaticSimulation.cpp
+        sddp/ConsensusSimulation.cpp
+        sddp/ExchangeSddp.cpp
+        sddp/RelocateSddp.cpp
+        sddp/Solver.cpp
+        sddp/Report.cpp
+        sddp/main_sddp_br.cpp
+        sddp/BranchAndBoundSimulation.cpp
+        sddp/BranchAndBoundSimulation.h sddp/BBNode.cpp
+)

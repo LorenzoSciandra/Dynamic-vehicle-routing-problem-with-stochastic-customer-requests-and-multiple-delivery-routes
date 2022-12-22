@@ -19,14 +19,15 @@
 #include "BranchAndBoundSimulation.h"
 #include "DynSimulation.h"
 #include "StaticSimulation.h"
+#include "BranchRegretSimulation.h"
 #include <chrono>
 
 /**
  * @brief  Main function for the SDDP algorithm.
- * 
- * @param arg 
- * @param argv  
- * @return int 
+ *
+ * @param arg
+ * @param argv
+ * @return int
  */
 int main(int arg, char **argv) {
 
@@ -53,7 +54,7 @@ int main(int arg, char **argv) {
     }
 
     std::stringstream sstm;
-    sstm << "./Results/BB/" << scenarios.problem_name_tw.c_str() << "_" << scenarios.actual_scenario_id << ".txt";
+    sstm << "./Results/BR/" << scenarios.problem_name_tw.c_str() << "_" << scenarios.actual_scenario_id << ".txt";
 
     freopen(sstm.str().c_str(), "w+", stdout);
 
@@ -71,10 +72,18 @@ int main(int arg, char **argv) {
 
     std::vector <result> results;
 
-    StaticSimulation ssim;
-    //ssim.Optimize(scenarios);
+    /*
+     BranchRegretSimulation br1;
+    Parameters::SetConsensusToUse(CONSENSUS_STACY);
+    Parameters::SetAllowEnRouteDepotReturns(false);
+    Parameters::SetDecisionSelectionMode(DECISION_SELECTION_MODE_MOST_COMMON);
+    Parameters::SetForbidStochasticDropAfterReal(false);
+    Parameters::SetOrderAcceptancy(false);
+    br1.Optimize(scenarios);
+    results.push_back(br1.GetResult());
+     */
 
-    BranchAndBoundSimulation ps;
+    BranchRegretSimulation ps;
     Parameters::SetAllowEnRouteDepotReturns(false);
     Parameters::SetForbidStochasticDropAfterReal(true);
     ps.Optimize(scenarios);
@@ -82,7 +91,6 @@ int main(int arg, char **argv) {
 
     printf("File:%s\nInstance:%s Customers:%d\n", argv[1], scenarios.problem_name_tw.c_str(),
            scenarios.nb_real_requests_instance);
-    printf("BBNode count: %lu\n", ps.BBNode_total_count);
     for (auto & result : results)
         result.Show();
 

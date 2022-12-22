@@ -544,7 +544,7 @@ void Scenarios::UpdateUlmerDepot(int depot_id) {
     }
 }
 
-void Scenarios::Generate(std::vector <Prob<Node, Driver>> &probs, double time) {
+void Scenarios::Generate(std::vector<Prob<Node, Driver>> &probs, double time) {
     probs.clear();
     probs = std::vector<Prob<Node, Driver> >(Parameters::GetScenarioCount());
 
