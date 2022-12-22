@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="branch_and_regret_solver" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="../instances/sddp/stacy/config/temp.dat" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$PROJECT_DIR$/pdtw/code" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sddp_app" TARGET_NAME="branch_and_regret_solver" CONFIG_NAME="Debug-WSL" RUN_TARGET_PROJECT_NAME="sddp_app" RUN_TARGET_NAME="branch_and_regret_solver">
+  <configuration default="false" name="branch_and_regret_solver" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="../instances/sddp/stacy/config/temp.dat" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$PROJECT_DIR$/pdtw/code" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sddp_app" TARGET_NAME="branch_and_regret_solver" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="sddp_app" RUN_TARGET_NAME="branch_and_regret_solver">
     <method v="2">
       <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
     </method>

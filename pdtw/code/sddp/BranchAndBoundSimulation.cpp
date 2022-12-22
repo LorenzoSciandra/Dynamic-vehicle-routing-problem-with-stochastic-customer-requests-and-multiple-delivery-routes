@@ -1,4 +1,3 @@
-
 #include "BranchAndBoundSimulation.h"
 #include "Decisions.h"
 #include "DecisionMultiSet.h"
@@ -80,44 +79,46 @@ void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
                 BB_multiset = multiset_wait;
                 wait_to_next_event = true;
             }
+        }
 
-            if (!wait_to_next_event) {
-                DecisionMultiSet best_integer_solution;
-                Decisions best_decisions;
 
-                ResetBB();
+        DecisionMultiSet best_integer_solution = BB_multiset;
 
-                BBNode *node = new BBNode();
-                BBNodes.push_back(node);
+        if (!wait_to_next_event) {
+            Decisions best_decisions;
 
-                IterativeBranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
-                                        probs, best_decisions, node);
+            ResetBB();
 
-                BBNode_total_count += BBNodes.size();
+            BBNode *node = new BBNode();
+            BBNodes.push_back(node);
 
-                if (Parameters::ShouldPrintBBTrees()) {
-                    PreprocessBBNodes(best_integer_solution.GetAverageCost());
-                    PrintBBNodes(cur_time, best_integer_solution.GetAverageCost());
-                }
+            IterativeBranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
+                                    probs, best_decisions, node);
 
-                prev_decisions = best_decisions;
+            BBNode_total_count += BBNodes.size();
 
-                switch (Parameters::GetConsensusToUse()) {
-                    case CONSENSUS_STACY:
-                        best_integer_solution.GetConsensusStacy(prev_decisions);
-                        break;
-                    case CONSENSUS_BY_DRIVERS:
-                        best_integer_solution.GetConsensusByDrivers(prev_decisions);
-                        break;
-                    case CONSENSUS_BY_MINIMAL_CHANGE:
-                        best_integer_solution.GetConsensusMinimalDistance(prev_decisions);
-                        break;
-                }
-            } else {
-                skipped++;
+            if (Parameters::ShouldPrintBBTrees()) {
+                PreprocessBBNodes(best_integer_solution.GetAverageCost());
+                PrintBBNodes(cur_time, best_integer_solution.GetAverageCost());
             }
+
+            prev_decisions = best_decisions;
+
+
         } else {
             skipped++;
+        }
+
+        switch (Parameters::GetConsensusToUse()) {
+            case CONSENSUS_STACY:
+                best_integer_solution.GetConsensusStacy(prev_decisions);
+                break;
+            case CONSENSUS_BY_DRIVERS:
+                best_integer_solution.GetConsensusByDrivers(prev_decisions);
+                break;
+            case CONSENSUS_BY_MINIMAL_CHANGE:
+                best_integer_solution.GetConsensusMinimalDistance(prev_decisions);
+                break;
         }
 
         cur_time = GetNextEvent(scenarios, prev_decisions, cur_time);
@@ -132,6 +133,7 @@ void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
             time_taken = 0;
             return;
         }
+
     }
 
     Prob<Node, Driver> real;
@@ -322,11 +324,13 @@ void BranchAndBoundSimulation::BranchAndBound(DecisionMultiSet &current_multiset
             item.bbNode->visit_order = visit_order_counter++;
 
             if (!Parameters::IsFathomingInBnBEnabled()) {
-                BranchAndBound(item.multiSet, best_integer_solution, item.decisions, scenarios, probs, best_decisions,
+                BranchAndBound(item.multiSet, best_integer_solution, item.decisions, scenarios, probs,
+                               best_decisions,
                                item.bbNode);
             } else if ((best_integer_solution.GetReportCount() == 0 ||
                         best_integer_solution.GetAverageCost() > item.value)) {
-                BranchAndBound(item.multiSet, best_integer_solution, item.decisions, scenarios, probs, best_decisions,
+                BranchAndBound(item.multiSet, best_integer_solution, item.decisions, scenarios, probs,
+                               best_decisions,
                                item.bbNode);
             }
         }
@@ -386,28 +390,23 @@ void BranchAndBoundSimulation::IterativeBranchAndBound(DecisionMultiSet &current
                 BB_multiset.Add(decisions);
             }
 
-            // Fathoming
-            if (!Parameters::IsFathomingInBnBEnabled() ||
-                best_integer_solution.GetReportCount() == 0 ||
-                best_integer_solution.GetAverageCost() > BB_multiset.GetAverageCost()) {
+            BBNode *new_node = new BBNode();
+            new_node->id = BBNodes.size();
+            new_node->tree_level = node->tree_level + 1;
+            // Added to have a back reference to the children
+            new_node->parent_id = node->id;
+            new_node->decision_type = current_decisions.Get(i)->action_type;
+            new_node->request_id = current_decisions.Get(i)->req_id;
+            new_node->cost = BB_multiset.GetAverageCost();
+            BBNodes.push_back(new_node);
 
-                BBNode *new_node = new BBNode();
-                new_node->id = BBNodes.size();
-                new_node->tree_level = node->tree_level + 1;
-                // Added to have a back reference to the children
-                new_node->parent_id = node->id;
-                new_node->decision_type = current_decisions.Get(i)->action_type;
-                new_node->request_id = current_decisions.Get(i)->req_id;
-                new_node->cost = BB_multiset.GetAverageCost();
-                BBNodes.push_back(new_node);
+            all_decisions.emplace_back(BB_multiset, curr, new_node);
 
-                all_decisions.emplace_back(BB_multiset, curr, new_node);
-
-                for (BBNode *item: BBNodes) {
-                    if (item->id == node->id)
-                        item->children.push_back(new_node);
-                }
+            for (BBNode *item: BBNodes) {
+                if (item->id == node->id)
+                    item->children.push_back(new_node);
             }
+
         }
 
         if (Parameters::IsBestFirstUsedInBnB())
@@ -419,8 +418,20 @@ void BranchAndBoundSimulation::IterativeBranchAndBound(DecisionMultiSet &current
         current_multiset = nextDecision.multiSet;
         working_decisions = nextDecision.decisions;
         node = nextDecision.bbNode;
-
         all_decisions.pop_back();
+        /*
+        if (!Parameters::IsFathomingInBnBEnabled() ||
+            (   Parameters::IsFathomingInBnBEnabled() &&
+                (best_integer_solution.GetReportCount() == 0 ||
+                 best_integer_solution.GetAverageCost() > nextDecision.multiSet.GetAverageCost()))) {
+
+
+
+        } else{
+            all_decisions.pop_back();
+        }*/
+
+
     } while (!all_decisions.empty());
 }
 

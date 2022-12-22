@@ -32,6 +32,7 @@ void BranchRegretSimulation::Optimize(Scenarios &scenarios) {
     decision_wait.decision_type = DECISION_TYPE_GLOBAL;
     decision_wait.action_type = DECISION_ACTION_WAIT;
 
+    int skipped = 0;
     Decisions fixed_decisions; //principally acceptancy decisions
     Decisions prev_decisions;
     for (nb_events = 1; cur_time <= Parameters::GetTimeHorizon(); nb_events++) {
@@ -94,6 +95,9 @@ void BranchRegretSimulation::Optimize(Scenarios &scenarios) {
                 decision_wait.arrival_time = cur_time;
                 decision_wait.departure_time = cur_time + min_waiting_time;
             }
+        }
+        else{
+            skipped++;
         }
 
         //multiset.Show();
@@ -283,6 +287,7 @@ void BranchRegretSimulation::Optimize(Scenarios &scenarios) {
     Parameters::SetBranchAndRegret(false);
 
     solver.GetReport(report);
+    printf("Skipped: %d\n", skipped);
 }
 
 

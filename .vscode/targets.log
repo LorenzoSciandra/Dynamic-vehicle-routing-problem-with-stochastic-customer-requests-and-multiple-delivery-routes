@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul 12 11:59:26 2022
+# Make data base, printed on Fri Dec  9 12:13:52 2022
 
 # Variables
 
@@ -18,6 +20,8 @@ LC_ALL = C
 GNOME_SHELL_SESSION_MODE = pop
 # environment
 SSH_AGENT_LAUNCHER = gnome-keyring
+# environment
+PNPM_HOME = /home/lorenzosciandra/.local/share/pnpm
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
@@ -34,6 +38,8 @@ WINDOWPATH = 2
 LC_ADDRESS = it_IT.UTF-8
 # default
 MAKE_COMMAND := make
+# environment
+GTK3_MODULES = xapp-gtk3-module
 # environment
 QT_ACCESSIBILITY = 1
 # automatic
@@ -53,7 +59,7 @@ XDG_DATA_DIRS = /usr/share/pop:/usr/share/gnome:/home/lorenzosciandra/.local/sha
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/lorenzosciandra/.config/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+VSCODE_CODE_CACHE_PATH = /home/lorenzosciandra/.config/Code/CachedData/5235c6bb189b60b01b1f49062f4ffa42384f8c91
 # environment
 LANG = C
 # environment
@@ -86,20 +92,16 @@ XDG_CONFIG_DIRS = /etc/xdg/xdg-pop:/etc/xdg
 XDG_SESSION_DESKTOP = pop
 # makefile
 MAKEFILE_LIST := 
-# environment
-CONDA_SHLVL = 0
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 27222
+VSCODE_PID = 32247
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-CONDA_PYTHON_EXE = /home/lorenzosciandra/anaconda3/bin/python
-# environment
-SESSION_MANAGER = local/popos:@/tmp/.ICE-unix/3605,unix/popos:/tmp/.ICE-unix/3605
+SESSION_MANAGER = local/popos:@/tmp/.ICE-unix/4930,unix/popos:/tmp/.ICE-unix/4930
 # automatic
 *F = $(notdir $*)
 # environment
@@ -129,7 +131,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /home/lorenzosciandra/.local/bin:/home/lorenzosciandra/anaconda3/condabin:/home/lorenzosciandra/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+PATH = /home/lorenzosciandra/.local/bin:/home/lorenzosciandra/.local/share/pnpm:/home/lorenzosciandra/anaconda3/bin:/home/lorenzosciandra/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/lorenzosciandra/.local/share/JetBrains/Toolbox/scripts:/home/lorenzosciandra/.local/share/JetBrains/Toolbox/scripts
 # default
 MAKEFILES := 
 # environment
@@ -141,7 +143,7 @@ LC_MONETARY = it_IT.UTF-8
 # environment
 LC_TIME = it_IT.UTF-8
 # environment
-INVOCATION_ID = ab6b314df9a04aa1824bd72d630ebf96
+INVOCATION_ID = ae9905f135a24e77a24a51b015b1f95e
 # environment
 USERNAME = lorenzosciandra
 # environment
@@ -171,7 +173,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 3635
+SYSTEMD_EXEC_PID = 4968
 # environment
 DISPLAY = :1
 # environment
@@ -183,11 +185,11 @@ DEFAULTS_PATH = /usr/share/gconf/pop.default.path
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 3335
+MANAGERPID = 4664
 # environment
 LC_MEASUREMENT = it_IT.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 27222
+GIO_LAUNCHED_DESKTOP_FILE_PID = 32247
 # environment
 _ = /usr/share/code/code
 # environment
@@ -197,9 +199,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-_CE_M = 
-# environment
-JOURNAL_STREAM = 8:50273
+JOURNAL_STREAM = 8:55497
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -211,7 +211,7 @@ QT_IM_MODULE = ibus
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-3c2a5c20-1.69.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-3c2a5c20-1.74.0-main.sock
 # environment
 PAPERSIZE = a4
 # default
@@ -225,15 +225,11 @@ SUFFIXES :=
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
-CONDA_EXE = /home/lorenzosciandra/anaconda3/bin/conda
-# environment
-_CE_CONDA = 
-# environment
 GDMSESSION = pop
 # environment
 LC_IDENTIFICATION = it_IT.UTF-8
 # variable set hash-table stats:
-# Load=111/1024=11%, Rehash=0, Collisions=4/138=3%
+# Load=108/1024=11%, Rehash=0, Collisions=4/135=3%
 
 # Pattern-specific Variable Values
 
@@ -241,9 +237,9 @@ LC_IDENTIFICATION = it_IT.UTF-8
 
 # Directories
 
-# . (device 66307, inode 6291627): 7 files, no impossibilities.
+# . (device 66307, inode 6584703): 10 files, no impossibilities.
 
-# 7 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -288,20 +284,18 @@ GNUmakefile:
 # files hash-table stats:
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
- 
-make: *** No rule to make target 'all'.  Stop.
-
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 15 / storage = 122 B / avg = 8 B
-# current buf: size = 8162 B / used = 122 B / count = 15 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 18 / storage = 145 B / avg = 8 B
+# current buf: size = 8162 B / used = 145 B / count = 18 / avg = 8 B
 
-# strcache performance: lookups = 18 / hit rate = 16%
+# strcache performance: lookups = 21 / hit rate = 14%
 # hash-table stats:
-# Load=15/8192=0%, Rehash=0, Collisions=0/18=0%
-# Finished Make data base on Tue Jul 12 11:59:26 2022
+ 
+# Load=18/8192=0%, Rehash=0, Collisions=0/21=0%
+# Finished Make data base on Fri Dec  9 12:13:52 2022
 
  

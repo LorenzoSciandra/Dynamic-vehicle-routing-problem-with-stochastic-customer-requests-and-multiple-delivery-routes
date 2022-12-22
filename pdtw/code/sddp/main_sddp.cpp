@@ -33,13 +33,14 @@ int main(int arg, char **argv) {
     srand(15646022);
 
     Parameters::SetAlnsIterations(100);
-    Parameters::SetDriverCount(10);
+    Parameters::SetDriverCount(6);
     Parameters::SetP(0);
     Parameters::SetScenarioCount(30);
     Parameters::SetGenerateIntelligentScenario(true);
     Parameters::SetFathomingInBnB(true);
     Parameters::SetBestFirstForBnB(true);
     Parameters::SetShouldPrintBBTrees(false);
+    Parameters::SetEvaluateWaitingStrategy(true);
 
     Parameters::PrintCurrentElapsedTime();
 
