@@ -33,7 +33,7 @@ int main(int arg, char **argv) {
     srand(15646022);
 
     Parameters::SetAlnsIterations(100);
-    Parameters::SetDriverCount(6);
+    Parameters::SetDriverCount(10);
     Parameters::SetP(0);
     Parameters::SetScenarioCount(30);
     Parameters::SetGenerateIntelligentScenario(true);

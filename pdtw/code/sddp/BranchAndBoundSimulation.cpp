@@ -90,9 +90,11 @@ void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
             ResetBB();
 
             BBNode *node = new BBNode();
+            node->tree_level = 0;
+
             BBNodes.push_back(node);
 
-            IterativeBranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
+            BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
                                     probs, best_decisions, node);
 
             BBNode_total_count += BBNodes.size();
@@ -323,12 +325,9 @@ void BranchAndBoundSimulation::BranchAndBound(DecisionMultiSet &current_multiset
         for (BBBestPriorityItem &item: all_decisions) {
             item.bbNode->visit_order = visit_order_counter++;
 
-            if (!Parameters::IsFathomingInBnBEnabled()) {
-                BranchAndBound(item.multiSet, best_integer_solution, item.decisions, scenarios, probs,
-                               best_decisions,
-                               item.bbNode);
-            } else if ((best_integer_solution.GetReportCount() == 0 ||
-                        best_integer_solution.GetAverageCost() > item.value)) {
+            if (!Parameters::IsFathomingInBnBEnabled() ||
+                (best_integer_solution.GetReportCount() == 0 ||
+                 best_integer_solution.GetAverageCost() > item.value)) {
                 BranchAndBound(item.multiSet, best_integer_solution, item.decisions, scenarios, probs,
                                best_decisions,
                                item.bbNode);
@@ -351,89 +350,81 @@ void BranchAndBoundSimulation::IterativeBranchAndBound(DecisionMultiSet &current
         Decisions current_decisions;
         current_multiset.GetNextActionDecisions(working_decisions, current_decisions, scenarios);
 
-        if (current_decisions.GetCount() == 0) {
-            if (best_integer_solution.GetReportCount() == 0 ||
-                best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
+        if (best_integer_solution.GetReportCount() == 0 ||
+            best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
+
+            if (current_decisions.GetCount() == 0) {
                 best_integer_solution = current_multiset;
                 best_decisions = working_decisions;
+                //            std::printf("Terminato nodo %ld, numero nodi: %ld\n", node->id, all_decisions.size());
+
+                if (!all_decisions.empty()) {
+                    BBBestPriorityItem &nextDecision = all_decisions.at(all_decisions.size() - 1);
+
+                    nextDecision.bbNode->visit_order = visit_order_counter++;
+                    current_multiset = nextDecision.multiSet;
+                    working_decisions = nextDecision.decisions;
+                    node = nextDecision.bbNode;
+
+                    all_decisions.pop_back();
+                }
+
+                continue;
             }
+            else{
+                for (int i = 0; i < current_decisions.GetCount(); i++) {
+                    Decisions curr = working_decisions;
+                    curr.Add(current_decisions.Get(i));
 
-//            std::printf("Terminato nodo %ld, numero nodi: %ld\n", node->id, all_decisions.size());
+                    DecisionMultiSet BB_multiset;
 
-            if (!all_decisions.empty()) {
-                BBBestPriorityItem &nextDecision = all_decisions.at(all_decisions.size() - 1);
+                    for (int j = 0; j < Parameters::GetScenarioCount(); j++) {
+                        Solver solver(probs[j]);
+                        solver.SetDecisions(curr);
+                        solver.Optimize();
+                        Decisions decisions;
+                        solver.GetDecisions(decisions);
+                        BB_multiset.Add(decisions);
+                    }
 
-                nextDecision.bbNode->visit_order = visit_order_counter++;
-                current_multiset = nextDecision.multiSet;
-                working_decisions = nextDecision.decisions;
-                node = nextDecision.bbNode;
 
-                all_decisions.pop_back();
+                    BBNode *new_node = new BBNode();
+                    new_node->id = BBNodes.size();
+                    new_node->tree_level = node->tree_level + 1;
+                    // Added to have a back reference to the children
+                    new_node->parent_id = node->id;
+                    new_node->decision_type = current_decisions.Get(i)->action_type;
+                    new_node->request_id = current_decisions.Get(i)->req_id;
+                    new_node->cost = BB_multiset.GetAverageCost();
+                    BBNodes.push_back(new_node);
+
+                    all_decisions.emplace_back(BB_multiset, curr, new_node);
+
+                    for (BBNode *item: BBNodes) {
+                        if (item->id == node->id)
+                            item->children.push_back(new_node);
+                    }
+
+                }
+
+                if (Parameters::IsBestFirstUsedInBnB())
+                    std::sort(all_decisions.begin(), all_decisions.end(), &BBBestPriorityItem::comparator);
             }
-
-            continue;
         }
 
+        if (!all_decisions.empty()) {
+            BBBestPriorityItem &nextDecision = all_decisions.at(all_decisions.size() - 1);
 
-        for (int i = 0; i < current_decisions.GetCount(); i++) {
-            Decisions curr = working_decisions;
-            curr.Add(current_decisions.Get(i));
+            nextDecision.bbNode->visit_order = visit_order_counter++;
+            current_multiset = nextDecision.multiSet;
+            working_decisions = nextDecision.decisions;
+            node = nextDecision.bbNode;
 
-            DecisionMultiSet BB_multiset;
-
-            for (int j = 0; j < Parameters::GetScenarioCount(); j++) {
-                Solver solver(probs[j]);
-                solver.SetDecisions(curr);
-                solver.Optimize();
-                Decisions decisions;
-                solver.GetDecisions(decisions);
-                BB_multiset.Add(decisions);
-            }
-
-            BBNode *new_node = new BBNode();
-            new_node->id = BBNodes.size();
-            new_node->tree_level = node->tree_level + 1;
-            // Added to have a back reference to the children
-            new_node->parent_id = node->id;
-            new_node->decision_type = current_decisions.Get(i)->action_type;
-            new_node->request_id = current_decisions.Get(i)->req_id;
-            new_node->cost = BB_multiset.GetAverageCost();
-            BBNodes.push_back(new_node);
-
-            all_decisions.emplace_back(BB_multiset, curr, new_node);
-
-            for (BBNode *item: BBNodes) {
-                if (item->id == node->id)
-                    item->children.push_back(new_node);
-            }
-
-        }
-
-        if (Parameters::IsBestFirstUsedInBnB())
-            std::sort(all_decisions.begin(), all_decisions.end(), &BBBestPriorityItem::comparator);
-
-        BBBestPriorityItem &nextDecision = all_decisions.at(all_decisions.size() - 1);
-
-        nextDecision.bbNode->visit_order = visit_order_counter++;
-        current_multiset = nextDecision.multiSet;
-        working_decisions = nextDecision.decisions;
-        node = nextDecision.bbNode;
-        all_decisions.pop_back();
-        /*
-        if (!Parameters::IsFathomingInBnBEnabled() ||
-            (   Parameters::IsFathomingInBnBEnabled() &&
-                (best_integer_solution.GetReportCount() == 0 ||
-                 best_integer_solution.GetAverageCost() > nextDecision.multiSet.GetAverageCost()))) {
-
-
-
-        } else{
             all_decisions.pop_back();
-        }*/
-
-
+        }
     } while (!all_decisions.empty());
 }
+
 
 //	Types of event :
 //	1) A new request arrived

@@ -20,9 +20,9 @@ public:
     BBNode *bbNode;
     double value;
 
-    BBBestPriorityItem(const DecisionMultiSet &multiSet, const Decisions &decisions, BBNode *bbNode);
+    BBBestPriorityItem(const DecisionMultiSet& multiSet, const Decisions& decisions, BBNode* bbNode);
 
-    static bool comparator(const BBBestPriorityItem &item1, const BBBestPriorityItem &item2);
+    static bool comparator(const BBBestPriorityItem& item1, const BBBestPriorityItem& item2);
 };
 
 class BranchAndBoundSimulation {
@@ -102,8 +102,6 @@ public:
                                  Decisions &working_decisions, Scenarios &scenarios,
                                  std::vector<Prob<Node, Driver>> &probs,
                                  Decisions &best_decisions, BBNode *node);
-
-    void quick_sort(std::vector<BBBestPriorityItem> vector1);
 };
 
 #endif
