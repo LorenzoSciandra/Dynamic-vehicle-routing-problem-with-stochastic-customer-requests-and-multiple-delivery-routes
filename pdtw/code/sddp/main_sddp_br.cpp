@@ -41,6 +41,7 @@ int main(int arg, char **argv) {
     Parameters::SetFathomingInBnB(true);
     Parameters::SetBestFirstForBnB(true);
     Parameters::SetShouldPrintBBTrees(false);
+    Parameters::SetEvaluateWaitingStrategy(true);
 
     Parameters::PrintCurrentElapsedTime();
 

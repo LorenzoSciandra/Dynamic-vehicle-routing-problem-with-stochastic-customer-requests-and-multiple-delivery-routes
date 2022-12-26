@@ -43,7 +43,7 @@ void BranchRegretSimulation::Optimize(Scenarios &scenarios) {
         //printf("\n\n\nTime:%.1lf Unassigned:%d HasDriverAtDepot:%d\n", cur_time, current_un_count, (int)prev_decisions.HasDriverAtDepot());
         //prev_decisions.Show();
 
-        std::vector <Prob<Node, Driver>> probs;
+        std::vector<Prob<Node, Driver>> probs;
         scenarios.Generate(probs, cur_time);
 
         DecisionMultiSet multiset;
@@ -95,8 +95,7 @@ void BranchRegretSimulation::Optimize(Scenarios &scenarios) {
                 decision_wait.arrival_time = cur_time;
                 decision_wait.departure_time = cur_time + min_waiting_time;
             }
-        }
-        else{
+        } else {
             skipped++;
         }
 
@@ -301,7 +300,7 @@ double BranchRegretSimulation::GetNextEvent(Scenarios &scenarios, Decisions &dec
     return std::min(ne, next_request);
 }
 
-void BranchRegretSimulation::PerformOrderAcceptancy(std::vector <Prob<Node, Driver>> &probs, Decisions &decs,
+void BranchRegretSimulation::PerformOrderAcceptancy(std::vector<Prob<Node, Driver>> &probs, Decisions &decs,
                                                     double cur_time, DecisionMultiSet &multiset,
                                                     Decisions &fixed_decisions) {
     //printf("PerformOrderAcceptancy curtime:%.2lf\n", cur_time);
