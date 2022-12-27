@@ -1,0 +1,23 @@
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWdf_RC_4_hom_1_d1
+AlnsIterations:100 Drivers:10 P:0 Scenarios:30 
+BranchAndBoundSimulation StartTime:8.0 
+Solution cost:1755.9712
+Route:0 cost:196.40 LastDone:0 len:10 nodes:0(dep:173)-50p(ac:5 rel:161 arr:172.6 tw:161-221)-46p(ac:5 rel:145 arr:172.6 tw:145-205)-51d(ac:5 rel:161 arr:192.1 tw:161-221)-47d(ac:5 rel:145 arr:204.4 tw:145-205)-58p(ac:5 rel:214 arr:248.0 tw:214-274)-59d(ac:5 rel:214 arr:273.5 tw:214-274)-78p(ac:5 rel:355 arr:368.0 tw:355-415)-76p(ac:5 rel:353 arr:368.0 tw:353-413)-77d(ac:5 rel:353 arr:393.9 tw:353-413)-79d(ac:5 rel:355 arr:414.8 tw:355-415)-1(ar:0)-
+Route:1 cost:81.58 LastDone:2 len:2 nodes:2(dep:57)-26p(ac:5 rel:38 arr:57.0 tw:38-98)-27d(ac:5 rel:38 arr:97.8 tw:38-98)-3(ar:0)-
+Route:2 cost:210.22 LastDone:4 len:12 nodes:4(dep:104)-40p(ac:5 rel:92 arr:104.0 tw:92-152)-36p(ac:5 rel:78 arr:104.0 tw:78-138)-38p(ac:5 rel:80 arr:104.0 tw:80-140)-39d(ac:5 rel:80 arr:133.1 tw:80-140)-37d(ac:5 rel:78 arr:137.9 tw:78-138)-41d(ac:5 rel:92 arr:148.9 tw:92-152)-62p(ac:5 rel:246 arr:248.0 tw:246-306)-63d(ac:5 rel:246 arr:284.5 tw:246-306)-94p(ac:5 rel:457 arr:483.0 tw:457-517)-92p(ac:5 rel:451 arr:483.0 tw:451-511)-93d(ac:5 rel:451 arr:500.1 tw:451-511)-95d(ac:5 rel:457 arr:511.9 tw:457-517)-5(ar:0)-
+Route:3 cost:248.20 LastDone:6 len:10 nodes:6(dep:123)-44p(ac:5 rel:117 arr:134.0 tw:117-177)-45d(ac:5 rel:117 arr:176.3 tw:117-177)-66p(ac:5 rel:264 arr:285.2 tw:264-324)-67d(ac:5 rel:264 arr:323.6 tw:264-324)-90p(ac:5 rel:440 arr:442.0 tw:440-500)-86p(ac:5 rel:420 arr:442.0 tw:420-480)-88p(ac:5 rel:435 arr:442.0 tw:435-495)-89d(ac:5 rel:435 arr:469.6 tw:435-495)-87d(ac:5 rel:420 arr:479.1 tw:420-480)-91d(ac:5 rel:440 arr:493.6 tw:440-500)-7(ar:0)-
+Route:4 cost:196.40 LastDone:8 len:10 nodes:8(dep:41)-28p(ac:5 rel:41 arr:41.0 tw:41-101)-22p(ac:5 rel:14 arr:41.0 tw:14-74)-29d(ac:5 rel:41 arr:66.0 tw:41-101)-23d(ac:5 rel:14 arr:66.0 tw:14-74)-70p(ac:5 rel:290 arr:310.9 tw:290-350)-71d(ac:5 rel:290 arr:349.8 tw:290-350)-84p(ac:5 rel:405 arr:417.1 tw:405-465)-82p(ac:5 rel:402 arr:417.1 tw:402-462)-83d(ac:5 rel:402 arr:432.0 tw:402-462)-85d(ac:5 rel:405 arr:465.0 tw:405-465)-9(ar:0)-
+Route:5 cost:189.06 LastDone:10 len:6 nodes:10(dep:41)-24p(ac:5 rel:32 arr:41.0 tw:32-92)-25d(ac:5 rel:32 arr:91.7 tw:32-92)-68p(ac:5 rel:281 arr:285.2 tw:281-341)-64p(ac:5 rel:261 arr:285.2 tw:261-321)-65d(ac:5 rel:261 arr:316.5 tw:261-321)-69d(ac:5 rel:281 arr:338.1 tw:281-341)-11(ar:0)-
+Route:6 cost:103.17 LastDone:12 len:6 nodes:12(dep:104)-42p(ac:5 rel:102 arr:104.0 tw:102-162)-43d(ac:5 rel:102 arr:125.8 tw:102-162)-56p(ac:5 rel:207 arr:223.6 tw:207-267)-54p(ac:5 rel:195 arr:223.6 tw:195-255)-57d(ac:5 rel:207 arr:231.2 tw:207-267)-55d(ac:5 rel:195 arr:254.5 tw:195-255)-13(ar:0)-
+Route:7 cost:114.82 LastDone:14 len:6 nodes:14(dep:76)-34p(ac:5 rel:74 arr:76.0 tw:74-134)-32p(ac:5 rel:65 arr:76.0 tw:65-125)-33d(ac:5 rel:65 arr:93.1 tw:65-125)-35d(ac:5 rel:74 arr:113.6 tw:74-134)-48p(ac:5 rel:156 arr:166.6 tw:156-216)-49d(ac:5 rel:156 arr:186.5 tw:156-216)-15(ar:0)-
+Route:8 cost:189.50 LastDone:16 len:8 nodes:16(dep:40)-20p(ac:5 rel:8 arr:41.0 tw:8-68)-21d(ac:5 rel:8 arr:65.4 tw:8-68)-60p(ac:5 rel:230 arr:248.0 tw:230-290)-61d(ac:5 rel:230 arr:282.3 tw:230-290)-74p(ac:5 rel:321 arr:336.0 tw:321-381)-72p(ac:5 rel:313 arr:336.0 tw:313-373)-75d(ac:5 rel:321 arr:339.9 tw:321-381)-73d(ac:5 rel:313 arr:372.0 tw:313-373)-17(ar:0)-
+Route:9 cost:226.62 LastDone:18 len:6 nodes:18(dep:62)-30p(ac:5 rel:62 arr:76.0 tw:62-122)-31d(ac:5 rel:62 arr:121.3 tw:62-122)-52p(ac:5 rel:174 arr:194.7 tw:174-234)-53d(ac:5 rel:174 arr:233.6 tw:174-234)-80p(ac:5 rel:367 arr:397.6 tw:367-427)-81d(ac:5 rel:367 arr:426.8 tw:367-427)-19(ar:0)-
+Unassigneds(0):
+Progressive Cost:1755.97 Dist:1755.97 Un:0 Routes:25 Time:2.96 Events:125 WaitAtDepot:1 AllowDepotReturns:0
+Skipped: 106
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWdf_RC_4_hom_1_d1 Customers:38
+BBNode count: 42
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1755.97 Un:0 Routes:25 Time:2.96 Events:125 Idle:0.676 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 2 seconds and 964 milliseconds.(Sat Dec 24 14:48:09 2022

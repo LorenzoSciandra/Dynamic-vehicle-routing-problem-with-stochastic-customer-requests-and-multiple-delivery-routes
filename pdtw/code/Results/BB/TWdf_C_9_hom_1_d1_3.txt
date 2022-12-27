@@ -1,0 +1,23 @@
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWdf_C_9_hom_1_d1
+AlnsIterations:100 Drivers:10 P:0 Scenarios:30 
+BranchAndBoundSimulation StartTime:19.0 
+Solution cost:20201606.8293
+Route:0 cost:178.90 LastDone:0 len:8 nodes:0(dep:118)-40p(ac:5 rel:98 arr:118.5 tw:98-158)-41d(ac:5 rel:98 arr:135.3 tw:98-158)-54p(ac:5 rel:166 arr:174.0 tw:166-226)-50p(ac:5 rel:153 arr:174.0 tw:153-213)-51d(ac:5 rel:153 arr:203.3 tw:153-213)-55d(ac:5 rel:166 arr:221.9 tw:166-226)-74p(ac:5 rel:260 arr:284.0 tw:260-320)-75d(ac:5 rel:260 arr:319.9 tw:260-320)-1(ar:0)-
+Route:1 cost:144.88 LastDone:2 len:10 nodes:2(dep:135)-46p(ac:5 rel:125 arr:138.9 tw:125-185)-44p(ac:5 rel:121 arr:138.9 tw:121-181)-42p(ac:5 rel:120 arr:138.9 tw:120-180)-43d(ac:5 rel:120 arr:157.3 tw:120-180)-45d(ac:5 rel:121 arr:172.9 tw:121-181)-47d(ac:5 rel:125 arr:184.2 tw:125-185)-86p(ac:5 rel:364 arr:376.4 tw:364-424)-84p(ac:5 rel:358 arr:376.4 tw:358-418)-87d(ac:5 rel:364 arr:400.0 tw:364-424)-85d(ac:5 rel:358 arr:417.9 tw:358-418)-3(ar:0)-
+Route:2 cost:206.71 LastDone:4 len:12 nodes:4(dep:38)-24p(ac:5 rel:34 arr:38.0 tw:34-94)-26p(ac:5 rel:34 arr:38.0 tw:34-94)-25d(ac:5 rel:34 arr:63.1 tw:34-94)-27d(ac:5 rel:34 arr:63.1 tw:34-94)-52p(ac:5 rel:155 arr:174.0 tw:155-215)-53d(ac:5 rel:155 arr:190.8 tw:155-215)-60p(ac:5 rel:222 arr:222.0 tw:222-282)-58p(ac:5 rel:211 arr:222.0 tw:211-271)-59d(ac:5 rel:211 arr:257.3 tw:211-271)-61d(ac:5 rel:222 arr:281.3 tw:222-282)-76p(ac:5 rel:275 arr:316.0 tw:275-335)-77d(ac:5 rel:275 arr:334.8 tw:275-335)-5(ar:0)-
+Route:3 cost:185.49 LastDone:6 len:6 nodes:6(dep:63)-30p(ac:5 rel:63 arr:63.0 tw:63-123)-28p(ac:5 rel:43 arr:63.0 tw:43-103)-29d(ac:5 rel:43 arr:85.9 tw:43-103)-31d(ac:5 rel:63 arr:122.3 tw:63-123)-70p(ac:5 rel:251 arr:254.0 tw:251-311)-71d(ac:5 rel:251 arr:301.6 tw:251-311)-7(ar:0)-
+Route:4 cost:0.00 LastDone:8 len:0 nodes:8(dep:0)-9(ar:0)-
+Route:5 cost:242.56 LastDone:10 len:10 nodes:10(dep:86)-34p(ac:5 rel:78 arr:89.1 tw:78-138)-35d(ac:5 rel:78 arr:137.6 tw:78-138)-66p(ac:5 rel:246 arr:254.0 tw:246-306)-62p(ac:5 rel:226 arr:254.0 tw:226-286)-64p(ac:5 rel:243 arr:254.0 tw:243-303)-63d(ac:5 rel:226 arr:271.6 tw:226-286)-65d(ac:5 rel:243 arr:280.3 tw:243-303)-67d(ac:5 rel:246 arr:305.0 tw:246-306)-90p(ac:5 rel:387 arr:424.0 tw:387-447)-91d(ac:5 rel:387 arr:446.1 tw:387-447)-11(ar:0)-
+Route:6 cost:77.56 LastDone:12 len:4 nodes:12(dep:282)-80p(ac:5 rel:289 arr:309.2 tw:289-349)-78p(ac:5 rel:287 arr:309.2 tw:287-347)-79d(ac:5 rel:287 arr:327.9 tw:287-347)-81d(ac:5 rel:289 arr:348.0 tw:289-349)-13(ar:0)-
+Route:7 cost:151.46 LastDone:14 len:6 nodes:14(dep:36)-22p(ac:5 rel:24 arr:38.0 tw:24-84)-20p(ac:5 rel:19 arr:38.0 tw:19-79)-23d(ac:5 rel:24 arr:61.6 tw:24-84)-21d(ac:5 rel:19 arr:78.2 tw:19-79)-56p(ac:5 rel:175 arr:199.1 tw:175-235)-57d(ac:5 rel:175 arr:234.6 tw:175-235)-15(ar:0)-
+Route:8 cost:221.34 LastDone:16 len:8 nodes:16(dep:89)-32p(ac:5 rel:73 arr:89.1 tw:73-133)-33d(ac:5 rel:73 arr:112.0 tw:73-133)-48p(ac:5 rel:150 arr:174.0 tw:150-210)-49d(ac:5 rel:150 arr:209.5 tw:150-210)-68p(ac:5 rel:249 arr:254.0 tw:249-309)-69d(ac:5 rel:249 arr:287.1 tw:249-309)-82p(ac:5 rel:296 arr:336.0 tw:296-356)-83d(ac:5 rel:296 arr:355.2 tw:296-356)-17(ar:0)-
+Route:9 cost:197.93 LastDone:18 len:8 nodes:18(dep:118)-38p(ac:5 rel:87 arr:118.5 tw:87-147)-36p(ac:5 rel:78 arr:118.5 tw:78-138)-37d(ac:5 rel:78 arr:137.1 tw:78-138)-39d(ac:5 rel:87 arr:140.6 tw:87-147)-72p(ac:5 rel:255 arr:284.0 tw:255-315)-73d(ac:5 rel:255 arr:314.0 tw:255-315)-88p(ac:5 rel:367 arr:376.4 tw:367-427)-89d(ac:5 rel:367 arr:424.2 tw:367-427)-19(ar:0)-
+Unassigneds(4):93(rel:453 ut:513 real:1) 95(rel:461 ut:521 real:1) 
+Progressive Cost:20201606.83 Dist:1606.83 Un:2 Routes:24 Time:2.85 Events:102 WaitAtDepot:1 AllowDepotReturns:0
+Skipped: 86
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWdf_C_9_hom_1_d1 Customers:38
+BBNode count: 41
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1606.83 Un:2 Routes:24 Time:2.85 Events:102 Idle:0.704 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 2 seconds and 847 milliseconds.(Sat Dec 24 14:38:15 2022

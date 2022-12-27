@@ -1,0 +1,23 @@
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWdf_RC_9_hom_1_d1
+AlnsIterations:100 Drivers:10 P:0 Scenarios:30 
+BranchAndBoundSimulation StartTime:4.0 
+Solution cost:1647.5591
+Route:0 cost:306.46 LastDone:0 len:18 nodes:0(dep:45)-28p(ac:5 rel:73 arr:85.0 tw:73-133)-24p(ac:5 rel:43 arr:85.0 tw:43-103)-26p(ac:5 rel:63 arr:85.0 tw:63-123)-25d(ac:5 rel:43 arr:102.3 tw:43-103)-27d(ac:5 rel:63 arr:120.7 tw:63-123)-29d(ac:5 rel:73 arr:127.7 tw:73-133)-48p(ac:5 rel:206 arr:215.2 tw:206-266)-49d(ac:5 rel:206 arr:265.1 tw:206-266)-66p(ac:5 rel:304 arr:323.0 tw:304-364)-60p(ac:5 rel:280 arr:323.0 tw:280-340)-62p(ac:5 rel:301 arr:323.0 tw:301-361)-61d(ac:5 rel:280 arr:339.7 tw:280-340)-67d(ac:5 rel:304 arr:343.9 tw:304-364)-63d(ac:5 rel:301 arr:344.9 tw:301-361)-70p(ac:5 rel:349 arr:364.1 tw:349-409)-68p(ac:5 rel:329 arr:364.1 tw:329-389)-69d(ac:5 rel:329 arr:381.1 tw:329-389)-71d(ac:5 rel:349 arr:409.0 tw:349-409)-1(ar:0)-
+Route:1 cost:78.74 LastDone:2 len:4 nodes:2(dep:23)-22p(ac:5 rel:23 arr:35.0 tw:23-83)-20p(ac:5 rel:4 arr:35.0 tw:4-64)-21d(ac:5 rel:4 arr:61.6 tw:4-64)-23d(ac:5 rel:23 arr:82.7 tw:23-83)-3(ar:0)-
+Route:2 cost:219.84 LastDone:4 len:8 nodes:4(dep:161)-42p(ac:5 rel:156 arr:161.0 tw:156-216)-40p(ac:5 rel:152 arr:161.0 tw:152-212)-41d(ac:5 rel:152 arr:188.1 tw:152-212)-43d(ac:5 rel:156 arr:215.6 tw:156-216)-56p(ac:5 rel:225 arr:265.0 tw:225-285)-57d(ac:5 rel:225 arr:284.5 tw:225-285)-74p(ac:5 rel:366 arr:376.0 tw:366-426)-75d(ac:5 rel:366 arr:425.9 tw:366-426)-5(ar:0)-
+Route:3 cost:103.31 LastDone:6 len:4 nodes:6(dep:138)-38p(ac:5 rel:113 arr:138.7 tw:113-173)-39d(ac:5 rel:113 arr:162.7 tw:113-173)-82p(ac:5 rel:408 arr:430.0 tw:408-468)-83d(ac:5 rel:408 arr:457.7 tw:408-468)-7(ar:0)-
+Route:4 cost:76.54 LastDone:8 len:2 nodes:8(dep:430)-84p(ac:5 rel:409 arr:430.0 tw:409-469)-85d(ac:5 rel:409 arr:468.3 tw:409-469)-9(ar:0)-
+Route:5 cost:179.21 LastDone:10 len:6 nodes:10(dep:139)-36p(ac:5 rel:113 arr:138.7 tw:113-173)-37d(ac:5 rel:113 arr:154.8 tw:113-173)-52p(ac:5 rel:221 arr:229.0 tw:221-281)-53d(ac:5 rel:221 arr:266.8 tw:221-281)-72p(ac:5 rel:355 arr:364.1 tw:355-415)-73d(ac:5 rel:355 arr:399.9 tw:355-415)-11(ar:0)-
+Route:6 cost:153.07 LastDone:12 len:8 nodes:12(dep:215)-44p(ac:5 rel:192 arr:215.2 tw:192-252)-45d(ac:5 rel:192 arr:241.5 tw:192-252)-80p(ac:5 rel:385 arr:403.0 tw:385-445)-78p(ac:5 rel:383 arr:403.0 tw:383-443)-79d(ac:5 rel:383 arr:428.2 tw:383-443)-81d(ac:5 rel:385 arr:444.7 tw:385-445)-90p(ac:5 rel:438 arr:482.8 tw:438-498)-91d(ac:5 rel:438 arr:497.8 tw:438-498)-13(ar:0)-
+Route:7 cost:273.70 LastDone:14 len:12 nodes:14(dep:215)-46p(ac:5 rel:195 arr:215.2 tw:195-255)-47d(ac:5 rel:195 arr:244.0 tw:195-255)-64p(ac:5 rel:302 arr:302.0 tw:302-362)-58p(ac:5 rel:269 arr:302.0 tw:269-329)-59d(ac:5 rel:269 arr:328.3 tw:269-329)-65d(ac:5 rel:302 arr:333.2 tw:302-362)-76p(ac:5 rel:371 arr:376.0 tw:371-431)-77d(ac:5 rel:371 arr:410.6 tw:371-431)-92p(ac:5 rel:449 arr:455.0 tw:449-509)-88p(ac:5 rel:431 arr:455.0 tw:431-491)-89d(ac:5 rel:431 arr:486.2 tw:431-491)-93d(ac:5 rel:449 arr:501.8 tw:449-509)-15(ar:0)-
+Route:8 cost:203.46 LastDone:16 len:10 nodes:16(dep:111)-34p(ac:5 rel:110 arr:111.0 tw:110-170)-32p(ac:5 rel:108 arr:111.0 tw:108-168)-30p(ac:5 rel:87 arr:111.0 tw:87-147)-31d(ac:5 rel:87 arr:128.0 tw:87-147)-35d(ac:5 rel:110 arr:151.0 tw:110-170)-33d(ac:5 rel:108 arr:167.9 tw:108-168)-54p(ac:5 rel:221 arr:229.0 tw:221-281)-50p(ac:5 rel:221 arr:229.0 tw:221-281)-51d(ac:5 rel:221 arr:255.3 tw:221-281)-55d(ac:5 rel:221 arr:280.7 tw:221-281)-17(ar:0)-
+Route:9 cost:53.23 LastDone:18 len:2 nodes:18(dep:430)-86p(ac:5 rel:424 arr:430.0 tw:424-484)-87d(ac:5 rel:424 arr:456.6 tw:424-484)-19(ar:0)-
+Unassigneds(0):
+Progressive Cost:1647.56 Dist:1647.56 Un:0 Routes:24 Time:3.04 Events:115 WaitAtDepot:1 AllowDepotReturns:0
+Skipped: 97
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWdf_RC_9_hom_1_d1 Customers:37
+BBNode count: 41
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1647.56 Un:0 Routes:24 Time:3.04 Events:115 Idle:0.697 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 3 seconds and 45 milliseconds.(Sat Dec 24 14:59:57 2022
