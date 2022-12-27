@@ -1,0 +1,11 @@
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWr_RC_9_hom_1
+AlnsIterations:100 Drivers:10 P:0 Scenarios:30 
+BranchRegret StartTime:9.0 P:0 Alns:100 OA:0 Sc:30 BR:1
+BranchRegret Cost:1462.68 Dist:1462.68 Un:0 Routes:15 Time:104.13 Events:434 branching:58 BR_nodes:116 Consensus:1 WaitAtDepot:1 AllowDepotReturns:0
+
+Skipped: 0
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWr_RC_9_hom_1 Customers:54
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:BR-RS-GoNowWait Dist:1462.68 Un:0 Routes:15 Time:104.13 Events:434 Idle:0.619 PDR:No ThType:1 Branch:58 Nodes:116 
+Elapsed time: 0 hours, 1 minutes, 44 seconds and 133 milliseconds.(Sun Dec 25 02:21:15 2022

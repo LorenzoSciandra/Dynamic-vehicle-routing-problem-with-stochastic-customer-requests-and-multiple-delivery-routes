@@ -1,0 +1,23 @@
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWr_C_9_hom_1
+AlnsIterations:100 Drivers:10 P:0 Scenarios:30 
+BranchAndBoundSimulation StartTime:19.0 
+Solution cost:20200909.8780
+Route:0 cost:76.83 LastDone:0 len:4 nodes:0(dep:384)-86p(ac:5 rel:364 arr:383.7 tw:364-538)-84p(ac:5 rel:358 arr:383.7 tw:358-419)-85d(ac:5 rel:358 arr:419.0 tw:359-419)-87d(ac:5 rel:364 arr:436.9 tw:478-538)-1(ar:0)-
+Route:1 cost:161.71 LastDone:2 len:14 nodes:2(dep:168)-46p(ac:5 rel:125 arr:168.3 tw:125-191)-20p(ac:5 rel:19 arr:168.3 tw:19-387)-22p(ac:5 rel:24 arr:168.3 tw:24-357)-32p(ac:5 rel:73 arr:168.3 tw:73-482)-34p(ac:5 rel:78 arr:168.3 tw:78-377)-42p(ac:5 rel:120 arr:168.3 tw:120-220)-44p(ac:5 rel:121 arr:168.3 tw:121-230)-47d(ac:5 rel:125 arr:191.0 tw:131-191)-43d(ac:5 rel:120 arr:204.0 tw:160-220)-45d(ac:5 rel:121 arr:219.5 tw:170-230)-35d(ac:5 rel:78 arr:241.3 tw:317-377)-23d(ac:5 rel:24 arr:348.1 tw:297-357)-21d(ac:5 rel:19 arr:364.7 tw:327-387)-33d(ac:5 rel:73 arr:382.9 tw:422-482)-3(ar:0)-
+Route:2 cost:191.34 LastDone:4 len:18 nodes:4(dep:310)-82p(ac:5 rel:296 arr:310.1 tw:296-464)-26p(ac:5 rel:34 arr:310.1 tw:34-486)-48p(ac:5 rel:150 arr:310.1 tw:150-412)-56p(ac:5 rel:175 arr:310.1 tw:175-404)-68p(ac:5 rel:249 arr:310.1 tw:249-522)-70p(ac:5 rel:251 arr:310.1 tw:251-435)-72p(ac:5 rel:255 arr:310.1 tw:255-526)-74p(ac:5 rel:260 arr:310.1 tw:260-346)-28p(ac:5 rel:43 arr:310.1 tw:43-522)-75d(ac:5 rel:260 arr:346.0 tw:286-346)-57d(ac:5 rel:175 arr:347.8 tw:344-404)-49d(ac:5 rel:150 arr:347.8 tw:352-412)-71d(ac:5 rel:251 arr:380.5 tw:375-435)-83d(ac:5 rel:296 arr:434.5 tw:404-464)-69d(ac:5 rel:249 arr:451.3 tw:462-522)-73d(ac:5 rel:255 arr:465.1 tw:466-526)-27d(ac:5 rel:34 arr:470.9 tw:426-486)-29d(ac:5 rel:43 arr:494.4 tw:462-522)-5(ar:0)-
+Route:3 cost:0.00 LastDone:6 len:0 nodes:6(dep:0)-7(ar:0)-
+Route:4 cost:71.71 LastDone:8 len:8 nodes:8(dep:259)-76p(ac:5 rel:275 arr:299.2 tw:275-467)-40p(ac:5 rel:98 arr:299.2 tw:98-316)-58p(ac:5 rel:211 arr:299.2 tw:211-492)-52p(ac:5 rel:155 arr:299.2 tw:155-395)-41d(ac:5 rel:98 arr:316.0 tw:256-316)-53d(ac:5 rel:155 arr:316.0 tw:335-395)-77d(ac:5 rel:275 arr:337.0 tw:407-467)-59d(ac:5 rel:211 arr:424.6 tw:432-492)-9(ar:0)-
+Route:5 cost:0.00 LastDone:10 len:0 nodes:10(dep:0)-11(ar:0)-
+Route:6 cost:44.27 LastDone:12 len:2 nodes:12(dep:387)-90p(ac:5 rel:387 arr:430.0 tw:387-453)-91d(ac:5 rel:387 arr:452.1 tw:393-453)-13(ar:0)-
+Route:7 cost:190.98 LastDone:14 len:20 nodes:14(dep:275)-66p(ac:5 rel:246 arr:282.7 tw:246-494)-24p(ac:5 rel:34 arr:282.7 tw:34-333)-30p(ac:5 rel:63 arr:282.7 tw:63-370)-36p(ac:5 rel:78 arr:282.7 tw:78-382)-50p(ac:5 rel:153 arr:282.7 tw:153-474)-54p(ac:5 rel:166 arr:282.7 tw:166-398)-60p(ac:5 rel:222 arr:282.7 tw:222-472)-62p(ac:5 rel:226 arr:282.7 tw:226-414)-64p(ac:5 rel:243 arr:282.7 tw:243-438)-38p(ac:5 rel:87 arr:282.7 tw:87-303)-39d(ac:5 rel:87 arr:303.0 tw:243-303)-25d(ac:5 rel:34 arr:322.0 tw:273-333)-37d(ac:5 rel:78 arr:337.6 tw:322-382)-31d(ac:5 rel:63 arr:360.6 tw:310-370)-55d(ac:5 rel:166 arr:381.8 tw:338-398)-65d(ac:5 rel:243 arr:381.8 tw:378-438)-63d(ac:5 rel:226 arr:390.6 tw:354-414)-61d(ac:5 rel:222 arr:399.0 tw:412-472)-67d(ac:5 rel:246 arr:436.3 tw:434-494)-51d(ac:5 rel:153 arr:457.4 tw:414-474)-15(ar:0)-
+Route:8 cost:77.56 LastDone:16 len:4 nodes:16(dep:355)-80p(ac:5 rel:289 arr:355.3 tw:289-395)-78p(ac:5 rel:287 arr:355.3 tw:287-441)-81d(ac:5 rel:289 arr:394.1 tw:335-395)-79d(ac:5 rel:287 arr:414.2 tw:381-441)-17(ar:0)-
+Route:9 cost:95.49 LastDone:18 len:2 nodes:18(dep:383)-88p(ac:5 rel:367 arr:383.0 tw:367-432)-89d(ac:5 rel:367 arr:430.7 tw:372-432)-19(ar:0)-
+Unassigneds(4):95(rel:461 ut:526 real:1) 93(rel:453 ut:516 real:1) 
+Progressive Cost:20200909.88 Dist:909.88 Un:2 Routes:8 Time:11.95 Events:66 WaitAtDepot:1 AllowDepotReturns:0
+Skipped: 57
+File:../instances/sddp/stacy/config/temp.dat
+Instance:TWr_C_9_hom_1 Customers:38
+BBNode count: 26
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:909.88 Un:2 Routes:8 Time:11.95 Events:66 Idle:0.782 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 11 seconds and 948 milliseconds.(Sun Dec 25 00:09:52 2022
