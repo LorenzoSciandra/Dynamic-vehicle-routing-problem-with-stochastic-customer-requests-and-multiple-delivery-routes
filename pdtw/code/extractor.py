@@ -23,7 +23,9 @@ for dire in dirs:
         if results is None:
             print(dire + filename + " does not contain any matchable result!")
         else:
-            parsed_result = tuple(filename.removesuffix(".txt").rsplit("_", 1))
+            parsed_result_list = filename.removesuffix(".txt").rsplit("_", 1)
+            parsed_result_list[0] = parsed_result_list[0].rsplit("_")[0] + "_" + parsed_result_list[0].rsplit("_")[1] + "_" + parsed_result_list[0].rsplit("_")[2]
+            parsed_result = tuple(parsed_result_list)
             for i in range(1, results.lastindex + 1):
                 parsed_result += (results.group(i),)
 
