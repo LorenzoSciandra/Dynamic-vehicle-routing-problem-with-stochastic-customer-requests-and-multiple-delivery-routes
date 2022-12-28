@@ -82,10 +82,10 @@ void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
         }
 
 
-        DecisionMultiSet best_integer_solution = BB_multiset;
-
         if (!wait_to_next_event) {
             Decisions best_decisions;
+
+            DecisionMultiSet best_integer_solution;
 
             ResetBB();
 
@@ -94,7 +94,8 @@ void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
 
             BBNodes.push_back(node);
 
-            BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
+            // printf("\nInitial cost: %.1lf, Wait: %s", BB_multiset.GetAverageCost(), wait_to_next_event?"true":"false");
+            IterativeBranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
                                     probs, best_decisions, node);
 
             BBNode_total_count += BBNodes.size();
@@ -104,6 +105,7 @@ void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
                 PrintBBNodes(cur_time, best_integer_solution.GetAverageCost());
             }
 
+            BB_multiset = best_integer_solution;
             prev_decisions = best_decisions;
 
 
@@ -113,13 +115,13 @@ void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
 
         switch (Parameters::GetConsensusToUse()) {
             case CONSENSUS_STACY:
-                best_integer_solution.GetConsensusStacy(prev_decisions);
+                BB_multiset.GetConsensusStacy(prev_decisions);
                 break;
             case CONSENSUS_BY_DRIVERS:
-                best_integer_solution.GetConsensusByDrivers(prev_decisions);
+                BB_multiset.GetConsensusByDrivers(prev_decisions);
                 break;
             case CONSENSUS_BY_MINIMAL_CHANGE:
-                best_integer_solution.GetConsensusMinimalDistance(prev_decisions);
+                BB_multiset.GetConsensusMinimalDistance(prev_decisions);
                 break;
         }
 
