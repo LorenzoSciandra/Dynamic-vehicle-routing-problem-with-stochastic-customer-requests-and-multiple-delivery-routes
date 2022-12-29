@@ -14,10 +14,10 @@ Route:7 cost:318.56 LastDone:14 len:16 nodes:14(dep:69)-38p(ac:5 rel:69 arr:69.0
 Route:8 cost:363.88 LastDone:16 len:12 nodes:16(dep:34)-26p(ac:5 rel:12 arr:34.0 tw:12-72)-27d(ac:5 rel:12 arr:62.7 tw:12-72)-46p(ac:5 rel:139 arr:154.9 tw:139-199)-47d(ac:5 rel:139 arr:196.7 tw:139-199)-70p(ac:5 rel:254 arr:255.6 tw:254-314)-71d(ac:5 rel:254 arr:313.4 tw:254-314)-100p(ac:5 rel:355 arr:378.0 tw:355-415)-96p(ac:5 rel:349 arr:378.0 tw:349-409)-97d(ac:5 rel:349 arr:397.9 tw:349-409)-101d(ac:5 rel:355 arr:414.5 tw:355-415)-114p(ac:5 rel:430 arr:434.1 tw:430-490)-115d(ac:5 rel:430 arr:461.1 tw:430-490)-17(ar:0)-
 Route:9 cost:384.17 LastDone:18 len:12 nodes:18(dep:34)-28p(ac:5 rel:14 arr:34.0 tw:14-74)-29d(ac:5 rel:14 arr:70.0 tw:14-74)-42p(ac:5 rel:109 arr:119.0 tw:109-169)-43d(ac:5 rel:109 arr:168.9 tw:109-169)-60p(ac:5 rel:212 arr:230.7 tw:212-272)-61d(ac:5 rel:212 arr:255.3 tw:212-272)-88p(ac:5 rel:319 arr:340.0 tw:319-379)-89d(ac:5 rel:319 arr:378.4 tw:319-379)-118p(ac:5 rel:443 arr:452.9 tw:443-503)-116p(ac:5 rel:441 arr:452.9 tw:441-501)-117d(ac:5 rel:441 arr:474.9 tw:441-501)-119d(ac:5 rel:443 arr:496.0 tw:443-503)-19(ar:0)-
 Unassigneds(6):123(rel:466 ut:526 real:1) 127(rel:477 ut:537 real:1) 121(rel:465 ut:525 real:1) 
-Progressive Cost:30302953.38 Dist:2953.38 Un:3 Routes:36 Time:4.72 Events:162 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:30302953.38 Dist:2953.38 Un:3 Routes:36 Time:4.75 Events:162 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 133
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWdf_RC_4_hom_1_d1 Customers:54
 BBNode count: 72
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:2953.38 Un:3 Routes:36 Time:4.72 Events:162 Idle:0.454 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 4 seconds and 729 milliseconds.(Sat Dec 24 14:47:57 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:2953.38 Un:3 Routes:36 Time:4.75 Events:162 Idle:0.454 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 4 seconds and 747 milliseconds.(Thu Dec 29 15:32:09 2022

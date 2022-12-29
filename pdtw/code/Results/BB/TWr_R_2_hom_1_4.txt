@@ -14,10 +14,10 @@ Route:7 cost:140.00 LastDone:14 len:12 nodes:14(dep:130)-86p(ac:5 rel:279 arr:28
 Route:8 cost:118.10 LastDone:16 len:8 nodes:16(dep:211)-80p(ac:5 rel:242 arr:245.2 tw:242-533)-40p(ac:5 rel:111 arr:245.2 tw:111-259)-52p(ac:5 rel:156 arr:245.2 tw:156-318)-58p(ac:5 rel:170 arr:245.2 tw:170-298)-41d(ac:5 rel:111 arr:259.0 tw:199-259)-59d(ac:5 rel:170 arr:295.2 tw:238-298)-53d(ac:5 rel:156 arr:304.2 tw:258-318)-81d(ac:5 rel:242 arr:313.3 tw:473-533)-17(ar:0)-
 Route:9 cost:255.24 LastDone:18 len:20 nodes:18(dep:216)-76p(ac:5 rel:228 arr:238.0 tw:228-312)-28p(ac:5 rel:74 arr:238.0 tw:74-292)-42p(ac:5 rel:130 arr:238.0 tw:130-276)-50p(ac:5 rel:146 arr:238.0 tw:146-256)-70p(ac:5 rel:223 arr:238.0 tw:223-323)-29d(ac:5 rel:74 arr:255.6 tw:232-292)-51d(ac:5 rel:146 arr:255.6 tw:196-256)-43d(ac:5 rel:130 arr:272.8 tw:216-276)-77d(ac:5 rel:228 arr:293.7 tw:252-312)-71d(ac:5 rel:223 arr:310.9 tw:263-323)-78p(ac:5 rel:236 arr:319.0 tw:236-362)-64p(ac:5 rel:207 arr:319.0 tw:207-407)-79d(ac:5 rel:236 arr:340.4 tw:302-362)-65d(ac:5 rel:207 arr:356.6 tw:347-407)-120p(ac:5 rel:418 arr:418.0 tw:418-501)-114p(ac:5 rel:385 arr:418.0 tw:385-486)-94p(ac:5 rel:313 arr:418.0 tw:313-539)-115d(ac:5 rel:385 arr:429.4 tw:426-486)-121d(ac:5 rel:418 arr:482.8 tw:441-501)-95d(ac:5 rel:313 arr:509.9 tw:479-539)-19(ar:0)-
 Unassigneds(2):131(rel:457 ut:523 real:1) 
-Progressive Cost:10101753.33 Dist:1753.33 Un:1 Routes:18 Time:34.33 Events:125 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:10101753.33 Dist:1753.33 Un:1 Routes:18 Time:34.30 Events:125 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 107
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_R_2_hom_1 Customers:58
 BBNode count: 115
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1753.33 Un:1 Routes:18 Time:34.33 Events:125 Idle:0.527 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 34 seconds and 331 milliseconds.(Sun Dec 25 02:51:08 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1753.33 Un:1 Routes:18 Time:34.30 Events:125 Idle:0.527 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 34 seconds and 308 milliseconds.(Thu Dec 29 18:26:17 2022

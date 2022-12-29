@@ -14,10 +14,10 @@ Route:7 cost:165.23 LastDone:14 len:16 nodes:14(dep:126)-70p(ac:5 rel:249 arr:28
 Route:8 cost:83.08 LastDone:16 len:6 nodes:16(dep:279)-74p(ac:5 rel:256 arr:300.0 tw:256-540)-68p(ac:5 rel:200 arr:300.0 tw:200-360)-72p(ac:5 rel:255 arr:300.0 tw:255-540)-69d(ac:5 rel:200 arr:325.8 tw:300-360)-73d(ac:5 rel:255 arr:497.1 tw:480-540)-75d(ac:5 rel:256 arr:519.2 tw:480-540)-17(ar:0)-
 Route:9 cost:164.31 LastDone:18 len:14 nodes:18(dep:74)-40p(ac:5 rel:75 arr:86.3 tw:75-360)-24p(ac:5 rel:32 arr:86.3 tw:32-540)-28p(ac:5 rel:42 arr:86.3 tw:42-180)-32p(ac:5 rel:50 arr:86.3 tw:50-480)-34p(ac:5 rel:57 arr:86.3 tw:57-420)-38p(ac:5 rel:74 arr:86.3 tw:74-360)-30p(ac:5 rel:43 arr:86.3 tw:43-420)-29d(ac:5 rel:42 arr:122.8 tw:120-180)-39d(ac:5 rel:74 arr:135.7 tw:300-360)-41d(ac:5 rel:75 arr:317.1 tw:300-360)-31d(ac:5 rel:43 arr:334.6 tw:360-420)-35d(ac:5 rel:57 arr:395.1 tw:360-420)-33d(ac:5 rel:50 arr:404.8 tw:420-480)-25d(ac:5 rel:32 arr:429.7 tw:480-540)-19(ar:0)-
 Unassigneds(2):125(rel:473 ut:540 real:1) 
-Progressive Cost:10101374.46 Dist:1374.46 Un:1 Routes:15 Time:29.27 Events:109 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:10101374.46 Dist:1374.46 Un:1 Routes:15 Time:29.47 Events:109 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 96
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_R_6_hom_1 Customers:53
 BBNode count: 130
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1374.46 Un:1 Routes:15 Time:29.27 Events:109 Idle:0.532 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 29 seconds and 270 milliseconds.(Sat Dec 24 21:10:50 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1374.46 Un:1 Routes:15 Time:29.47 Events:109 Idle:0.532 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 29 seconds and 469 milliseconds.(Thu Dec 29 17:08:49 2022

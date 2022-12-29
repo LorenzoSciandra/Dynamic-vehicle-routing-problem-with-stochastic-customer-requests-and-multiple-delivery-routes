@@ -20,4 +20,4 @@ File:../instances/sddp/stacy/config/temp.dat
 Instance:TWdf_C_3_hom_1_d1 Customers:60
 BBNode count: 87
 Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:3405.88 Un:5 Routes:41 Time:6.13 Events:197 Idle:0.370 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 6 seconds and 129 milliseconds.(Sat Dec 24 14:26:14 2022
+Elapsed time: 0 hours, 0 minutes, 6 seconds and 134 milliseconds.(Thu Dec 29 15:25:24 2022

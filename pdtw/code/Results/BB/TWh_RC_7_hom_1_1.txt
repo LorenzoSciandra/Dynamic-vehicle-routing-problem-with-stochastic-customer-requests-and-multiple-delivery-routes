@@ -14,10 +14,10 @@ Route:7 cost:76.24 LastDone:14 len:8 nodes:14(dep:120)-74p(ac:5 rel:310 arr:329.
 Route:8 cost:189.61 LastDone:16 len:16 nodes:16(dep:329)-72p(ac:5 rel:301 arr:329.2 tw:301-480)-58p(ac:5 rel:245 arr:329.2 tw:245-360)-60p(ac:5 rel:247 arr:329.2 tw:247-480)-62p(ac:5 rel:248 arr:329.2 tw:248-420)-64p(ac:5 rel:255 arr:329.2 tw:255-480)-68p(ac:5 rel:258 arr:329.2 tw:258-540)-66p(ac:5 rel:255 arr:329.2 tw:255-360)-59d(ac:5 rel:245 arr:349.1 tw:300-360)-67d(ac:5 rel:255 arr:360.0 tw:300-360)-63d(ac:5 rel:248 arr:381.2 tw:360-420)-65d(ac:5 rel:255 arr:406.4 tw:420-480)-61d(ac:5 rel:247 arr:428.0 tw:420-480)-73d(ac:5 rel:301 arr:466.4 tw:420-480)-69d(ac:5 rel:258 arr:472.7 tw:480-540)-98p(ac:5 rel:454 arr:499.9 tw:454-540)-99d(ac:5 rel:454 arr:519.8 tw:480-540)-17(ar:0)-
 Route:9 cost:128.62 LastDone:18 len:12 nodes:18(dep:114)-52p(ac:5 rel:210 arr:220.8 tw:210-360)-20p(ac:5 rel:12 arr:220.8 tw:12-420)-30p(ac:5 rel:72 arr:220.8 tw:72-540)-44p(ac:5 rel:136 arr:220.8 tw:136-240)-48p(ac:5 rel:194 arr:220.8 tw:194-420)-22p(ac:5 rel:13 arr:220.8 tw:13-300)-45d(ac:5 rel:136 arr:240.0 tw:180-240)-23d(ac:5 rel:13 arr:259.6 tw:240-300)-53d(ac:5 rel:210 arr:277.8 tw:300-360)-21d(ac:5 rel:12 arr:338.5 tw:360-420)-49d(ac:5 rel:194 arr:360.0 tw:360-420)-31d(ac:5 rel:72 arr:518.1 tw:480-540)-19(ar:0)-
 Unassigneds(0):
-Progressive Cost:1170.17 Dist:1170.17 Un:0 Routes:12 Time:12.11 Events:77 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:1170.17 Dist:1170.17 Un:0 Routes:12 Time:12.16 Events:77 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 66
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_RC_7_hom_1 Customers:41
 BBNode count: 52
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1170.17 Un:0 Routes:12 Time:12.11 Events:77 Idle:0.680 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 12 seconds and 112 milliseconds.(Sat Dec 24 19:00:34 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1170.17 Un:0 Routes:12 Time:12.16 Events:77 Idle:0.680 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 12 seconds and 177 milliseconds.(Thu Dec 29 16:35:50 2022

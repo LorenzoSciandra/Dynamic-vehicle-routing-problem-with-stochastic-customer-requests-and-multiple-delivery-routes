@@ -14,10 +14,10 @@ Route:7 cost:138.46 LastDone:14 len:12 nodes:14(dep:40)-24p(ac:5 rel:40 arr:64.4
 Route:8 cost:182.77 LastDone:16 len:10 nodes:16(dep:39)-46p(ac:5 rel:192 arr:234.7 tw:192-285)-32p(ac:5 rel:77 arr:234.7 tw:77-490)-30p(ac:5 rel:75 arr:234.7 tw:75-463)-47d(ac:5 rel:192 arr:285.0 tw:225-285)-31d(ac:5 rel:75 arr:292.4 tw:403-463)-33d(ac:5 rel:77 arr:439.9 tw:430-490)-120p(ac:5 rel:461 arr:468.0 tw:461-527)-118p(ac:5 rel:454 arr:468.0 tw:454-526)-119d(ac:5 rel:454 arr:499.4 tw:466-526)-121d(ac:5 rel:461 arr:518.3 tw:467-527)-17(ar:0)-
 Route:9 cost:220.62 LastDone:18 len:16 nodes:18(dep:317)-68p(ac:5 rel:315 arr:317.0 tw:315-405)-50p(ac:5 rel:224 arr:317.0 tw:224-442)-54p(ac:5 rel:232 arr:317.0 tw:232-364)-60p(ac:5 rel:262 arr:317.0 tw:262-371)-64p(ac:5 rel:296 arr:317.0 tw:296-443)-58p(ac:5 rel:251 arr:317.0 tw:251-460)-55d(ac:5 rel:232 arr:334.1 tw:304-364)-61d(ac:5 rel:262 arr:371.0 tw:311-371)-69d(ac:5 rel:315 arr:397.3 tw:345-405)-51d(ac:5 rel:224 arr:414.4 tw:382-442)-65d(ac:5 rel:296 arr:424.1 tw:383-443)-59d(ac:5 rel:251 arr:444.8 tw:400-460)-112p(ac:5 rel:442 arr:452.8 tw:442-510)-110p(ac:5 rel:442 arr:452.8 tw:442-503)-111d(ac:5 rel:442 arr:480.0 tw:443-503)-113d(ac:5 rel:442 arr:495.7 tw:450-510)-19(ar:0)-
 Unassigneds(2):109(rel:439 ut:521 real:1) 
-Progressive Cost:10101500.00 Dist:1500.00 Un:1 Routes:15 Time:12.98 Events:87 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:10101500.00 Dist:1500.00 Un:1 Routes:15 Time:13.02 Events:87 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 74
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_RC_2_hom_1 Customers:51
 BBNode count: 48
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1500.00 Un:1 Routes:15 Time:12.98 Events:87 Idle:0.593 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 12 seconds and 983 milliseconds.(Sun Dec 25 00:40:16 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1500.00 Un:1 Routes:15 Time:13.02 Events:87 Idle:0.593 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 13 seconds and 21 milliseconds.(Thu Dec 29 17:57:39 2022

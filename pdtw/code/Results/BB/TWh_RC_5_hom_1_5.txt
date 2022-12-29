@@ -14,10 +14,10 @@ Route:7 cost:75.64 LastDone:14 len:4 nodes:14(dep:410)-88p(ac:5 rel:411 arr:453.
 Route:8 cost:335.93 LastDone:16 len:12 nodes:16(dep:67)-32p(ac:5 rel:48 arr:66.9 tw:48-120)-20p(ac:5 rel:6 arr:66.9 tw:6-300)-22p(ac:5 rel:13 arr:66.9 tw:13-360)-33d(ac:5 rel:48 arr:120.0 tw:60-120)-21d(ac:5 rel:6 arr:125.5 tw:240-300)-23d(ac:5 rel:13 arr:346.6 tw:300-360)-82p(ac:5 rel:394 arr:400.0 tw:394-480)-78p(ac:5 rel:382 arr:400.0 tw:382-480)-83d(ac:5 rel:394 arr:433.0 tw:420-480)-79d(ac:5 rel:382 arr:462.1 tw:420-480)-100p(ac:5 rel:455 arr:487.0 tw:455-540)-101d(ac:5 rel:455 arr:513.1 tw:480-540)-17(ar:0)-
 Route:9 cost:187.39 LastDone:18 len:14 nodes:18(dep:133)-46p(ac:5 rel:130 arr:202.3 tw:130-540)-30p(ac:5 rel:47 arr:202.3 tw:47-480)-34p(ac:5 rel:54 arr:202.3 tw:54-480)-38p(ac:5 rel:92 arr:202.3 tw:92-240)-40p(ac:5 rel:98 arr:202.3 tw:98-420)-44p(ac:5 rel:122 arr:202.3 tw:122-360)-36p(ac:5 rel:79 arr:202.3 tw:79-300)-39d(ac:5 rel:92 arr:240.0 tw:180-240)-37d(ac:5 rel:79 arr:263.4 tw:240-300)-45d(ac:5 rel:122 arr:278.3 tw:300-360)-41d(ac:5 rel:98 arr:313.1 tw:360-420)-35d(ac:5 rel:54 arr:387.7 tw:420-480)-31d(ac:5 rel:47 arr:443.0 tw:420-480)-47d(ac:5 rel:130 arr:463.8 tw:480-540)-19(ar:0)-
 Unassigneds(8):97(rel:418 ut:480 real:1) 103(rel:456 ut:540 real:1) 105(rel:463 ut:540 real:1) 107(rel:474 ut:540 real:1) 
-Progressive Cost:40401541.43 Dist:1541.43 Un:4 Routes:14 Time:17.35 Events:99 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:40401541.43 Dist:1541.43 Un:4 Routes:14 Time:17.45 Events:99 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 85
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_RC_5_hom_1 Customers:44
 BBNode count: 61
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1541.43 Un:4 Routes:14 Time:17.35 Events:99 Idle:0.649 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 17 seconds and 349 milliseconds.(Sat Dec 24 18:34:56 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1541.43 Un:4 Routes:14 Time:17.45 Events:99 Idle:0.649 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 17 seconds and 453 milliseconds.(Thu Dec 29 16:30:03 2022

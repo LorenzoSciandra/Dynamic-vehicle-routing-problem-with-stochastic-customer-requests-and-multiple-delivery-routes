@@ -14,10 +14,10 @@ Route:7 cost:235.76 LastDone:14 len:16 nodes:14(dep:119)-70p(ac:5 rel:125 arr:12
 Route:8 cost:168.00 LastDone:16 len:14 nodes:16(dep:158)-100p(ac:5 rel:237 arr:237.0 tw:237-522)-50p(ac:5 rel:75 arr:237.0 tw:75-304)-82p(ac:5 rel:158 arr:237.0 tw:158-346)-88p(ac:5 rel:181 arr:237.0 tw:181-334)-90p(ac:5 rel:182 arr:237.0 tw:182-250)-92p(ac:5 rel:217 arr:237.0 tw:217-387)-94p(ac:5 rel:224 arr:237.0 tw:224-432)-91d(ac:5 rel:182 arr:249.7 tw:190-250)-89d(ac:5 rel:181 arr:279.0 tw:274-334)-83d(ac:5 rel:158 arr:288.2 tw:286-346)-51d(ac:5 rel:75 arr:291.7 tw:244-304)-95d(ac:5 rel:224 arr:295.6 tw:372-432)-93d(ac:5 rel:217 arr:381.5 tw:327-387)-101d(ac:5 rel:237 arr:434.8 tw:462-522)-17(ar:0)-
 Route:9 cost:211.06 LastDone:18 len:8 nodes:18(dep:147)-80p(ac:5 rel:156 arr:232.4 tw:156-280)-64p(ac:5 rel:117 arr:232.4 tw:117-389)-42p(ac:5 rel:60 arr:232.4 tw:60-353)-81d(ac:5 rel:156 arr:280.0 tw:220-280)-43d(ac:5 rel:60 arr:317.1 tw:293-353)-65d(ac:5 rel:117 arr:317.1 tw:329-389)-138p(ac:5 rel:412 arr:424.0 tw:412-482)-139d(ac:5 rel:412 arr:481.9 tw:422-482)-19(ar:0)-
 Unassigneds(14):157(rel:466 ut:539 real:1) 147(rel:450 ut:537 real:1) 149(rel:452 ut:512 real:1) 141(rel:433 ut:522 real:1) 153(rel:460 ut:531 real:1) 137(rel:407 ut:502 real:1) 143(rel:434 ut:494 real:1) 
-Progressive Cost:70701819.06 Dist:1819.06 Un:7 Routes:18 Time:57.98 Events:135 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:70701819.06 Dist:1819.06 Un:7 Routes:18 Time:57.92 Events:135 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 115
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_C_3_hom_1 Customers:69
 BBNode count: 180
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1819.06 Un:7 Routes:18 Time:57.98 Events:135 Idle:0.413 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 57 seconds and 996 milliseconds.(Sat Dec 24 22:52:31 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1819.06 Un:7 Routes:18 Time:57.92 Events:135 Idle:0.413 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 57 seconds and 920 milliseconds.(Thu Dec 29 17:34:29 2022

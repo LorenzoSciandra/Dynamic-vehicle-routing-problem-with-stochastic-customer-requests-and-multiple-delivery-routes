@@ -14,10 +14,10 @@ Route:7 cost:170.74 LastDone:14 len:8 nodes:14(dep:357)-82p(ac:5 rel:341 arr:360
 Route:8 cost:156.38 LastDone:16 len:14 nodes:16(dep:293)-62p(ac:5 rel:262 arr:293.0 tw:262-480)-32p(ac:5 rel:139 arr:293.0 tw:139-480)-44p(ac:5 rel:199 arr:293.0 tw:199-360)-50p(ac:5 rel:223 arr:293.0 tw:223-360)-58p(ac:5 rel:256 arr:293.0 tw:256-360)-42p(ac:5 rel:197 arr:293.0 tw:197-300)-43d(ac:5 rel:197 arr:300.0 tw:240-300)-51d(ac:5 rel:223 arr:309.1 tw:300-360)-59d(ac:5 rel:256 arr:338.0 tw:300-360)-45d(ac:5 rel:199 arr:338.0 tw:300-360)-33d(ac:5 rel:139 arr:346.4 tw:420-480)-63d(ac:5 rel:262 arr:446.5 tw:420-480)-106p(ac:5 rel:445 arr:472.3 tw:445-540)-107d(ac:5 rel:445 arr:499.1 tw:480-540)-17(ar:0)-
 Route:9 cost:185.11 LastDone:18 len:10 nodes:18(dep:319)-74p(ac:5 rel:317 arr:318.7 tw:317-420)-60p(ac:5 rel:259 arr:318.7 tw:259-420)-64p(ac:5 rel:282 arr:318.7 tw:282-420)-66p(ac:5 rel:290 arr:318.7 tw:290-360)-67d(ac:5 rel:290 arr:360.0 tw:300-360)-65d(ac:5 rel:282 arr:368.8 tw:360-420)-61d(ac:5 rel:259 arr:387.1 tw:360-420)-75d(ac:5 rel:317 arr:417.9 tw:360-420)-96p(ac:5 rel:394 arr:472.3 tw:394-540)-97d(ac:5 rel:394 arr:506.0 tw:480-540)-19(ar:0)-
 Unassigneds(8):113(rel:477 ut:540 real:1) 109(rel:464 ut:540 real:1) 111(rel:474 ut:540 real:1) 103(rel:422 ut:540 real:1) 
-Progressive Cost:40401376.17 Dist:1376.17 Un:4 Routes:13 Time:17.07 Events:106 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:40401376.17 Dist:1376.17 Un:4 Routes:13 Time:17.20 Events:106 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 91
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_R_5_hom_1 Customers:47
 BBNode count: 74
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1376.17 Un:4 Routes:13 Time:17.07 Events:106 Idle:0.661 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 17 seconds and 84 milliseconds.(Sat Dec 24 20:57:46 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1376.17 Un:4 Routes:13 Time:17.20 Events:106 Idle:0.661 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 17 seconds and 199 milliseconds.(Thu Dec 29 17:05:00 2022

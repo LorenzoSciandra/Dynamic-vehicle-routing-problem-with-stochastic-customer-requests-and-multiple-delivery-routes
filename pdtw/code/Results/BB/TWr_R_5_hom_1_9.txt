@@ -14,10 +14,10 @@ Route:7 cost:116.17 LastDone:14 len:10 nodes:14(dep:374)-90p(ac:5 rel:382 arr:39
 Route:8 cost:227.87 LastDone:16 len:22 nodes:16(dep:185)-54p(ac:5 rel:208 arr:225.5 tw:208-330)-28p(ac:5 rel:76 arr:225.5 tw:76-322)-40p(ac:5 rel:136 arr:225.5 tw:136-355)-42p(ac:5 rel:139 arr:225.5 tw:139-279)-20p(ac:5 rel:21 arr:225.5 tw:21-262)-43d(ac:5 rel:139 arr:240.9 tw:219-279)-21d(ac:5 rel:21 arr:262.0 tw:202-262)-41d(ac:5 rel:136 arr:262.0 tw:295-355)-55d(ac:5 rel:208 arr:304.1 tw:270-330)-29d(ac:5 rel:76 arr:307.1 tw:262-322)-88p(ac:5 rel:374 arr:382.1 tw:374-464)-22p(ac:5 rel:22 arr:382.1 tw:22-520)-50p(ac:5 rel:189 arr:382.1 tw:189-459)-68p(ac:5 rel:278 arr:382.1 tw:278-439)-86p(ac:5 rel:373 arr:382.1 tw:373-485)-84p(ac:5 rel:369 arr:382.1 tw:369-478)-51d(ac:5 rel:189 arr:401.5 tw:399-459)-69d(ac:5 rel:278 arr:425.0 tw:379-439)-89d(ac:5 rel:374 arr:434.6 tw:404-464)-87d(ac:5 rel:373 arr:445.7 tw:425-485)-85d(ac:5 rel:369 arr:470.5 tw:418-478)-23d(ac:5 rel:22 arr:504.0 tw:460-520)-17(ar:0)-
 Route:9 cost:45.00 LastDone:18 len:6 nodes:18(dep:417)-110p(ac:5 rel:472 arr:495.0 tw:472-538)-100p(ac:5 rel:446 arr:495.0 tw:446-517)-106p(ac:5 rel:463 arr:495.0 tw:463-534)-101d(ac:5 rel:446 arr:509.5 tw:457-517)-111d(ac:5 rel:472 arr:517.5 tw:478-538)-107d(ac:5 rel:463 arr:524.7 tw:474-534)-19(ar:0)-
 Unassigneds(4):105(rel:458 ut:523 real:1) 109(rel:472 ut:533 real:1) 
-Progressive Cost:20201134.89 Dist:1134.89 Un:2 Routes:13 Time:24.47 Events:97 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:20201134.89 Dist:1134.89 Un:2 Routes:13 Time:24.41 Events:97 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 83
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_R_5_hom_1 Customers:46
 BBNode count: 183
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1134.89 Un:2 Routes:13 Time:24.47 Events:97 Idle:0.717 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 24 seconds and 468 milliseconds.(Sun Dec 25 03:43:45 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1134.89 Un:2 Routes:13 Time:24.41 Events:97 Idle:0.717 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 24 seconds and 414 milliseconds.(Thu Dec 29 18:38:10 2022

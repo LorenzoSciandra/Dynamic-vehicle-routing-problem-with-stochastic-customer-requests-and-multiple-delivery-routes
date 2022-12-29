@@ -14,10 +14,10 @@ Route:7 cost:157.61 LastDone:14 len:6 nodes:14(dep:82)-36p(ac:5 rel:63 arr:82.0 
 Route:8 cost:240.00 LastDone:16 len:12 nodes:16(dep:43)-28p(ac:5 rel:38 arr:43.0 tw:38-98)-29d(ac:5 rel:38 arr:65.4 tw:38-98)-44p(ac:5 rel:127 arr:142.0 tw:127-187)-42p(ac:5 rel:125 arr:142.0 tw:125-185)-45d(ac:5 rel:127 arr:164.8 tw:127-187)-43d(ac:5 rel:125 arr:172.4 tw:125-185)-74p(ac:5 rel:193 arr:231.0 tw:193-253)-75d(ac:5 rel:193 arr:250.7 tw:193-253)-92p(ac:5 rel:310 arr:342.0 tw:310-370)-93d(ac:5 rel:310 arr:363.0 tw:310-370)-108p(ac:5 rel:423 arr:451.0 tw:423-483)-109d(ac:5 rel:423 arr:482.3 tw:423-483)-17(ar:0)-
 Route:9 cost:274.03 LastDone:18 len:12 nodes:18(dep:116)-40p(ac:5 rel:120 arr:122.9 tw:120-180)-38p(ac:5 rel:116 arr:122.9 tw:116-176)-39d(ac:5 rel:116 arr:139.9 tw:116-176)-41d(ac:5 rel:120 arr:179.8 tw:120-180)-82p(ac:5 rel:226 arr:231.0 tw:226-286)-76p(ac:5 rel:199 arr:231.0 tw:199-259)-77d(ac:5 rel:199 arr:258.8 tw:199-259)-83d(ac:5 rel:226 arr:269.1 tw:226-286)-106p(ac:5 rel:409 arr:417.0 tw:409-469)-104p(ac:5 rel:370 arr:417.0 tw:370-430)-105d(ac:5 rel:370 arr:426.0 tw:370-430)-107d(ac:5 rel:409 arr:468.9 tw:409-469)-19(ar:0)-
 Unassigneds(6):121(rel:471 ut:531 real:1) 79(rel:199 ut:259 real:1) 115(rel:450 ut:510 real:1) 
-Progressive Cost:30302209.25 Dist:2209.25 Un:3 Routes:32 Time:4.62 Events:159 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:30302209.25 Dist:2209.25 Un:3 Routes:32 Time:4.65 Events:159 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 138
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWdf_RC_6_hom_1_d1 Customers:51
 BBNode count: 48
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:2209.25 Un:3 Routes:32 Time:4.62 Events:159 Idle:0.592 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 4 seconds and 621 milliseconds.(Sat Dec 24 14:51:46 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:2209.25 Un:3 Routes:32 Time:4.65 Events:159 Idle:0.592 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 4 seconds and 650 milliseconds.(Thu Dec 29 15:33:22 2022

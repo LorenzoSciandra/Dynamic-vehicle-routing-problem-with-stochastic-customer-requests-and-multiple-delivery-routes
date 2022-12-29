@@ -14,10 +14,10 @@ Route:7 cost:102.60 LastDone:14 len:6 nodes:14(dep:407)-102p(ac:5 rel:407 arr:41
 Route:8 cost:250.08 LastDone:16 len:20 nodes:16(dep:169)-52p(ac:5 rel:167 arr:169.1 tw:167-391)-24p(ac:5 rel:20 arr:169.1 tw:20-441)-38p(ac:5 rel:87 arr:169.1 tw:87-259)-42p(ac:5 rel:106 arr:169.1 tw:106-203)-50p(ac:5 rel:167 arr:169.1 tw:167-303)-34p(ac:5 rel:68 arr:169.1 tw:68-343)-43d(ac:5 rel:106 arr:203.0 tw:143-203)-39d(ac:5 rel:87 arr:209.9 tw:199-259)-51d(ac:5 rel:167 arr:223.2 tw:243-303)-35d(ac:5 rel:68 arr:274.6 tw:283-343)-53d(ac:5 rel:167 arr:305.0 tw:331-391)-25d(ac:5 rel:20 arr:341.5 tw:381-441)-100p(ac:5 rel:404 arr:423.0 tw:404-486)-78p(ac:5 rel:322 arr:423.0 tw:322-466)-90p(ac:5 rel:341 arr:423.0 tw:341-519)-98p(ac:5 rel:396 arr:423.0 tw:396-512)-79d(ac:5 rel:322 arr:434.5 tw:406-466)-101d(ac:5 rel:404 arr:436.3 tw:426-486)-91d(ac:5 rel:341 arr:472.5 tw:459-519)-99d(ac:5 rel:396 arr:487.6 tw:452-512)-17(ar:0)-
 Route:9 cost:153.89 LastDone:18 len:10 nodes:18(dep:315)-74p(ac:5 rel:309 arr:317.1 tw:309-381)-54p(ac:5 rel:170 arr:317.1 tw:170-382)-55d(ac:5 rel:170 arr:339.1 tw:322-382)-75d(ac:5 rel:309 arr:362.5 tw:321-381)-84p(ac:5 rel:326 arr:412.4 tw:326-444)-82p(ac:5 rel:325 arr:412.4 tw:325-442)-76p(ac:5 rel:315 arr:412.4 tw:315-523)-83d(ac:5 rel:325 arr:432.1 tw:382-442)-85d(ac:5 rel:326 arr:444.0 tw:384-444)-77d(ac:5 rel:315 arr:450.9 tw:463-523)-19(ar:0)-
 Unassigneds(2):109(rel:458 ut:539 real:1) 
-Progressive Cost:10101293.44 Dist:1293.44 Un:1 Routes:14 Time:20.37 Events:89 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:10101293.44 Dist:1293.44 Un:1 Routes:14 Time:20.62 Events:89 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 77
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_C_2_hom_1 Customers:47
 BBNode count: 89
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1293.44 Un:1 Routes:14 Time:20.37 Events:89 Idle:0.644 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 20 seconds and 374 milliseconds.(Sat Dec 24 22:32:34 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1293.44 Un:1 Routes:14 Time:20.62 Events:89 Idle:0.644 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 20 seconds and 619 milliseconds.(Thu Dec 29 17:29:28 2022

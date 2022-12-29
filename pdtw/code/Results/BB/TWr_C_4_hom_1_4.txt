@@ -14,10 +14,10 @@ Route:7 cost:120.00 LastDone:14 len:6 nodes:14(dep:361)-116p(ac:5 rel:403 arr:40
 Route:8 cost:221.97 LastDone:16 len:16 nodes:16(dep:266)-76p(ac:5 rel:235 arr:265.8 tw:235-378)-46p(ac:5 rel:136 arr:265.8 tw:136-385)-68p(ac:5 rel:203 arr:265.8 tw:203-389)-74p(ac:5 rel:228 arr:265.8 tw:228-341)-75d(ac:5 rel:228 arr:313.6 tw:281-341)-47d(ac:5 rel:136 arr:339.4 tw:325-385)-77d(ac:5 rel:235 arr:353.3 tw:318-378)-69d(ac:5 rel:203 arr:360.0 tw:329-389)-84p(ac:5 rel:279 arr:375.5 tw:279-414)-58p(ac:5 rel:181 arr:375.5 tw:181-502)-80p(ac:5 rel:256 arr:375.5 tw:256-511)-82p(ac:5 rel:264 arr:375.5 tw:264-449)-85d(ac:5 rel:279 arr:412.1 tw:354-414)-83d(ac:5 rel:264 arr:432.7 tw:389-449)-81d(ac:5 rel:256 arr:452.0 tw:451-511)-59d(ac:5 rel:181 arr:468.5 tw:442-502)-17(ar:0)-
 Route:9 cost:173.05 LastDone:18 len:10 nodes:18(dep:256)-70p(ac:5 rel:212 arr:260.5 tw:212-320)-30p(ac:5 rel:47 arr:260.5 tw:47-447)-48p(ac:5 rel:139 arr:260.5 tw:139-300)-52p(ac:5 rel:165 arr:260.5 tw:165-535)-60p(ac:5 rel:182 arr:260.5 tw:182-538)-49d(ac:5 rel:139 arr:270.6 tw:240-300)-71d(ac:5 rel:212 arr:320.0 tw:260-320)-31d(ac:5 rel:47 arr:345.0 tw:387-447)-53d(ac:5 rel:165 arr:418.4 tw:475-535)-61d(ac:5 rel:182 arr:482.0 tw:478-538)-19(ar:0)-
 Unassigneds(4):133(rel:461 ut:536 real:1) 131(rel:440 ut:509 real:1) 
-Progressive Cost:20201808.24 Dist:1808.24 Un:2 Routes:15 Time:17.00 Events:88 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:20201808.24 Dist:1808.24 Un:2 Routes:15 Time:17.14 Events:88 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 74
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_C_4_hom_1 Customers:57
 BBNode count: 51
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1808.24 Un:2 Routes:15 Time:17.00 Events:88 Idle:0.612 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 17 seconds and 1 milliseconds.(Sat Dec 24 22:58:25 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1808.24 Un:2 Routes:15 Time:17.14 Events:88 Idle:0.612 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 17 seconds and 144 milliseconds.(Thu Dec 29 17:35:37 2022

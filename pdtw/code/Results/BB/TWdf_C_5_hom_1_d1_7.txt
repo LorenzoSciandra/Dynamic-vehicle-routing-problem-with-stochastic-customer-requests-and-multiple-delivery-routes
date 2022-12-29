@@ -14,10 +14,10 @@ Route:7 cost:318.51 LastDone:14 len:16 nodes:14(dep:49)-26p(ac:5 rel:33 arr:49.0
 Route:8 cost:430.29 LastDone:16 len:16 nodes:16(dep:49)-30p(ac:5 rel:43 arr:49.0 tw:43-103)-31d(ac:5 rel:43 arr:101.1 tw:43-103)-54p(ac:5 rel:148 arr:155.2 tw:148-208)-55d(ac:5 rel:148 arr:207.5 tw:148-208)-70p(ac:5 rel:258 arr:264.0 tw:258-318)-64p(ac:5 rel:234 arr:264.0 tw:234-294)-65d(ac:5 rel:234 arr:289.9 tw:234-294)-71d(ac:5 rel:258 arr:317.8 tw:258-318)-90p(ac:5 rel:331 arr:331.0 tw:331-391)-84p(ac:5 rel:318 arr:331.0 tw:318-378)-91d(ac:5 rel:331 arr:339.6 tw:331-391)-85d(ac:5 rel:318 arr:358.4 tw:318-378)-102p(ac:5 rel:403 arr:410.5 tw:403-463)-98p(ac:5 rel:395 arr:410.5 tw:395-455)-99d(ac:5 rel:395 arr:425.3 tw:395-455)-103d(ac:5 rel:403 arr:462.6 tw:403-463)-17(ar:0)-
 Route:9 cost:439.89 LastDone:18 len:14 nodes:18(dep:28)-24p(ac:5 rel:16 arr:28.0 tw:16-76)-25d(ac:5 rel:16 arr:57.0 tw:16-76)-44p(ac:5 rel:90 arr:94.0 tw:90-150)-45d(ac:5 rel:90 arr:149.2 tw:90-150)-60p(ac:5 rel:225 arr:233.0 tw:225-285)-58p(ac:5 rel:216 arr:233.0 tw:216-276)-61d(ac:5 rel:225 arr:242.8 tw:225-285)-59d(ac:5 rel:216 arr:275.9 tw:216-276)-82p(ac:5 rel:303 arr:314.5 tw:303-363)-78p(ac:5 rel:299 arr:314.5 tw:299-359)-79d(ac:5 rel:299 arr:336.8 tw:299-359)-83d(ac:5 rel:303 arr:362.5 tw:303-363)-108p(ac:5 rel:434 arr:442.0 tw:434-494)-109d(ac:5 rel:434 arr:490.5 tw:434-494)-19(ar:0)-
 Unassigneds(2):117(rel:477 ut:537 real:1) 
-Progressive Cost:10102524.46 Dist:2524.46 Un:1 Routes:32 Time:4.33 Events:165 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:10102524.46 Dist:2524.46 Un:1 Routes:32 Time:4.34 Events:165 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 142
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWdf_C_5_hom_1_d1 Customers:49
 BBNode count: 55
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:2524.46 Un:1 Routes:32 Time:4.33 Events:165 Idle:0.534 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 4 seconds and 332 milliseconds.(Sat Dec 24 14:30:16 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:2524.46 Un:1 Routes:32 Time:4.34 Events:165 Idle:0.534 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 4 seconds and 346 milliseconds.(Thu Dec 29 15:26:42 2022

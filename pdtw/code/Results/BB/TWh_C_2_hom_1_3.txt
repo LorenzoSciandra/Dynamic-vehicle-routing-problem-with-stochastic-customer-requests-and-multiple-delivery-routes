@@ -14,10 +14,10 @@ Route:7 cost:103.51 LastDone:14 len:12 nodes:14(dep:38)-100p(ac:5 rel:353 arr:36
 Route:8 cost:229.01 LastDone:16 len:10 nodes:16(dep:246)-64p(ac:5 rel:234 arr:256.0 tw:234-300)-65d(ac:5 rel:234 arr:300.0 tw:240-300)-88p(ac:5 rel:302 arr:344.4 tw:302-480)-78p(ac:5 rel:280 arr:344.4 tw:280-420)-84p(ac:5 rel:295 arr:344.4 tw:295-540)-70p(ac:5 rel:247 arr:344.4 tw:247-360)-71d(ac:5 rel:247 arr:360.0 tw:300-360)-79d(ac:5 rel:280 arr:399.4 tw:360-420)-89d(ac:5 rel:302 arr:422.3 tw:420-480)-85d(ac:5 rel:295 arr:438.3 tw:480-540)-17(ar:0)-
 Route:9 cost:206.11 LastDone:18 len:14 nodes:18(dep:225)-60p(ac:5 rel:206 arr:224.9 tw:206-420)-26p(ac:5 rel:21 arr:224.9 tw:21-240)-46p(ac:5 rel:93 arr:224.9 tw:93-360)-50p(ac:5 rel:166 arr:224.9 tw:166-360)-56p(ac:5 rel:196 arr:224.9 tw:196-480)-27d(ac:5 rel:21 arr:240.0 tw:180-240)-47d(ac:5 rel:93 arr:251.9 tw:300-360)-51d(ac:5 rel:166 arr:318.3 tw:300-360)-61d(ac:5 rel:206 arr:333.9 tw:360-420)-57d(ac:5 rel:196 arr:425.5 tw:420-480)-112p(ac:5 rel:432 arr:468.0 tw:432-540)-98p(ac:5 rel:351 arr:468.0 tw:351-480)-99d(ac:5 rel:351 arr:479.5 tw:420-480)-113d(ac:5 rel:432 arr:504.6 tw:480-540)-19(ar:0)-
 Unassigneds(6):111(rel:416 ut:480 real:1) 117(rel:471 ut:540 real:1) 115(rel:462 ut:540 real:1) 
-Progressive Cost:30301489.47 Dist:1489.47 Un:3 Routes:13 Time:18.95 Events:93 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:30301489.47 Dist:1489.47 Un:3 Routes:13 Time:19.15 Events:93 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 76
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_C_2_hom_1 Customers:49
 BBNode count: 83
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1489.47 Un:3 Routes:13 Time:18.95 Events:93 Idle:0.520 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 18 seconds and 951 milliseconds.(Sat Dec 24 15:37:46 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1489.47 Un:3 Routes:13 Time:19.15 Events:93 Idle:0.520 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 19 seconds and 149 milliseconds.(Thu Dec 29 15:46:50 2022

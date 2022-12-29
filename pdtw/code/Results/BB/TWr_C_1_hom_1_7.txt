@@ -14,10 +14,10 @@ Route:7 cost:102.40 LastDone:14 len:10 nodes:14(dep:142)-48p(ac:5 rel:86 arr:168
 Route:8 cost:147.20 LastDone:16 len:12 nodes:16(dep:169)-58p(ac:5 rel:169 arr:174.0 tw:169-402)-22p(ac:5 rel:11 arr:174.0 tw:11-307)-40p(ac:5 rel:68 arr:174.0 tw:68-499)-44p(ac:5 rel:73 arr:174.0 tw:73-202)-36p(ac:5 rel:48 arr:174.0 tw:48-492)-45d(ac:5 rel:73 arr:202.0 tw:142-202)-23d(ac:5 rel:11 arr:223.6 tw:247-307)-59d(ac:5 rel:169 arr:252.6 tw:342-402)-41d(ac:5 rel:68 arr:352.4 tw:439-499)-37d(ac:5 rel:48 arr:456.6 tw:432-492)-110p(ac:5 rel:477 arr:484.0 tw:477-540)-111d(ac:5 rel:477 arr:512.0 tw:480-540)-17(ar:0)-
 Route:9 cost:184.00 LastDone:18 len:16 nodes:18(dep:148)-54p(ac:5 rel:141 arr:148.0 tw:141-443)-28p(ac:5 rel:14 arr:148.0 tw:14-522)-38p(ac:5 rel:53 arr:148.0 tw:53-179)-42p(ac:5 rel:73 arr:148.0 tw:73-534)-46p(ac:5 rel:75 arr:148.0 tw:75-466)-50p(ac:5 rel:91 arr:148.0 tw:91-204)-52p(ac:5 rel:132 arr:148.0 tw:132-236)-20p(ac:5 rel:11 arr:148.0 tw:11-244)-39d(ac:5 rel:53 arr:164.0 tw:119-179)-51d(ac:5 rel:91 arr:204.0 tw:144-204)-53d(ac:5 rel:132 arr:210.4 tw:176-236)-21d(ac:5 rel:11 arr:220.0 tw:184-244)-55d(ac:5 rel:141 arr:237.6 tw:383-443)-47d(ac:5 rel:75 arr:399.0 tw:406-466)-29d(ac:5 rel:14 arr:504.0 tw:462-522)-43d(ac:5 rel:73 arr:519.2 tw:474-534)-19(ar:0)-
 Unassigneds(2):113(rel:478 ut:540 real:1) 
-Progressive Cost:10101379.20 Dist:1379.20 Un:1 Routes:14 Time:17.75 Events:99 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:10101379.20 Dist:1379.20 Un:1 Routes:14 Time:18.20 Events:99 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 85
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_C_1_hom_1 Customers:47
 BBNode count: 65
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1379.20 Un:1 Routes:14 Time:17.75 Events:99 Idle:0.623 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 17 seconds and 756 milliseconds.(Sat Dec 24 22:21:34 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1379.20 Un:1 Routes:14 Time:18.20 Events:99 Idle:0.623 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 18 seconds and 195 milliseconds.(Thu Dec 29 17:27:06 2022

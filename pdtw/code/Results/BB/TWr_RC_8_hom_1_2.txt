@@ -14,10 +14,10 @@ Route:7 cost:79.17 LastDone:14 len:2 nodes:14(dep:412)-122p(ac:5 rel:459 arr:460
 Route:8 cost:127.92 LastDone:16 len:12 nodes:16(dep:90)-26p(ac:5 rel:9 arr:130.5 tw:9-166)-27d(ac:5 rel:9 arr:133.2 tw:106-166)-110p(ac:5 rel:378 arr:408.0 tw:378-506)-86p(ac:5 rel:300 arr:408.0 tw:300-503)-104p(ac:5 rel:365 arr:408.0 tw:365-456)-87d(ac:5 rel:300 arr:443.4 tw:443-503)-105d(ac:5 rel:365 arr:451.3 tw:396-456)-111d(ac:5 rel:378 arr:472.4 tw:446-506)-124p(ac:5 rel:459 arr:483.6 tw:459-527)-108p(ac:5 rel:372 arr:483.6 tw:372-513)-125d(ac:5 rel:459 arr:501.9 tw:467-527)-109d(ac:5 rel:372 arr:510.5 tw:453-513)-17(ar:0)-
 Route:9 cost:215.83 LastDone:18 len:14 nodes:18(dep:213)-70p(ac:5 rel:213 arr:217.8 tw:213-282)-38p(ac:5 rel:58 arr:217.8 tw:58-253)-44p(ac:5 rel:120 arr:217.8 tw:120-481)-54p(ac:5 rel:147 arr:217.8 tw:147-347)-60p(ac:5 rel:165 arr:217.8 tw:165-354)-46p(ac:5 rel:124 arr:217.8 tw:124-386)-71d(ac:5 rel:213 arr:228.6 tw:222-282)-39d(ac:5 rel:58 arr:253.0 tw:193-253)-55d(ac:5 rel:147 arr:298.2 tw:287-347)-47d(ac:5 rel:124 arr:333.2 tw:326-386)-61d(ac:5 rel:165 arr:343.8 tw:294-354)-45d(ac:5 rel:120 arr:459.4 tw:421-481)-130p(ac:5 rel:471 arr:508.7 tw:471-539)-131d(ac:5 rel:471 arr:524.3 tw:479-539)-19(ar:0)-
 Unassigneds(4):127(rel:461 ut:523 real:1) 129(rel:468 ut:530 real:1) 
-Progressive Cost:20201513.75 Dist:1513.75 Un:2 Routes:17 Time:31.78 Events:112 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:20201513.75 Dist:1513.75 Un:2 Routes:17 Time:31.85 Events:112 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 97
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_RC_8_hom_1 Customers:56
 BBNode count: 164
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1513.75 Un:2 Routes:17 Time:31.78 Events:112 Idle:0.619 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 31 seconds and 779 milliseconds.(Sun Dec 25 02:00:11 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1513.75 Un:2 Routes:17 Time:31.85 Events:112 Idle:0.619 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 31 seconds and 847 milliseconds.(Thu Dec 29 18:15:31 2022

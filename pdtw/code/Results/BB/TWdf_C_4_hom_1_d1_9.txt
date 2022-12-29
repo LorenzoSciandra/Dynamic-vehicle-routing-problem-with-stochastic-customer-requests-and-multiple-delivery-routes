@@ -14,10 +14,10 @@ Route:7 cost:287.38 LastDone:14 len:6 nodes:14(dep:45)-34p(ac:5 rel:51 arr:58.0 
 Route:8 cost:263.69 LastDone:16 len:8 nodes:16(dep:15)-20p(ac:5 rel:2 arr:18.0 tw:2-62)-21d(ac:5 rel:2 arr:61.0 tw:2-62)-62p(ac:5 rel:137 arr:145.0 tw:137-197)-58p(ac:5 rel:125 arr:145.0 tw:125-185)-59d(ac:5 rel:125 arr:157.1 tw:125-185)-63d(ac:5 rel:137 arr:196.5 tw:137-197)-112p(ac:5 rel:434 arr:444.0 tw:434-494)-113d(ac:5 rel:434 arr:481.3 tw:434-494)-17(ar:0)-
 Route:9 cost:450.64 LastDone:18 len:20 nodes:18(dep:18)-24p(ac:5 rel:18 arr:18.0 tw:18-78)-26p(ac:5 rel:18 arr:18.0 tw:18-78)-25d(ac:5 rel:18 arr:42.7 tw:18-78)-27d(ac:5 rel:18 arr:66.4 tw:18-78)-52p(ac:5 rel:95 arr:116.7 tw:95-155)-42p(ac:5 rel:80 arr:116.7 tw:80-140)-53d(ac:5 rel:95 arr:122.4 tw:95-155)-43d(ac:5 rel:80 arr:122.4 tw:80-140)-60p(ac:5 rel:129 arr:137.0 tw:129-189)-61d(ac:5 rel:129 arr:174.9 tw:129-189)-74p(ac:5 rel:215 arr:221.4 tw:215-275)-75d(ac:5 rel:215 arr:274.2 tw:215-275)-98p(ac:5 rel:334 arr:334.0 tw:334-394)-96p(ac:5 rel:331 arr:334.0 tw:331-391)-92p(ac:5 rel:327 arr:334.0 tw:327-387)-93d(ac:5 rel:327 arr:343.5 tw:327-387)-97d(ac:5 rel:331 arr:358.5 tw:331-391)-99d(ac:5 rel:334 arr:381.1 tw:334-394)-120p(ac:5 rel:460 arr:460.0 tw:460-520)-121d(ac:5 rel:460 arr:499.9 tw:460-520)-19(ar:0)-
 Unassigneds(4):119(rel:453 ut:513 real:1) 117(rel:449 ut:509 real:1) 
-Progressive Cost:20203099.91 Dist:3099.91 Un:2 Routes:39 Time:4.82 Events:160 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:20203099.91 Dist:3099.91 Un:2 Routes:39 Time:4.83 Events:160 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 129
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWdf_C_4_hom_1_d1 Customers:52
 BBNode count: 88
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:3099.91 Un:2 Routes:39 Time:4.82 Events:160 Idle:0.426 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 4 seconds and 824 milliseconds.(Sat Dec 24 14:28:30 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:3099.91 Un:2 Routes:39 Time:4.83 Events:160 Idle:0.426 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 4 seconds and 827 milliseconds.(Thu Dec 29 15:26:08 2022

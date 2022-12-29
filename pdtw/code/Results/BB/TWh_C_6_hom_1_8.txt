@@ -14,10 +14,10 @@ Route:7 cost:37.50 LastDone:14 len:2 nodes:14(dep:480)-106p(ac:5 rel:459 arr:502
 Route:8 cost:99.38 LastDone:16 len:4 nodes:16(dep:190)-100p(ac:5 rel:366 arr:440.0 tw:366-540)-92p(ac:5 rel:306 arr:440.0 tw:306-480)-93d(ac:5 rel:306 arr:448.0 tw:420-480)-101d(ac:5 rel:366 arr:489.7 tw:480-540)-17(ar:0)-
 Route:9 cost:213.75 LastDone:18 len:22 nodes:18(dep:303)-84p(ac:5 rel:267 arr:302.7 tw:267-360)-20p(ac:5 rel:1 arr:302.7 tw:1-420)-30p(ac:5 rel:29 arr:302.7 tw:29-360)-36p(ac:5 rel:33 arr:302.7 tw:33-360)-60p(ac:5 rel:161 arr:302.7 tw:161-360)-70p(ac:5 rel:186 arr:302.7 tw:186-420)-74p(ac:5 rel:204 arr:302.7 tw:204-480)-78p(ac:5 rel:217 arr:302.7 tw:217-420)-28p(ac:5 rel:5 arr:302.7 tw:5-420)-85d(ac:5 rel:267 arr:313.5 tw:300-360)-61d(ac:5 rel:161 arr:332.7 tw:300-360)-31d(ac:5 rel:29 arr:335.1 tw:300-360)-37d(ac:5 rel:33 arr:359.9 tw:300-360)-71d(ac:5 rel:186 arr:366.0 tw:360-420)-79d(ac:5 rel:217 arr:385.2 tw:360-420)-29d(ac:5 rel:5 arr:404.9 tw:360-420)-21d(ac:5 rel:1 arr:418.5 tw:360-420)-75d(ac:5 rel:204 arr:431.2 tw:420-480)-90p(ac:5 rel:293 arr:445.0 tw:293-540)-88p(ac:5 rel:292 arr:445.0 tw:292-480)-89d(ac:5 rel:292 arr:479.7 tw:420-480)-91d(ac:5 rel:293 arr:495.2 tw:480-540)-19(ar:0)-
 Unassigneds(2):111(rel:479 ut:540 real:1) 
-Progressive Cost:10101141.88 Dist:1141.88 Un:1 Routes:12 Time:30.78 Events:106 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:10101141.88 Dist:1141.88 Un:1 Routes:12 Time:30.93 Events:106 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 93
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_C_6_hom_1 Customers:46
 BBNode count: 52
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1141.88 Un:1 Routes:12 Time:30.78 Events:106 Idle:0.669 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 30 seconds and 774 milliseconds.(Sat Dec 24 16:45:38 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1141.88 Un:1 Routes:12 Time:30.93 Events:106 Idle:0.669 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 30 seconds and 931 milliseconds.(Thu Dec 29 16:04:08 2022

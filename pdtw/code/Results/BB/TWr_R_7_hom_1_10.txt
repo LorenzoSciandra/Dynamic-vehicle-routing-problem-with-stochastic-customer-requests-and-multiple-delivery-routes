@@ -14,10 +14,10 @@ Route:7 cost:40.88 LastDone:14 len:2 nodes:14(dep:499)-108p(ac:5 rel:453 arr:499
 Route:8 cost:183.96 LastDone:16 len:12 nodes:16(dep:356)-70p(ac:5 rel:322 arr:355.8 tw:322-472)-54p(ac:5 rel:246 arr:355.8 tw:246-456)-62p(ac:5 rel:290 arr:355.8 tw:290-410)-66p(ac:5 rel:310 arr:355.8 tw:310-515)-68p(ac:5 rel:317 arr:355.8 tw:317-442)-34p(ac:5 rel:88 arr:355.8 tw:88-402)-35d(ac:5 rel:88 arr:383.9 tw:342-402)-63d(ac:5 rel:290 arr:387.5 tw:350-410)-55d(ac:5 rel:246 arr:403.0 tw:396-456)-71d(ac:5 rel:322 arr:417.2 tw:412-472)-69d(ac:5 rel:317 arr:438.3 tw:382-442)-67d(ac:5 rel:310 arr:488.4 tw:455-515)-17(ar:0)-
 Route:9 cost:153.63 LastDone:18 len:16 nodes:18(dep:310)-72p(ac:5 rel:324 arr:331.2 tw:324-415)-22p(ac:5 rel:3 arr:331.2 tw:3-436)-36p(ac:5 rel:107 arr:331.2 tw:107-416)-48p(ac:5 rel:192 arr:331.2 tw:192-394)-50p(ac:5 rel:224 arr:331.2 tw:224-463)-52p(ac:5 rel:244 arr:331.2 tw:244-501)-64p(ac:5 rel:299 arr:331.2 tw:299-383)-60p(ac:5 rel:258 arr:331.2 tw:258-495)-49d(ac:5 rel:192 arr:355.6 tw:334-394)-37d(ac:5 rel:107 arr:372.1 tw:356-416)-65d(ac:5 rel:299 arr:383.0 tw:323-383)-51d(ac:5 rel:224 arr:390.9 tw:403-463)-73d(ac:5 rel:324 arr:414.2 tw:355-415)-23d(ac:5 rel:3 arr:433.0 tw:376-436)-53d(ac:5 rel:244 arr:448.5 tw:441-501)-61d(ac:5 rel:258 arr:482.8 tw:435-495)-19(ar:0)-
 Unassigneds(0):
-Progressive Cost:1292.97 Dist:1292.97 Un:0 Routes:14 Time:14.68 Events:88 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:1292.97 Dist:1292.97 Un:0 Routes:14 Time:14.74 Events:88 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 76
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_R_7_hom_1 Customers:46
 BBNode count: 49
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1292.97 Un:0 Routes:14 Time:14.68 Events:88 Idle:0.711 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 14 seconds and 677 milliseconds.(Sun Dec 25 04:15:05 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1292.97 Un:0 Routes:14 Time:14.74 Events:88 Idle:0.711 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 14 seconds and 749 milliseconds.(Thu Dec 29 18:46:04 2022

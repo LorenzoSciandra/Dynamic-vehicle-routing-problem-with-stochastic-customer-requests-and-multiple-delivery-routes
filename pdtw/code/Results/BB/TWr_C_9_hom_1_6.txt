@@ -14,10 +14,10 @@ Route:7 cost:78.66 LastDone:14 len:2 nodes:14(dep:460)-102p(ac:5 rel:436 arr:459
 Route:8 cost:224.63 LastDone:16 len:14 nodes:16(dep:125)-42p(ac:5 rel:99 arr:125.3 tw:99-464)-32p(ac:5 rel:64 arr:125.3 tw:64-342)-36p(ac:5 rel:80 arr:125.3 tw:80-441)-38p(ac:5 rel:93 arr:125.3 tw:93-243)-22p(ac:5 rel:4 arr:125.3 tw:4-148)-23d(ac:5 rel:4 arr:148.0 tw:88-148)-39d(ac:5 rel:93 arr:166.3 tw:183-243)-33d(ac:5 rel:64 arr:243.0 tw:282-342)-37d(ac:5 rel:80 arr:316.2 tw:381-441)-43d(ac:5 rel:99 arr:392.0 tw:404-464)-104p(ac:5 rel:446 arr:459.5 tw:446-526)-98p(ac:5 rel:420 arr:459.5 tw:420-501)-105d(ac:5 rel:446 arr:480.4 tw:466-526)-99d(ac:5 rel:420 arr:496.5 tw:441-501)-17(ar:0)-
 Route:9 cost:112.68 LastDone:18 len:14 nodes:18(dep:399)-94p(ac:5 rel:399 arr:401.0 tw:399-480)-40p(ac:5 rel:98 arr:401.0 tw:98-486)-66p(ac:5 rel:278 arr:401.0 tw:278-504)-76p(ac:5 rel:299 arr:401.0 tw:299-503)-84p(ac:5 rel:340 arr:401.0 tw:340-435)-92p(ac:5 rel:391 arr:401.0 tw:391-528)-90p(ac:5 rel:390 arr:401.0 tw:390-477)-91d(ac:5 rel:390 arr:419.6 tw:417-477)-85d(ac:5 rel:340 arr:435.0 tw:375-435)-77d(ac:5 rel:299 arr:440.1 tw:443-503)-67d(ac:5 rel:278 arr:463.9 tw:444-504)-93d(ac:5 rel:391 arr:468.1 tw:468-528)-95d(ac:5 rel:399 arr:473.2 tw:420-480)-41d(ac:5 rel:98 arr:483.4 tw:426-486)-19(ar:0)-
 Unassigneds(0):
-Progressive Cost:1302.80 Dist:1302.80 Un:0 Routes:13 Time:16.49 Events:82 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:1302.80 Dist:1302.80 Un:0 Routes:13 Time:16.57 Events:82 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 69
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWr_C_9_hom_1 Customers:44
 BBNode count: 64
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1302.80 Un:0 Routes:13 Time:16.49 Events:82 Idle:0.659 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 16 seconds and 496 milliseconds.(Sun Dec 25 00:14:24 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1302.80 Un:0 Routes:13 Time:16.57 Events:82 Idle:0.659 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 16 seconds and 576 milliseconds.(Thu Dec 29 17:52:30 2022

@@ -14,10 +14,10 @@ Route:7 cost:101.65 LastDone:14 len:6 nodes:14(dep:435)-110p(ac:5 rel:426 arr:43
 Route:8 cost:315.53 LastDone:16 len:14 nodes:16(dep:169)-48p(ac:5 rel:136 arr:169.0 tw:136-240)-44p(ac:5 rel:97 arr:169.0 tw:97-240)-46p(ac:5 rel:103 arr:169.0 tw:103-180)-42p(ac:5 rel:88 arr:169.0 tw:88-300)-47d(ac:5 rel:103 arr:179.6 tw:120-180)-49d(ac:5 rel:136 arr:206.8 tw:180-240)-45d(ac:5 rel:97 arr:225.8 tw:180-240)-43d(ac:5 rel:88 arr:276.6 tw:240-300)-86p(ac:5 rel:318 arr:319.0 tw:318-420)-82p(ac:5 rel:296 arr:319.0 tw:296-360)-83d(ac:5 rel:296 arr:359.2 tw:300-360)-87d(ac:5 rel:318 arr:386.8 tw:360-420)-104p(ac:5 rel:401 arr:420.0 tw:401-480)-105d(ac:5 rel:401 arr:468.0 tw:420-480)-17(ar:0)-
 Route:9 cost:173.65 LastDone:18 len:10 nodes:18(dep:289)-68p(ac:5 rel:221 arr:289.4 tw:221-420)-56p(ac:5 rel:183 arr:289.4 tw:183-300)-58p(ac:5 rel:184 arr:289.4 tw:184-360)-57d(ac:5 rel:183 arr:300.0 tw:240-300)-59d(ac:5 rel:184 arr:328.6 tw:300-360)-69d(ac:5 rel:221 arr:353.3 tw:360-420)-106p(ac:5 rel:415 arr:438.0 tw:415-480)-64p(ac:5 rel:196 arr:438.0 tw:196-540)-107d(ac:5 rel:415 arr:479.6 tw:420-480)-65d(ac:5 rel:196 arr:493.4 tw:480-540)-19(ar:0)-
 Unassigneds(8):119(rel:448 ut:540 real:1) 125(rel:479 ut:540 real:1) 113(rel:428 ut:540 real:1) 123(rel:461 ut:540 real:1) 
-Progressive Cost:40401591.06 Dist:1591.06 Un:4 Routes:15 Time:20.03 Events:116 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:40401591.06 Dist:1591.06 Un:4 Routes:15 Time:20.24 Events:116 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 102
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_C_3_hom_1 Customers:53
 BBNode count: 69
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1591.06 Un:4 Routes:15 Time:20.03 Events:116 Idle:0.644 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 20 seconds and 35 milliseconds.(Sat Dec 24 15:49:30 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1591.06 Un:4 Routes:15 Time:20.24 Events:116 Idle:0.644 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 20 seconds and 227 milliseconds.(Thu Dec 29 15:49:38 2022

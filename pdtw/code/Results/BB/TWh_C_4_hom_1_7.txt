@@ -14,10 +14,10 @@ Route:7 cost:151.42 LastDone:14 len:8 nodes:14(dep:117)-50p(ac:5 rel:186 arr:189
 Route:8 cost:100.43 LastDone:16 len:6 nodes:16(dep:117)-26p(ac:5 rel:28 arr:155.0 tw:28-180)-27d(ac:5 rel:28 arr:160.7 tw:120-180)-106p(ac:5 rel:450 arr:450.0 tw:450-540)-98p(ac:5 rel:402 arr:450.0 tw:402-480)-99d(ac:5 rel:402 arr:461.8 tw:420-480)-107d(ac:5 rel:450 arr:504.6 tw:480-540)-17(ar:0)-
 Route:9 cost:348.67 LastDone:18 len:20 nodes:18(dep:155)-42p(ac:5 rel:141 arr:155.0 tw:141-240)-22p(ac:5 rel:25 arr:155.0 tw:25-240)-28p(ac:5 rel:59 arr:155.0 tw:59-300)-30p(ac:5 rel:80 arr:155.0 tw:80-300)-38p(ac:5 rel:117 arr:155.0 tw:117-180)-36p(ac:5 rel:111 arr:155.0 tw:111-240)-39d(ac:5 rel:117 arr:179.7 tw:120-180)-37d(ac:5 rel:111 arr:200.3 tw:180-240)-43d(ac:5 rel:141 arr:219.1 tw:180-240)-23d(ac:5 rel:25 arr:219.1 tw:180-240)-29d(ac:5 rel:59 arr:249.0 tw:240-300)-31d(ac:5 rel:80 arr:255.2 tw:240-300)-80p(ac:5 rel:269 arr:304.6 tw:269-480)-58p(ac:5 rel:198 arr:304.6 tw:198-360)-78p(ac:5 rel:266 arr:304.6 tw:266-480)-59d(ac:5 rel:198 arr:360.0 tw:300-360)-81d(ac:5 rel:269 arr:394.2 tw:420-480)-79d(ac:5 rel:266 arr:447.8 tw:420-480)-104p(ac:5 rel:438 arr:466.4 tw:438-540)-105d(ac:5 rel:438 arr:503.2 tw:480-540)-19(ar:0)-
 Unassigneds(4):113(rel:479 ut:540 real:1) 109(rel:459 ut:540 real:1) 
-Progressive Cost:20201434.33 Dist:1434.33 Un:2 Routes:14 Time:12.36 Events:87 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:20201434.33 Dist:1434.33 Un:2 Routes:14 Time:12.44 Events:87 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 74
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_C_4_hom_1 Customers:47
 BBNode count: 42
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1434.33 Un:2 Routes:14 Time:12.36 Events:87 Idle:0.650 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 12 seconds and 359 milliseconds.(Sat Dec 24 16:12:24 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1434.33 Un:2 Routes:14 Time:12.44 Events:87 Idle:0.650 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 12 seconds and 439 milliseconds.(Thu Dec 29 15:55:55 2022

@@ -14,10 +14,10 @@ Route:7 cost:172.68 LastDone:14 len:8 nodes:14(dep:148)-34p(ac:5 rel:77 arr:217.
 Route:8 cost:103.17 LastDone:16 len:6 nodes:16(dep:292)-82p(ac:5 rel:338 arr:365.7 tw:338-420)-78p(ac:5 rel:312 arr:365.7 tw:312-540)-80p(ac:5 rel:327 arr:365.7 tw:327-420)-81d(ac:5 rel:327 arr:385.1 tw:360-420)-83d(ac:5 rel:338 arr:420.0 tw:360-420)-79d(ac:5 rel:312 arr:420.0 tw:480-540)-17(ar:0)-
 Route:9 cost:196.46 LastDone:18 len:22 nodes:18(dep:225)-60p(ac:5 rel:224 arr:224.6 tw:224-420)-36p(ac:5 rel:80 arr:224.6 tw:80-360)-38p(ac:5 rel:93 arr:224.6 tw:93-360)-44p(ac:5 rel:148 arr:224.6 tw:148-480)-46p(ac:5 rel:156 arr:224.6 tw:156-240)-48p(ac:5 rel:164 arr:224.6 tw:164-360)-52p(ac:5 rel:177 arr:224.6 tw:177-360)-54p(ac:5 rel:198 arr:224.6 tw:198-420)-56p(ac:5 rel:201 arr:224.6 tw:201-420)-58p(ac:5 rel:213 arr:224.6 tw:213-300)-47d(ac:5 rel:156 arr:240.0 tw:180-240)-59d(ac:5 rel:213 arr:242.7 tw:240-300)-37d(ac:5 rel:80 arr:258.1 tw:300-360)-49d(ac:5 rel:164 arr:309.1 tw:300-360)-53d(ac:5 rel:177 arr:333.3 tw:300-360)-39d(ac:5 rel:93 arr:349.9 tw:300-360)-57d(ac:5 rel:201 arr:360.0 tw:360-420)-55d(ac:5 rel:198 arr:360.0 tw:360-420)-45d(ac:5 rel:148 arr:360.5 tw:420-480)-61d(ac:5 rel:224 arr:420.0 tw:360-420)-102p(ac:5 rel:436 arr:445.8 tw:436-540)-103d(ac:5 rel:436 arr:485.1 tw:480-540)-19(ar:0)-
 Unassigneds(0):
-Progressive Cost:1291.83 Dist:1291.83 Un:0 Routes:15 Time:13.64 Events:99 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:1291.83 Dist:1291.83 Un:0 Routes:15 Time:13.70 Events:99 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 87
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_C_9_hom_1 Customers:44
 BBNode count: 47
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1291.83 Un:0 Routes:15 Time:13.64 Events:99 Idle:0.663 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 13 seconds and 640 milliseconds.(Sat Dec 24 17:27:11 2022
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1291.83 Un:0 Routes:15 Time:13.70 Events:99 Idle:0.663 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 13 seconds and 699 milliseconds.(Thu Dec 29 16:13:39 2022
