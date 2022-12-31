@@ -135,29 +135,28 @@ if i == len(BB_data.columns) or print_vs:
             br_errlist = list(BR_data[BR_data.columns[i + 1]])
             bb_errlist = list(BB_data[BB_data.columns[i + 1]])
 
-            for i in range(len(x_bb_list)):
-                plt.errorbar(x_br_list[i], y_br_list[i], br_errlist[i],
+            plt.figure(figsize=(8, 6))
+
+            for j in range(len(x_bb_list)):
+                plt.errorbar(x_br_list[j], y_br_list[j], br_errlist[j],
                              color="red", linestyle='None', marker='o', capsize=5, capthick=1, ecolor="purple")
 
-                plt.annotate('%.2f' % y_br_list[i], xy=(x_br_list[i], y_br_list[i]), xytext=(2, 5),
+                plt.annotate('%.2f' % y_br_list[j], xy=(x_br_list[j], y_br_list[j]), xytext=(2, 5),
                              textcoords='offset points', rotation=85)
 
-                plt.errorbar(x_bb_list[i], y_bb_list[i], bb_errlist[i],
+                plt.errorbar(x_bb_list[j], y_bb_list[j], bb_errlist[j],
                              color="blue", linestyle='None', marker='x', capsize=5, capthick=1, ecolor="green")
 
-                plt.annotate('%.2f' % y_bb_list[i], xy=(x_bb_list[i], y_bb_list[i]), xytext=(2, 5),
+                plt.annotate('%.2f' % y_bb_list[j], xy=(x_bb_list[j], y_bb_list[j]), xytext=(2, 5),
                              textcoords='offset points', rotation=85)
 
-            plt.title("Comparison of "+ BR_data[BR_data.columns[i]].name)
+            plt.title("Comparison of " + BR_data[BR_data.columns[i]].name)
             plt.xlabel("Problem Name (Algorithm)")
             plt.ylabel(BR_data[BR_data.columns[i]].name)
             plt.xticks(rotation=75)
             plt.tick_params(axis='x', which='major')
             plt.tight_layout()
             plt.show()
-
-        elif a == '2':
-            print_vs = True
 
         else:
             exit(0)
