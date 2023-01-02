@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 BB_data = pandas.read_csv("./Results/BB/res.csv")
 BR_data = pandas.read_csv("./Results/BR/res.csv")
 
+print(BB_data[BB_data.columns[4]].sum() + "secondi di BB")
+print(BR_data[BR_data.columns[4]].sum() + "secondi di BR")
+
 BB_data = BB_data.groupby("problem").agg(
     {'cost': [numpy.mean, numpy.std], 'dist': [numpy.mean, numpy.std], 'time': [numpy.mean, numpy.std],
      'events': [numpy.mean, numpy.std], 'skipped': [numpy.mean, numpy.std]})

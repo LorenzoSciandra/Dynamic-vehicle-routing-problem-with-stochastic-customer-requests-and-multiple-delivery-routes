@@ -28,9 +28,9 @@ for s in problem_instances:
         config_file.close()
 
         os.system(
-            "./cmake-build-debug-wsl/branch_and_bound_solver ../instances/sddp/stacy/config/temp.dat"
+            "./cmake-build-debug/branch_and_bound_solver ../instances/sddp/stacy/config/temp.dat"
             )
 
-        os.system(
-            "./cmake-build-debug-wsl/branch_and_regret_solver ../instances/sddp/stacy/config/temp.dat"
-        )
+        #os.system(
+        #    "./cmake-build-debug-wsl/branch_and_regret_solver ../instances/sddp/stacy/config/temp.dat"
+        #)
