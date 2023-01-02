@@ -95,8 +95,15 @@ void BranchAndBoundSimulation::Optimize(Scenarios &scenarios) {
             BBNodes.push_back(node);
 
             // printf("\nInitial cost: %.1lf, Wait: %s", BB_multiset.GetAverageCost(), wait_to_next_event?"true":"false");
-            IterativeBranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
-                                    probs, best_decisions, node);
+
+            if(Parameters::ShouldUseIterativeBranchAndBound()) {
+                IterativeBranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
+                                        probs, best_decisions, node);
+            }
+            else {
+                BranchAndBound(BB_multiset, best_integer_solution, prev_decisions, scenarios,
+                               probs, best_decisions, node);
+            }
 
             BBNode_total_count += BBNodes.size();
 
@@ -352,6 +359,16 @@ void BranchAndBoundSimulation::IterativeBranchAndBound(DecisionMultiSet &current
         Decisions current_decisions;
         current_multiset.GetNextActionDecisions(working_decisions, current_decisions, scenarios);
 
+        if (!all_decisions.empty()) {
+            BBBestPriorityItem &nextDecision = all_decisions.at(all_decisions.size()-1);
+            nextDecision.bbNode->visit_order = visit_order_counter++;
+            current_multiset = nextDecision.multiSet;
+            working_decisions = nextDecision.decisions;
+            node = nextDecision.bbNode;
+
+            all_decisions.pop_back();
+        }
+
         if (best_integer_solution.GetReportCount() == 0 ||
             best_integer_solution.GetAverageCost() > current_multiset.GetAverageCost()) {
 
@@ -359,19 +376,6 @@ void BranchAndBoundSimulation::IterativeBranchAndBound(DecisionMultiSet &current
                 best_integer_solution = current_multiset;
                 best_decisions = working_decisions;
                 //            std::printf("Terminato nodo %ld, numero nodi: %ld\n", node->id, all_decisions.size());
-
-                if (!all_decisions.empty()) {
-                    BBBestPriorityItem &nextDecision = all_decisions.at(all_decisions.size() - 1);
-
-                    nextDecision.bbNode->visit_order = visit_order_counter++;
-                    current_multiset = nextDecision.multiSet;
-                    working_decisions = nextDecision.decisions;
-                    node = nextDecision.bbNode;
-
-                    all_decisions.pop_back();
-                }
-
-                continue;
             }
             else{
                 for (int i = 0; i < current_decisions.GetCount(); i++) {
@@ -389,11 +393,10 @@ void BranchAndBoundSimulation::IterativeBranchAndBound(DecisionMultiSet &current
                         BB_multiset.Add(decisions);
                     }
 
-
                     BBNode *new_node = new BBNode();
                     new_node->id = BBNodes.size();
                     new_node->tree_level = node->tree_level + 1;
-                    // Added to have a back reference to the children
+                    //Added to have a back reference to the children
                     new_node->parent_id = node->id;
                     new_node->decision_type = current_decisions.Get(i)->action_type;
                     new_node->request_id = current_decisions.Get(i)->req_id;
@@ -406,23 +409,11 @@ void BranchAndBoundSimulation::IterativeBranchAndBound(DecisionMultiSet &current
                         if (item->id == node->id)
                             item->children.push_back(new_node);
                     }
-
                 }
 
                 if (Parameters::IsBestFirstUsedInBnB())
                     std::sort(all_decisions.begin(), all_decisions.end(), &BBBestPriorityItem::comparator);
             }
-        }
-
-        if (!all_decisions.empty()) {
-            BBBestPriorityItem &nextDecision = all_decisions.at(all_decisions.size() - 1);
-
-            nextDecision.bbNode->visit_order = visit_order_counter++;
-            current_multiset = nextDecision.multiSet;
-            working_decisions = nextDecision.decisions;
-            node = nextDecision.bbNode;
-
-            all_decisions.pop_back();
         }
     } while (!all_decisions.empty());
 }

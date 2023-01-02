@@ -214,6 +214,14 @@ public:
         return _print_BB_tree;
     }
 
+    static bool ShouldUseIterativeBranchAndBound(){
+        return _use_iterative_branch_and_bound;
+    }
+
+    static void SetUseIterativeBranchAndBound(bool use){
+        _use_iterative_branch_and_bound = use;
+    }
+
 private:
 
     static int _alns_iterations;
@@ -268,6 +276,7 @@ private:
     static bool _use_best_first_in_branch_and_bound;
     static std::chrono::time_point<std::chrono::system_clock> _start_computation_time;
     static bool _print_BB_tree;
+    static bool _use_iterative_branch_and_bound;
 };
 
 

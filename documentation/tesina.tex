@@ -169,14 +169,14 @@ natbib=true]{biblatex}
 % Página de titulo
     \maketitle
 % Aplica cabeçalho na primeira página
-
+\thispagestyle{meuestilo}
 % ---
 
 % -----------------------------------------------------------
 % Resumo em português
 % -----------------------------------------------------------
     \begin{changemargin}{1cm}{1cm}
-        \textbf{Abstract} – In questa tesina e stato analizzato e leggermente esteso il lavoro del Professor \href{https://www4.fsa.ulaval.ca/enseignant/jean-francois-cote/}{Jean-François Côté} riguardo ad un problema di routing dinamico multi-veicolo con clienti stocastici. Il problema analizzato, che sarà di seguito descritto, si presenta oggigiorno in moltissimi contesti reali, soprattutto per quanto riguarda il settore degli e-commerce online, per garantire la consegna di più ordini nello stesso giorno in cui sono stati richiesti: \textbf{same day deliver} (es: Amazon Prime, Uber Eats, Glovo, etc.). Il lavoro verte sulla realizzazione di un algoritmo esatto, un Branch \& Bound, che permetta di analizzare la qualità delle soluzioni ottenute dall'algoritmo euristico Branch \& Regret proposto da Jean-François Côté e dai suoi colleghi. 
+        \textbf{Abstract} – In questa tesina è stato analizzato e leggermente esteso il lavoro del Professor \href{https://www4.fsa.ulaval.ca/enseignant/jean-francois-cote/}{Jean-François Côté} riguardo ad un problema di routing dinamico multi-veicolo con clienti stocastici. Il problema analizzato, che sarà di seguito descritto, si presenta oggigiorno in moltissimi contesti reali, soprattutto per quanto riguarda il settore degli e-commerce online, per garantire la consegna di più ordini nello stesso giorno in cui sono stati richiesti: \textbf{same day deliver problem} (es: Amazon Prime, Uber Eats, Glovo, etc.). Il lavoro verte sulla realizzazione di un algoritmo esatto, un Branch \& Bound, che permetta di analizzare la qualità delle soluzioni ottenute dall'algoritmo euristico Branch \& Regret proposto da Jean-François Côté e dai suoi colleghi. 
         \vspace{\onelineskip}
 
         \noindent
@@ -186,17 +186,17 @@ natbib=true]{biblatex}
 \hypertarget{definizione-del-problema}{%
 \section{Definizione del Problema}\label{definizione-del-problema}}
 
-Matematicamente il problema è definibile con un grafo diretto {\(G = (L \cup \{ 0\},A)\)} dove {\(L\)} è l\textquotesingle insieme dei nodi o posizioni possibili dei \textbf{clienti}, {\(0\)} è il \textbf{deposito} e {\(A\)} è l'insieme di archi con associati \textbf{tempo di viaggio} {\(t_{ij}\)} e \textbf{costo} {\(c_{ij}\)} per passare dal nodo {\(i\)} al nodo {\(j\)}. \newline Viene definito con {\(T\)} l'\textbf{orizzonte temporale} ossia le ore lavorative del deposito e quindi l'orario limite dal quale può partire un \textbf{veicolo}. \newline {\(R\)} è invece l'insieme delle \textbf{richieste dei clienti} per i quali dobbiamo caricare dal deposito gli oggetti ordinati per essere consegnati. Di queste generalmente solo poche sono conosciute fin dall'inizio dell'orizzonte temporale, la maggior parte infatti diventeranno note col procedere del tempo, questo è l'aspetto \textbf{dinamico} del problema: non tutto è conosciuto a priori.
+Matematicamente il problema è definibile con un grafo diretto simmetrico {\(G = (L \cup \{ 0\},A)\)} dove {\(L\)} è l\textquotesingle insieme dei nodi o posizioni possibili dei \textbf{clienti}, {\(0\)} è il \textbf{deposito} e {\(A\)} è l'insieme degli archi con associati \textbf{tempo di viaggio} {\(t_{ij}\)} e \textbf{costo} {\(c_{ij}\)} per passare dal nodo {\(i\)} al nodo {\(j\)}. \newline Viene definito con {\(T\)} l'\textbf{orizzonte temporale} ossia le ore lavorative del deposito e quindi l'orario limite dal quale può partire un \textbf{veicolo}. \newline {\(R\)} è invece l'insieme delle \textbf{richieste dei clienti} per i quali dobbiamo caricare dal deposito gli oggetti ordinati per essere consegnati. Di queste generalmente solo poche sono conosciute fin dall'inizio dell'orizzonte temporale, la maggior parte infatti diventeranno note col procedere del tempo, questo è l'aspetto \textbf{dinamico} del problema: non tutto è conosciuto a priori.
 \newline
 Ogni richiesta {\(k\)} è caratterizzata da un \textbf{release time} {\(r_{k}\)} che è il tempo nella quale questa diventa nota e da una finestra temporale per la consegna. La finestra è un intervallo {\(\lbrack e_{k},l_{k}\rbrack\)} i cui estremi rappresentano rispettivamente il primo e l'ultimo possibile tempo di arrivo per servire il cliente $k$. Se un veicolo arriva prima di $e_k$ deve aspettare fino ad $e_k$ per iniziare il servizio.
 \newline
-Quando eventi futuri risultano conosciuti solo dalla loro distribuzione di probabilità, il problema viene definito \textbf{stocastico}. In questo problema distribuzioni di probabilità riguardanti il numero di clienti che chiederanno il servizio, il momento in cui lo faranno, la loro posizione e le finestre temporali sono generate usando dati di scenari passati. Ad esempio è previsto che il tasso di arrivo delle richieste future sia un processo di Poisson con parametro {\(\lambda_{i}\)} con {\(i\)} indice del luogo della richiesta.
+Quando eventi futuri risultano conosciuti solo dalla loro distribuzione di probabilità, il problema viene definito \textbf{stocastico}. In questo problema distribuzioni di probabilità riguardanti il numero di clienti che chiederanno il servizio, il momento in cui lo faranno, la loro posizione e le finestre temporali sono generate usando dati di scenari passati. Ad esempio è previsto che il tasso di arrivo delle richieste future sia un processo di Poisson con parametro {\(\lambda_{i}\)} con {\(i\)} indice del luogo della richiesta e inter-arrivo esponenziale.
 \newline
-Per quanto riguarda la consegna abbiamo un numero finito e fisso {\(M\)} di veicoli considerati, per semplicità, con capacità illimitata. Il percorso di un veicolo inizia dal deposito, serve un certo numero di clienti e ritorna al deposito. Formalmente una route è una sequenza $[-1,r_1,...,r_n,-1]$ dove $1 \leq r_i \leq |R|$ sono le richieste tutte distinte e $-1$ rappresenta il depot. Il \textbf{costo di un percorso} è $c(p) = c_{-1,r_1} + c_{r_1,r_2}+ \cdot \cdot \cdot + c_{r_n,-1}$.
+Per quanto riguarda la consegna abbiamo un numero finito e fisso {\(M\)} di veicoli considerati, per semplicità, con capacità illimitata. Il percorso di un veicolo inizia dal deposito, serve un certo numero di clienti e ritorna al deposito. Formalmente una \textbf{route} è una sequenza $[0,k_1,...,k_n,0]$ dove $1 \leq k_i \leq |R|$ sono le richieste tutte distinte e $0$ rappresenta il depot. Il \textbf{costo di un percorso} è $c(p) = c_{0,k_1} + c_{r_1,r_2}+ \cdot \cdot \cdot + c_{r_n,0}$, discorso analogo per la distanza del percorso.
 \newline
-La funzione obiettivo è gerarchica: prima si massimizza sul numero di richieste servite e poi si minimizza sulla distanza di viaggio.
+Un \textbf{piano di instradamento} è un insieme di routes $\{p_1,...,p_M\}$, una per ogni veicolo, che serve ogni cliente esattamente una volta. Il piano assegna ad ogni cliente un solo predecessore ed un solo successore all'interno del percorso.  Il \textbf{costo di viaggio di un piano} è la somma dei costi delle sue routes e quindi $\sum_{i=1}^M c(p_i)$. Le decisioni prese durante l'esecuzione sono basate su un \textbf{piano prescelto} che evolve nel tempo. Il piano prescelto viene selezionato da una \textbf{funzione consenso} e tutti gli altri mantenuti devono essere consistenti con esso.
 \newline
-Un \textbf{piano di instradamento} è un insieme di routes $\{p_1,...,p_M\}$, una per ogni veicolo, che serve ogni cliente esattamente una volta. Il piano assegna ad ogni cliente un solo predecessore ed un solo successore all'interno del percorso.  Il \textbf{costo di viaggio di un piano} è la somma dei costi delle sue routes e quindi $\sum_{i=1}^M c(p_i)$. Le decisioni prese durante l'esecuzione sono basate su un \textbf{piano prescelto} che evolve nel tempo. Il piano prescelto viene selezionato da una \textbf{funzione di consenso} e tutti gli altri mantenuti devono essere consistenti con esso.
+La \textbf{funzione obiettivo} è \textbf{gerarchica}: prima si massimizza sul numero di richieste servite e poi si minimizza sulla distanza di viaggio percorsa.
 
 \hypertarget{modellazione-del-problema}{%
 \section{Modellazione del Problema}\label{modellazione-del-problema}}
@@ -205,10 +205,10 @@ Il problema è stato modellato come un \textbf{Dynamic Pickup and Delivery Probl
 
 \begin{enumerate}
     \label{events}
-    \item si ha una nuova richiesta nota e c'è un veicolo al deposito pronto per partire
-    \item un veicolo ha finito una route e arriva al deposito
+    \item si ha una nuova richiesta nota e c'è un veicolo al deposito pronto per partire: si ottimizza per cercare di servire anche la nuova richiesta
+    \item un veicolo ha finito una route e arriva al deposito: si ottimizza in modo da assegnargli una nuova route
     \item un veicolo ha terminato il tempo di attesa al deposito: se le richieste note sono poche il veicolo ha infatti la possibilità di aspettare che ce ne siano un certo numero minimo per avere soluzione migliore e più robusta riguardo a ciò che dovrà accadere
-    \item una consegna è stata completata 
+    \item una consegna è stata completata: quando un veicolo ha consegnato un pacco ad un cliente può riottimizzare il percorso rimanente
 \end{enumerate}
 
 
@@ -220,44 +220,40 @@ Ogni volta che si verifica un evento abbiamo 3 algoritmi a disposizione:
   dinamici: 
   \begin{algorithm}
         \caption{Reoptimization}
-        \begin{algorithmic}
         \label{alg:Reoptimization}
+        \begin{algorithmic}
             \State Create a plan $s$ that contains the requests known at \texttt{time} $0$
             \While{there is an event $\lor\: \texttt{time}= 0$}
                 \State Lock all performed \texttt{actions} in plan $s$
                 \State Add the \texttt{new\_requests} to $s$
-                \State Optimize $n$ and implement the \texttt{new\_actions}
+                \State Optimize $s$ and implement the \texttt{new\_actions}
             \EndWhile
         \end{algorithmic}
     \end{algorithm}
-\item
-  \textbf{Two lookahead algorithms}: che cercano di anticipare le
-  informazioni future per fare migliori pianificazioni. Questi usano
-  scenari probabilistici con informazione stocastica campionata: nello specifico ad essere campionata è la distribuzione di probabilità che riguarda la presenza/assenza di una richiesta e il suo istante temporale. Ottimizzando gli scenari si ottengono routes, una per scenario, contententi la gestione sia di richieste note che di probabili richieste future . Ovviamente un veicolo prima di partire deve aspettare (al deposito) che queste si verifichino per sapere se caricare o meno il materiale da consegnare. I due approcci usati e uniti nel codice di Jean-François Côté sono quelli proposti in Bent e Van Hentenryck\cite{SBPPDVR} e Hvattum, Løkketangen e Laporte \cite{BRH} che andremo nel seguito a descrivere.
+ \item \textbf{Two lookahead algorithms}: che cercano di anticipare le informazioni future per fare migliori pianificazioni. Questi usano scenari probabilistici con l'informazione stocastica campionata precedentemente descritta. Ottimizzando gli scenari si ottengono insiemi di routes, uno per ogni scenario, contenenti la gestione sia di richieste note che di probabili richieste future. Ovviamente vorremmo che un veicolo prima di partire aspetti al deposito che le richieste future previste si verifichino o meno per sapere se caricare il materiale da consegnare. I due approcci usati e uniti nel codice di Jean-François Côté sono quelli proposti in Bent e Van Hentenryck\cite{SBPPDVR} e Hvattum, Løkketangen e Laporte \cite{BRH} che andremo nel seguito a descrivere.
 \end{itemize}
 
 
-
 \subsection{Esempio}
-Come esempio mettiamoci, per semplicità, nel caso in cui ci sia un solo veicolo ($M=1$), l'orizzonte temporale sia $T = 44$ e ci troviamo al tempo $t=20$. Il nostro veicolo, dopo aver seguito la route {\(11 - 29 - 8\)} ed essere tornato al deposito (evento 2 in \nameref{events} scatenante la ripianificazione), genera 4 scenari diversi contententi richieste future reali etichettate con un numero e richieste future probabili, senza identificatore numerico. Una volta fatto ciò ottimizzerà tutti gli scenari cercando un piano per ognuno di questi, come come mostra l'immagine \ref{fig:optimizedScenario}. 
+Come esempio mettiamoci, per semplicità, nel caso in cui ci sia un solo veicolo ($M=1$), l'orizzonte temporale sia $T = 44$ e ci troviamo al tempo $t=20$. Il nostro veicolo, dopo aver seguito la route {\(0 - 11 - 29 - 8 - 0\)} ed essere tornato al deposito (evento 2 in \nameref{events} scatenante l'ottimizzazione), genera 4 scenari diversi contenenti richieste future reali note etichettate con un numero e richieste future probabili, senza identificatore numerico. Una volta fatto ciò tutti gli scenari verranno ottimizzati trovando un piano per ognuno di questi, come mostra l'immagine \ref{fig:optimizedScenario}. 
 \begin{figure}[h!]
     \centering
-    \includegraphics[scale=0.4]{Images/OptimizedScenario.png}
+    \includegraphics[scale=0.43]{Images/OptimizedScenario.png}
     \caption{Scenari Ottimizzati}
     \label{fig:optimizedScenario}
 \end{figure}
 \newline
-Ovviamente, nel processo di ottimizzazione, il numero di scenari deve essere maggiore di $1$ in modo da poter esplorare meglio la randomicità del problema e avere piani più robusti, che mi permettano di affrontare meglio il futuro. Una volta ottimizzati tutti gli scenari  bisognerà scegliere quale usare, o meglio, quali azioni andare ad effettuare nel mio piano reale. Per far questo si usano i due algoritmi prima menzionati che \textit{"guardano nel futuro"} e che ora andremo a spiegare meglio.
+Ovviamente, nel processo di ottimizzazione, il numero di scenari generati è variabile con la seguente considerazione: più questo numero è grande più la soluzione sarà costosa, ma più sarà affidabile in quanto mi permetterà di esplorare meglio la randomicità del problema e avere piani prescelti robusti, che affrontano meglio il futuro. Nello specifico una volta ottimizzati tutti gli scenari  bisognerà scegliere quale usare, o meglio, quali azioni andare ad effettuare nel mio piano reale. Per far questo si usano delle funzione consenso all'interno dei due algoritmi prima menzionati che \textit{"guardano nel futuro"} e che ora andremo a spiegare meglio.
 
 \hypertarget{sbpa}{%
 \subsection{Scenario-Based Planning Approach}\label{sbpa}}
 
-Nel paper \cite{SBPPDVR} si propone di scegliere come scenario finale quello che presenta il migliore score ottenuto con una certa \textbf{funzione consenso}, in questo caso mediante una \textbf{Route Similarity}. \newline Entrando nei dettagli ad ogni piano viene associato come score la somma delle volte in cui una sua route compare uguale anche nei piani ottenuti per altri scenari. In questo caso con \textit{"compare uguale"} intendiamo proprio che devono risultare le stesse richieste e nello stesso ordine. Non vengono considerate nel conteggio le route che contengono almeno una richiesta futura e per le quali dobbiamo attendere.
+Nel paper di Bent e Van Hentenryck\cite{SBPPDVR} si propone di scegliere come scenario finale quello che presenta il migliore score ottenuto con una certa \textbf{funzione consenso}, in questo caso mediante una \textbf{Route Similarity}. Entrando nei dettagli ad ogni piano viene associato come score la somma delle volte in cui una sua route compare uguale anche nei piani ottenuti per altri scenari. In questo caso con \textit{"compare uguale"} intendiamo proprio che devono risultare le stesse richieste e nello stesso ordine. Non vengono considerate nel conteggio le route che contengono almeno una richiesta futura e per le quali dobbiamo attendere.
 
 \begin{algorithm}
     \caption{Scenario-based planning approach}
-    \begin{algorithmic}
     \label{alg:SBPA}
+    \begin{algorithmic}
         \State Create a plan $s$ that contains the requests known at \texttt{time} $0$
         \While{there is an event $\lor\: \texttt{time}= 0$}
             \State Lock all performed \texttt{actions} in plan $s$
@@ -279,13 +275,11 @@ Nel paper \cite{SBPPDVR} si propone di scegliere come scenario finale quello che
     \label{fig:RouteSimilarity}
 \end{figure}
 
-\newpage
-Questo criterio, mostrato in \ref{fig:RouteSimilarity}, risulta però \textbf{miope} e non riesce a comprendere il trend reale che si sta verificando: sceglie sempre la strategia che richiede impegno minimo. Nello specifico quando i piani per i vari scenari sono molto diversi sarà scelto quello con meno routes e tutte molto corte, dato che avranno più probabilità (dal momento che sono composte da poche mosse) di presentarsi in altri piani. 
-Per questo Jean-François e i suoi collaboratori hanno proposto due diverse
-\textbf{funzioni consenso}:
+\subsubsection{Nuove Funzioni Consenso}
+Questo criterio, mostrato in fig \ref{fig:RouteSimilarity}, risulta però \textbf{miope} e non riesce a comprendere il trend reale che si sta verificando: sceglie sempre la strategia che richiede impegno minimo. Nello specifico quando i piani per i vari scenari sono molto diversi sarà scelto quello con meno routes e tutte molto corte, dato che avranno più probabilità (dal momento che sono composte da poche mosse) di presentarsi in altri piani. Per questo Jean-François e i suoi collaboratori hanno proposto due diverse \textbf{funzioni consenso}.
 
 \begin{enumerate}
-    \item \textbf{Assignment Similarity} : lo score di ogni piano è la somma di tutti i numeri di volte in cui la coppia (richiesta, numero di route) nel piano si presenta allo stesso modo in altri piani. Questo permette di non favorire il più corto:
+    \item \textbf{Assignment Similarity} : lo score di ogni piano è il numero di volte in cui la coppia (richiesta, numero di route) nel piano si presenta allo stesso modo in altri piani. Questo permette di non favorire il più corto:
 
     \begin{figure}[h!]
         \centering
@@ -304,17 +298,18 @@ Per questo Jean-François e i suoi collaboratori hanno proposto due diverse
     
 \end{enumerate}
 
-Il problema che dobbiamo ora affrontare è: \textit{queste 3 diverse funzioni consenso possono non essere concordi sulla scelta del piano da eseguire, come le combiniamo?}\newline
+Il problema che dobbiamo ora affrontare è: \textit{Queste 3 diverse funzioni consenso possono non essere concordi sulla scelta del piano da eseguire, come le combiniamo?}\newline
+Un possibile approccio è scegliere una delle funzioni consenso ed usare le altre in caso di pareggio di score tra piani diversi. Nelle immagini mostrate verrebbe scelto il piano 2 in quanto ha Assignment Similarity, ma minore Edit Distance.\newline
 Un altro problema che vorremmo risolvere che interessa il SBPA è che ogni piano risulta troppo specializzato per lo scenario previsto, il che ovviamente può non presentarsi. Si è infatti dimostrato che scegliere uno dei piani randomicamente, senza nessuna funzione consenso, porta comunque a buone performances. Si vorrebbe quindi definire un criterio che non risulti dipendente da un solo scenario considerato, ma che sia mediamente buono. Per far questo abbiamo bisogno del Branch \& Regret.
 
 \hypertarget{branch-and-regret}{%
 \subsection{Branch \& Regret}\label{branch-and-regret}}
-L'approccio proposto in \textcite{BRH} è simile al precedente SBPA, ma prevede alcuni passi addizionali a livello algoritmico. Nello specifico una volta ottimizzati e risolti tutti gli scenari ci si assicura, forzandole, che ogni richiesta conosciuta e reale sia servita nello stesso intervallo di tempo in tutti i piani e che in ogni piano ogni veicolo visiti le stesse richieste. Lo pseudocodice è mostrato in \ref{alg:BR}.
+L'approccio proposto in \textcite{BRH} è simile al precedente SBPA, ma prevede alcuni passi addizionali a livello algoritmico. Nello specifico una volta ottimizzati e risolti tutti gli scenari ci si assicura, forzandole, che ogni richiesta conosciuta e reale sia servita nello stesso intervallo di tempo in tutti i piani e che in ogni piano ogni veicolo visiti per prima la stessa richiesta. Lo pseudocodice è mostrato in \ref{alg:BR}.
 
 \begin{algorithm}
     \caption{Branch-and-Regret}
-    \begin{algorithmic}
     \label{alg:BR}
+    \begin{algorithmic}
         \State $L = \{$ set of \texttt{unfixed\_requests} $\}$
         \While{!\texttt{empty}($L$)}
             \State Select a request $k\in L$
@@ -327,7 +322,7 @@ L'approccio proposto in \textcite{BRH} è simile al precedente SBPA, ma prevede 
     \end{algorithmic}
 \end{algorithm}
 
-Questo algoritmo può essere combinato, come sottoprocedura, nel precedente SBPA, inserendo la chiamata al posto del for di riga 6. Entrando nei dettagli il B\&R prende le richieste non fissate reali e va a vedere quale sarebbe la media dei costi in tutti gli scenari se ognuna di questa (una per volta) venisse gestita nella prossima route o in una delle successive. Si sceglie l'alternativa migliore e si fissa in tutti gli scenari. Una volta fatto ciò per tutte le richieste l'algortimo viene rieseguito non per fissare le richieste nelle route, ma per fissarne l'ordine. Quest'idea non si applica bene direttamente al nostro problema in questione perchè richiede che tutte le routes siano definite prima che il veicolo parta e quindi che tutto ciò che deve essere consegnato sia già caricato, ma come già accennato precedentemente, noi vorremmo aspettare che le richieste si verifichino.
+Questo algoritmo può essere combinato, come sottoprocedura, nel precedente SBPA, inserendo la chiamata al posto del for di riga 6. Entrando nei dettagli il B\&R prende le richieste non fissate reali e va a vedere quale sarebbe la media dei costi in tutti gli scenari se ognuna di questa (una per volta) venisse gestita nella prossima route o in una delle successive. Si sceglie l'alternativa migliore e si fissa in tutti gli scenari. Una volta fatto ciò per tutte le richieste l'algoritmo viene rieseguito per fissare la prossima visita di ogni veicolo. Quest'idea non si applica bene direttamente al nostro problema in questione perchè richiede che tutte le routes siano definite prima che il veicolo parta e quindi che tutto ciò che deve essere consegnato sia già caricato, ma come già accennato precedentemente, noi vorremmo aspettare il più possibile che le richieste si verifichino.
 
 \hypertarget{diverso-schema-di-branch}{%
 \subsubsection{Diverso Schema di Branch}\label{diverso-schema-di-branch}}
@@ -352,28 +347,26 @@ Un possibile albero generato dal B\&R può essere il seguente:
 Tra tutte le richieste non servite viene scelta la {\(k=2\)} che sarà gestita con l'azione che presenta costo minimo tra tutti i piani, in questo caso \textbf{wait}. La richiesta immediatamente successiva $x$ può invece portare ad un costo complessivo minimo se gestita immediatamente. Il processo di ottimizzazione procede in questo e viene stoppato quando tutti i piani implementano le stesse alternative di gestione di ogni richiesta reale. A questo punto viene selezionato un piano con una delle 3 funzioni consenso prima definite.
 
 \section{Implementazione}
-Lo scopo della nostra tesina è stato quello di verificare l'idea proposta da Jean-François e dai suoi colleghi. Nello specifico abbiamo implementato un algoritmo esatto, un Branch \& Bound, in grado di trovare la il miglior percorso all'interno dell'albero delle decisioni. Così facendo è possibile verificare quando, in che modo e in quali contesti la soluzione individuata dalla loro implementazione si discosti dalla migliore.
+Lo scopo della nostra tesina è stato quello di verificare l'idea proposta da Jean-François e dai suoi colleghi. Nello specifico abbiamo implementato un algoritmo esatto, un Branch \& Bound, in grado di trovare il miglior percorso all'interno dell'albero delle richieste ad ogni evento. Così facendo è possibile verificare quando, in che modo e in quali contesti la soluzione individuata dalla loro implementazione si discosti dalla migliore. L'implementazione è avvenuta in \texttt{C++} estendendo il progetto fornitoci da Jean-François.
 
 Ovviamente per poter sviluppare il nostro algoritmo si è resa necessaria l'implementazione di una nuova classe dedicata all'ottimizzazione mediante Branch \& Bound, basandoci anche su parte delle API già presenti nel progetto, senza le quali sarebbe stato necessario un lavoro molto più a basso livello. In questo caso invece, ci siamo potuti concentrare su strutture dati e algoritmi ad alto livello, permettendo uno sviluppo, testing e debugging più rapido e semplice, anche grazie all'adozione di linee guida e pattern suggeriti anche da Jean-François.
 
 L'algoritmo viene richiamato all'interno di una funzione wrapper $\texttt{Optimize()}$ spesso implementata da Jean-François nella sua libreria per guidare tutto il processo ottimizzatorio e di simulazione a partire dall'istanziazione iniziale delle variabili necessarie per proseguire con la gestione di ogni evento lungo tutto l'orizzonte temporale e la stampa finale dei risultati. Esattamente come prima indicato a livello teorico, al verificarsi di ogni evento saranno generati $n$ scenari e ottimizzati. L'ottimizzatore sfrutta un'implementazione dell'ALNS \cite{Ropke} sviluppata da Jean-François che effettua un numero di iterazioni di distruzione e ricostruzione parziale dei percorsi generati in modo da cercare di ottimizzarli. Il numero di iterazioni è specificato da un parametro impostato prima dell'inizio della ricerca di soluzioni.
 
 \subsection{Branch \& Bound}
-Abbiamo realizzato il Branch \& Bound sia in versione iterativa che ricorsiva e a loro volta entrambe sia in versione Best-First che Depth-First. Tutte le versioni sono void e la migliore soluzione intera si troverà, alla fine dell'esecuzione, nello spazio di memoria puntato dal puntatore passato in input. Per spiegare correttamente il Branch \& Bound dividiamolo nelle sue parti fondamentali.
+Abbiamo realizzato il Branch \& Bound sia in versione iterativa che ricorsiva e a loro volta entrambe sia in versione Best-First che Depth-First. Tutte le versioni sono void e la migliore soluzione intera si troverà, alla fine dell'esecuzione, nello spazio di memoria puntato dal puntatore passato in input. Per spiegare correttamente il Branch \& Bound dividiamolo nelle sue parti fondamentali che compongono l'algoritmo all'interno del file \texttt{BranchAndBoundSimulation.cpp}.
 
 \subsubsection{Branching}
-Preso un certo nodo dell'albero delle decisioni i suoi figli vengono ottenuti, all'inizio della procedura, con la chiamata a \texttt{GetNextActionDecisions()}. Quest'ultima funzione andrà ad assegnare il vettore \texttt{current\_decisions} con una triplice versione della decisione selezionata una per ogni tipo di azione che possiamo performare su di essa: \textit{go\_now, wait, don't deliver}. Se questo vettore è vuoto vuol dire che abbiamo già analizzato tutte le possibilità per tutte le richieste reali per ora note e possiamo terminare, aggiornando eventualmente la miglior soluzione trovata con quella corrente. 
-\newline
-Nel caso invece in cui ci sia ancora almeno una richiesta reale da analizzare andiamo ad ottimizzare ogni scenario forzando in ognuno di essi tutte le decisioni precedentemente prese insieme a quella nuova corrente da considerare. E' importante quindi mantenere un vettore di \texttt{working\_decisions} che vada aggiornato mano a mano che una richiesta è gestita. Si andranno quindi a generare i nuovi nodi, figli della \texttt{current\_decision} che saranno immediatamente esplorati nel caso Dept-First ed inseriti nella lista dei nodi da esplorare nel caso Best-First. A dire il vero entrambe le visite sono gestite con coda con la sola differenza che per la prima questa è semplicemente una LIFO, mentre per la seconda deve essere ordinata ogni volta che vengono inseriti nuovi nodi.
+Preso un certo nodo dell'albero delle decisioni i suoi figli vengono ottenuti, all'inizio della procedura, con la chiamata a \texttt{GetNextActionDecisions()}. Quest'ultima funzione andrà ad assegnare al vettore \texttt{current\_decisions} passato come parametro una triplice versione della decisione selezionata una per ogni tipo di azione che possiamo performare su di essa: \textit{go\_now, wait, don't deliver}. Se questo vettore è vuoto vuol dire che abbiamo già analizzato tutte le possibilità per tutte le richieste reali per ora note e possiamo terminare, aggiornando eventualmente la miglior soluzione trovata con quella corrente che stiamo considerando. Nel caso invece in cui ci sia ancora almeno una richiesta reale da analizzare andiamo ad ottimizzare ogni scenario forzando in ognuno di essi tutte le decisioni precedentemente prese insieme a quella nuova corrente da considerare. E' importante quindi mantenere un vettore di \texttt{working\_decisions} che vada aggiornato mano a mano che una richiesta è gestita. Si andranno quindi a generare i nuovi nodi, figli della \texttt{current\_decision} che saranno immediatamente esplorati nel caso Depth-First ed inseriti nella lista dei nodi da esplorare nel caso Best-First. 
 
 \subsubsection{Bounding}
 La fase di bounding permette di evitare parte dell'esplorazione dell'albero. Nello specifico, prima di fare la chiamata ricorsiva su un nodo, o equivalentemente prima di espanderlo ed inserire i figli nella lista nella versione iterativa, ci si accerta che abbia un costo medio su tutti gli scenari minore dell'ottimo finora trovato e possa quindi migliorare la nostra soluzione corrente.
 
 \subsubsection{Best-First vs Depth-First}
-L'albero generato dal B\&B può essere esplorato in due modi diversi, il cui controllo avviene tramite un parametro globale dell'ottimizzazione che permette di scegliere un'\textbf{esplorazione in profondità} oppure una \textbf{Best First}. Entrambe sono realizzate con una lista di nodi con la sola differenza che il primo approccio prevede di usarla in maniera LIFO, mentre il secondo inserisce ed estrae i nodi da esplorare in accordo con il loro valore di costo medio. C'è da precisare il fatto che nel caso nella versione ricorsiva questo non porta ad un approccio Best-First globale, complessivo di tutte le richieste nell'albero, come invece accade per la versione iterativa. Quello che si origina è invece una Best-First a livello in cui ogni padre decide prima di esplorare i figli più promettenti. Questo verrà chiarito con un paio di esempi di esecuzione.
+L'albero generato dal B\&B può essere esplorato in due modi diversi, il cui controllo avviene tramite un parametro globale dell'ottimizzazione che permette di scegliere un'\textbf{Depth-First} oppure una \textbf{Best-First}. Entrambe sono realizzate con una lista di nodi con la sola differenza che il primo approccio prevede di usarla in maniera LIFO, mentre il secondo inserisce ed estrae i nodi da esplorare in accordo con il loro valore di costo medio. C'è da precisare il fatto che nel caso nella versione ricorsiva questo non porta ad un approccio Best-First globale, complessivo di tutte le richieste nell'albero, come invece accade per la versione iterativa. Quello che si origina è invece una Best-First a livello in cui ogni padre decide prima di esplorare i figli più promettenti. Questo verrà chiarito con un paio di esempi di esecuzione.
 
 \section{Risultati}
-Per accorgerci dell'eventuale differenza di piano ottimo restituito dal Branch \& Regret rispetto a quello reale trovato con il Branch \& Bound abbiamo deciso di stampare, durante la generazione dell'albero, comandi \href{https://graphviz.org/}{Graphviz} che ci permettessero di visulizzare graficamente la situazione. Ci spieghiamo meglio. 
+Per accorgerci dell'eventuale differenza di piano ottimo restituito dal Branch \& Regret rispetto a quello reale trovato con il Branch \& Bound abbiamo deciso di stampare, durante la generazione dell'albero, comandi \href{https://graphviz.org/}{Graphviz} che ci permettessero di visualizzare graficamente la situazione. Ci spieghiamo meglio. 
 
 Per fare questo abbiamo definito una classe di supporto $\texttt{BBNode}$ (Branch\&Bound Node) che contiene tutte le informazioni rilevanti riguardo alla posizione di un nodo nell'albero: 
 \begin{itemize}
@@ -381,15 +374,16 @@ Per fare questo abbiamo definito una classe di supporto $\texttt{BBNode}$ (Branc
     \item ID della richiesta considerata
     \item ID del nodo genitore
     \item Tipo di decisione che il nodo rappresenta
+    \item Ordine di visita del nodo
     \item Costo raggiunto per poter svolgere la decisione correlata al nodo
     \item Puntatori ai BBNode figli
 \end{itemize}
-Una volta generato completamente tutto l'albero, che sarà semplicemente un vettore di $\texttt{BBNode}$, questo viene post-processato aggiungendo ad ogni nodo informazioni booleane riguardo l'appartenenza al percorso ottimo e a quello definito dal B\&R. \newline A questo punto ciclando sul vettore si stampa per ogni nodo la dichiarazione del nodo stesso e l'arco che lo collega univocamente al padre. Mostriamo ora delle immagini di esempio per evidenziare diversi tipi possibili di esecuzione:
-
-\vspace{2cm}
+Una volta generato completamente tutto l'albero, che sarà semplicemente un vettore di $\texttt{BBNode}$, questo viene post-processato aggiungendo ad ogni nodo informazioni booleane riguardo l'appartenenza al percorso ottimo e/o a quello definito dal B\&R. A questo punto ciclando sul vettore si stampa per ogni nodo la dichiarazione del nodo stesso e l'arco che lo collega univocamente al padre. 
+\newline
+Prima di mostrare e confrontare i risultati del B\&B da noi implementato con il B\&R di Jean-François è necessario accennare al fatto che nel codice l'algoritmo B\&B, esattamente come il B\&R, non viene chiamato nel caso in cui il piano preveda sole wait. Questa situazione che a primo avviso potrebbe sembrare rara capita invece circa il $90\%$ delle volte per semplici istanze. In questi casi il costo del B\&R coincide con il B\&B e le differenze tra i due algoritmi è pressocchè nulla. Vediamo ora invece le differenze tra i due algoritmi nel caso in cui la sequenza di azioni non sia composta da sole wait. Mostriamo ora delle immagini di esempio per evidenziare diversi tipi possibili di esecuzione:
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\textwidth]{Images/same_path.png}
+    \includegraphics[width=0.47\textwidth]{Images/same_path.png}
     \par
     \caption{B\&B Best-First e B\&R scelgono lo stesso percorso}
     \label{fig:BBBFuguale}
@@ -423,79 +417,86 @@ Una volta generato completamente tutto l'albero, che sarà semplicemente un vett
 \vspace*{\fill}
 
 \newpage
-\subsection{Considerazioni e Conclusioni}
-Per mostrare e confrontare i risultati del B\&B da noi implementato con il B\&R di Jean-François è necessario accennare al fatto che nel codice l'algoritmo B\&B, esattamente come il B\&R, non viene chiamato nel caso in cui il piano preveda sole wait. Questa situazione che a primo avviso potrebbe sembrare rara capita invece circa il $90\%$ delle volte per semplici istanze. In questi casi il costo del B\&R coincide con il B\&B e le differenze tra i due algoritmi è pressocchè nulla. Vediamo ora invece le differenze tra i due algoritmi nel caso in cui la sequenza di azioni non sia composta da sole wait. Tutti i risultati che saranno mostrati prevede l'esecuzione di 100 iterazioni di ALNS, 30 scenari generati e 10 veicoli.
-
-
-Le istanze che abbiamo usato per fare i test fanno parte del benchmark disponibile sul \href{https://sites.google.com/view/jfcote/}{sito di Jean-François}. Le istanze del problema vengono classificate in base a molte delle loro caratteristiche che vengono messe in successione nel nome del file stesso. Prendiamo come esempio di problema \texttt{TWdf\_C\_1\_hom\_1\_actual.txt} e proviamo a descrivere le sue caratteristiche:
+\subsection{Dataset}
+Le istanze che abbiamo usato per fare i test fanno parte del benchmark disponibile sul \href{https://sites.google.com/view/jfcote/}{sito di Jean-François}. Le istanze del problema sono classificate in base a molte delle loro caratteristiche che vengono messe in successione nel nome del file stesso, esattamente come descritte in Voccia et al.\cite{Voccia}. Prendiamo come esempio di problema \texttt{TWdf\_C\_1\_hom\_1\_actual.txt} e proviamo a descrivere le sue caratteristiche:
 \begin{itemize}
-    \item \textbf{TWdf}:
-    \item \textbf{C\_1}:
-    \item \textbf{hom\_1}:
-    \item \textbf{actual}:
+    \item \textbf{TWdf}: questo attributo caratterizza le finestre temporali (\textit{TimeWindow}) della richiesta. Nel nostro caso '\textbf{d}' significa che la finestra ha una \textit{Deadline} di un certo valore temporale, mentre '\textbf{f}' significa che a partire dal release time $r_k$ della richiesta, la finestra inizia ad un istante fissato (\textit{Fixed}) nel futuro. Questi due ultimi attributi possono essere sostituiti con \textbf{h} se l'inizio della finestra temporale è campionato da una distribuzione uniforme sugli istanti rimanenti nell'orizzonte temporale $T$. Si può usare invece \textbf{r}, per rilassare il valore precedente \textbf{h}, e avere sempre l'inizio della finestra temporale campionato, ma senza il vincolo che questo debba coincidere con l'inizio di una certa ora
+    \item \textbf{C\_1}: questo attributo caratterizza le aree geografiche di localizzazione dei clienti. Il valore può essere \textbf{C} se sono raggruppate (\textit{Clustered}), \textbf{R} se sono disperse in modo casuale (\textit{Random}) o \textbf{RC} se sono sia disperse in modo casuale che raggruppate. Per ogni area geografica, sono stati creati nove datasets con 100 posizioni dei clienti, indicizzati da $1$ a $9$, le cui informazioni sono state campionate da altri datasets noti in letteratura
+    \item \textbf{hom\_1}: rappresenta il tipo di tasso di arrivo delle richieste, in questo caso omogeneo (\textit{Homogeneous}). Questo può essere sostituito con \textbf{het} se il tasso di arrivo è eterogeneo (\textit{Heterogeneous}). Il numero $x$ che segue  il tipo di tasso rappresenta il tasso di richieste che arrivano, nello specifico si avranno $x\cdot 0.1$ richieste per minuto
+    \item \textbf{actual}: il tipo di realizzazione delle richieste che può essere effettivo, come in questo caso, oppure campionato (\textbf{sampled}) 
 \end{itemize}
-Sono state da noi considerate $810$ istanze eseguite sia con B\&B che con B\&R in modo che tenessero in considerazione una buona varietà di caratteristiche. Abbiamo preso tutti e i tre tipi principali \textbf{TWdf}, \textbf{TWh}, \textbf{TWh\_R} con varianti \textbf{C\_X}, \textbf{R\_X} e \textbf{RC\_X} con $1 \leq \textbf{X} \leq 9$. Di ognuno di questi tipi di istanze è stato fissato l'attributo \texttt{hom\_1}, strettamente correlato con la complessità del problema, e l'attributo \texttt{actual}.
+Sono state da noi considerate $810$ istanze eseguite sia con B\&B che con B\&R in modo da tenere in considerazione una buona varietà di caratteristiche. Abbiamo preso tutti e i tre tipi principali \textbf{TWdf}, \textbf{TWh}, \textbf{TWr} con varianti \textbf{C\_}$X$, \textbf{R\_}$X$ e \textbf{RC\_}$X$ con $1 \leq X \leq 9$. Di ognuno di questi tipi di istanze è stato fissato l'attributo \texttt{hom\_1}, strettamente correlato con la complessità di calcolo necessaria per la risoluzione, e l'attributo \texttt{actual}.
 
-La computazione è stata eseguita tramite uno script Python 3.10 (\texttt{runner.py}), da noi sviluppato, sia sul Branch\&Bound con esplorazione Best-First, sia sul programma di Jean-François, per un totale di 1620 esecuzioni. Il tempo di calcolo per il B\&B è di \texttt{3443.94} secondi (circa \texttt{57} minuti), mentre il B\&R ha richiesto circa il doppio: \texttt{6571} secondi (circa \texttt{110} minuti). Dopo ogni computazione i risultati prodotti dai programmi vengono salvati in file \texttt{.txt}
+\subsection{Analisi dell'output}
 
-Una volta ottenuti i file di output, un altro script (\texttt{extractor.py}) utilizza Regex per leggere i files \texttt{.txt} e comprimere le uniche informazioni per noi utili presenti nelle stampe di output in un nuovo file \texttt{.csv}. Il risultato di questa fase ci permette di passare dai 1620 file di output, uno per ogni run, ad una sola tabella \texttt{csv} una per il B\&B e una per il B\&R, con le seguenti colonne: 
+La computazione è stata eseguita tramite uno script Python 3.10 (\texttt{runner.py}) sia sul Branch\&Bound iterativo con esplorazione Best-First, sia sul programma di Jean-François, per un totale di 1620 esecuzioni.
+L'esecuzione è avvenuta su un calcolatore con le seguenti caratteristiche:
+    \begin{itemize}
+        \item Processore AMD Ryzen 7 5800X (4.6GHz)
+        \item 32GB di RAM DDR4 (3600MHz)
+    \end{itemize}
+Dal momento che i programmi sviluppati non sono stati progettati per sfruttare le potenzialità di un processore multi-core, l'unico fattore limitante è stata la frequenza del processore.
+\newline
+Il tempo di calcolo complessivo per il B\&B è di \texttt{3443.94} secondi (circa \texttt{57} minuti), mentre il B\&R ha richiesto circa il doppio: \texttt{6571} secondi (circa \texttt{110} minuti). Dopo ogni computazione i risultati prodotti dai programmi vengono salvati in file \texttt{.txt}
+
+Una volta ottenuti i file di output un altro script (\texttt{extractor.py}) utilizza espressioni regolari per leggere i files e comprimere le uniche informazioni per noi utili presenti nelle stampe di output in un nuovo file \texttt{.csv}. Il risultato di questa fase ci permette di passare dai 1620 files di output, uno per ogni run, ad una sola tabella \texttt{csv} per il B\&B e una sola per il B\&R, con le seguenti colonne: 
 \begin{itemize}
     \item \textbf{Problem}: Il nome del problema risolto
     \item \textbf{Instance}: Quale delle 30 istanze del problema è stata analizzata
     \item \textbf{Cost}: Il costo della migliore soluzione identificata
-    \item\textbf{Dist}: La distanza totale da tutti i mezzi
+    \item\textbf{Dist}: La distanza totale percorsa da tutti i mezzi
     \item\textbf{Time}: Il tempo (in secondi) richiesto per completare la computazione
     \item \textbf{Events}: Il numero di eventi che si sono considerati
     \item \textbf{Skipped}: Il numero di eventi/piani saltati perché composti solo da attese (wait)
 \end{itemize}
+Mostreremo ora alcuni grafici ottenuti da un terzo e ultimo script (\texttt{analyzer.py}) che attraverso le librerie \textbf{pandas}, \textbf{numpy} e \textbf{matplotlib}, ci ha permesso facilmente di confrontare i risultati compressi dallo script precedente.
+Nei grafi che seguono ogni punto rappresenta la media calcolata su tutte le 90 istanze con le prime due caratteristiche del nome coincidenti. Ogni punto sarà plottato mostrando esplicitamente il valore dell'ordinata corrispondente con associata deviazione standard.
+\newline
+\newline
+Tutti i risultati che saranno mostrati prevedono l'esecuzione di 100 iterazioni di ALNS, 30 scenari generati e 10 veicoli.
 
-Mostreremo ora alcuni grafici ottenuti da un terzo e ultimo script Python (\texttt{analyzer.py}) che abbiamo implementato che attraverso le librerie \textbf{pandas}, \textbf{numpy} e \textbf{matplotlib} ci ha permesso facilmente di confrontare i risultati compressi dallo script precedente.
-\newline Nei grafi che mostreremo ogni punto rappresenta la media calcolata su tutte le 90 istanze con le prime due caratteristiche del nome coincidenti. Ogni punto sarà plottato mostrando esplicitamente il valore dell'ordinata corrispondente con deviazione standard.
-\vspace{2.5cm}
+\newpage{}
+\vspace*{\fill}
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1.0\textwidth]{Images/mean_events}
+    \includegraphics[width=0.81\textwidth]{Images/mean_events}
     \par
     \caption{B\&B vs B\&R: numero medio di eventi}
     \label{fig:mean_events}
 \end{figure}
-\newpage{}
-\vspace*{\fill}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{Images/Mean_dist.png}
-    \caption{B\&B vs B\&R: distanza media percorsa}
-    \label{fig:Mean_dist}
-\end{figure}
-\vspace*{\fill}
-\newpage{}
-\vspace*{\fill}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1.0\textwidth]{Images/mean_skipped.png}
+    \includegraphics[width=0.81\textwidth]{Images/mean_skipped.png}
     \caption{B\&B vs B\&R: numero medio di eventi/piani saltati}
     \label{fig:mean_skipped}
 \end{figure}
 \vspace*{\fill}
+
 \newpage{}
 \vspace*{\fill}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{Images/Mean_cost.png}
+    \includegraphics[width=0.81\textwidth]{Images/Mean_dist.png}
+    \caption{B\&B vs B\&R: distanza media percorsa}
+    \label{fig:Mean_dist}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.81\textwidth]{Images/Mean_cost.png}
     \caption{B\&B vs B\&R: costo medio delle soluzioni}
     \label{fig:Mean_cost}
 \end{figure}
 \vspace*{\fill}
+
 \newpage{}
-\vspace*{\fill}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{Images/mean_time.png}
+    \includegraphics[width=0.81\textwidth]{Images/mean_time.png}
     \caption{B\&B vs B\&R: tempo medio necessario per completare la computazione}
     \label{fig:mean_time}
 \end{figure}
-\vspace*{\fill}
-\newpage{}
+
+\vspace{1.5cm}
 \printbibliography[title=Bibliografia]
 
 \end{document}

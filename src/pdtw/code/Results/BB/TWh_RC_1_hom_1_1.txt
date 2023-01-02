@@ -18,6 +18,6 @@ Progressive Cost:20201680.00 Dist:1680.00 Un:2 Routes:17 Time:36.46 Events:111 W
 Skipped: 92
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_RC_1_hom_1 Customers:48
-BBNode count: 300
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1680.00 Un:2 Routes:17 Time:36.46 Events:111 Idle:0.577 PDR:No ThType:1 
-Elapsed time: 0 hours, 0 minutes, 36 seconds and 458 milliseconds.(Fri Dec 30 00:04:19 2022
+BBNode count: 345
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1446.00 Un:2 Routes:14 Time:51.32 Events:107 Idle:0.651 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 51 seconds and 335 milliseconds.(Mon Jan  2 16:17:40 2023

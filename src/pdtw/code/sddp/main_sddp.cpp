@@ -39,7 +39,8 @@ int main(int arg, char **argv) {
     Parameters::SetGenerateIntelligentScenario(true);
     Parameters::SetFathomingInBnB(true);
     Parameters::SetBestFirstForBnB(true);
-    Parameters::SetShouldPrintBBTrees(false);
+    Parameters::SetShouldPrintBBTrees(true);
+    Parameters::SetUseIterativeBranchAndBound(true);
     Parameters::SetEvaluateWaitingStrategy(true);
 
     Parameters::PrintCurrentElapsedTime();
