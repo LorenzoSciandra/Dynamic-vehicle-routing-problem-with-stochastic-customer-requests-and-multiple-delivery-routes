@@ -437,7 +437,7 @@ L'esecuzione è avvenuta su un calcolatore con le seguenti caratteristiche:
     \end{itemize}
 Dal momento che i programmi sviluppati non sono stati progettati per sfruttare le potenzialità di un processore multi-core, l'unico fattore limitante è stata la frequenza del processore.
 \newline
-Il tempo di calcolo complessivo per il B\&B è di \texttt{3443.94} secondi (circa \texttt{57} minuti), mentre il B\&R ha richiesto circa il doppio: \texttt{6571} secondi (circa \texttt{110} minuti). Dopo ogni computazione i risultati prodotti dai programmi vengono salvati in file \texttt{.txt}
+Il tempo di calcolo complessivo per il B\&B è di \texttt{21758} secondi (circa \texttt{6} ore), mentre il B\&R ha richiesto circa il doppio: \texttt{39426} secondi (circa \texttt{11} ore). Dopo ogni computazione i risultati prodotti dai programmi vengono salvati in file \texttt{.txt}
 
 Una volta ottenuti i file di output un altro script (\texttt{extractor.py}) utilizza espressioni regolari per leggere i files e comprimere le uniche informazioni per noi utili presenti nelle stampe di output in un nuovo file \texttt{.csv}. Il risultato di questa fase ci permette di passare dai 1620 files di output, uno per ogni run, ad una sola tabella \texttt{csv} per il B\&B e una sola per il B\&R, con le seguenti colonne: 
 \begin{itemize}
@@ -476,13 +476,13 @@ Tutti i risultati che saranno mostrati prevedono l'esecuzione di 100 iterazioni 
 \vspace*{\fill}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.81\textwidth]{Images/Mean_dist.png}
+    \includegraphics[width=0.81\textwidth]{Images/mean_dist.png}
     \caption{B\&B vs B\&R: distanza media percorsa}
     \label{fig:Mean_dist}
 \end{figure}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.81\textwidth]{Images/Mean_cost.png}
+    \includegraphics[width=0.81\textwidth]{Images/mean_cost.png}
     \caption{B\&B vs B\&R: costo medio delle soluzioni}
     \label{fig:Mean_cost}
 \end{figure}

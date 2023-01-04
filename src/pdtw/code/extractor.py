@@ -24,12 +24,14 @@ for dire in dirs:
             print(dire + filename + " does not contain any matchable result!")
         else:
             parsed_result_list = filename.removesuffix(".txt").rsplit("_", 1)
-            parsed_result_list[0] = parsed_result_list[0].rsplit("_")[0] + "_" + parsed_result_list[0].rsplit("_")[1] + "_" + parsed_result_list[0].rsplit("_")[2]
+            parsed_result_list.insert(1, parsed_result_list[0].rsplit("_")[2])
+            parsed_result_list[0] = parsed_result_list[0].rsplit("_")[0] + "_" + parsed_result_list[0].rsplit("_")[1]
             parsed_result = tuple(parsed_result_list)
             for i in range(1, results.lastindex + 1):
                 parsed_result += (results.group(i),)
 
             all_results.append(parsed_result)
 
-    df = pandas.DataFrame(all_results, columns=["problem", "instance", "cost", "dist", "time", "events", "skipped"])
+    df = pandas.DataFrame(all_results, columns=["problem_type", "problem_number", "instance", "cost", "dist", "time", "events", "skipped"])
     df.to_csv(dire+"res.csv", sep=',', encoding='utf-8', index=False)
+
