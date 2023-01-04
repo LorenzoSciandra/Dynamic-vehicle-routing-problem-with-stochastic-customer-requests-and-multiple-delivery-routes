@@ -8,4 +8,4 @@ Skipped: 13
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_C_6_hom_1 Customers:40
 Alns: 100 Drivers:10 TH:  0 SC:30 Algo:BR-RS-GoNowWait Dist:1091.25 Un:2 Routes:11 Time:42.11 Events:257 Idle:0.744 PDR:No ThType:1 Branch:47 Nodes:94 
-Elapsed time: 0 hours, 0 minutes, 42 seconds and 111 milliseconds.(Sat Dec 24 16:49:28 2022
+Elapsed time: 0 hours, 0 minutes, 42 seconds and 120 milliseconds.(Tue Jan  3 03:11:33 2023

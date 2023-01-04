@@ -14,10 +14,10 @@ Route:7 cost:124.72 LastDone:14 len:12 nodes:14(dep:202)-76p(ac:5 rel:266 arr:27
 Route:8 cost:160.94 LastDone:16 len:18 nodes:16(dep:349)-96p(ac:5 rel:369 arr:372.0 tw:369-480)-68p(ac:5 rel:218 arr:372.0 tw:218-420)-80p(ac:5 rel:299 arr:372.0 tw:299-420)-94p(ac:5 rel:359 arr:372.0 tw:359-420)-69d(ac:5 rel:218 arr:387.6 tw:360-420)-81d(ac:5 rel:299 arr:412.8 tw:360-420)-95d(ac:5 rel:359 arr:419.7 tw:360-420)-97d(ac:5 rel:369 arr:436.1 tw:420-480)-118p(ac:5 rel:444 arr:466.8 tw:444-540)-88p(ac:5 rel:329 arr:466.8 tw:329-540)-98p(ac:5 rel:381 arr:466.8 tw:381-540)-106p(ac:5 rel:413 arr:466.8 tw:413-480)-110p(ac:5 rel:423 arr:466.8 tw:423-540)-119d(ac:5 rel:444 arr:480.0 tw:480-540)-107d(ac:5 rel:413 arr:480.0 tw:420-480)-111d(ac:5 rel:423 arr:493.9 tw:480-540)-89d(ac:5 rel:329 arr:519.4 tw:480-540)-99d(ac:5 rel:381 arr:519.4 tw:480-540)-17(ar:0)-
 Route:9 cost:122.20 LastDone:18 len:10 nodes:18(dep:313)-92p(ac:5 rel:333 arr:334.0 tw:333-480)-60p(ac:5 rel:164 arr:334.0 tw:164-540)-78p(ac:5 rel:287 arr:334.0 tw:287-360)-90p(ac:5 rel:330 arr:334.0 tw:330-540)-82p(ac:5 rel:313 arr:334.0 tw:313-540)-79d(ac:5 rel:287 arr:359.2 tw:300-360)-93d(ac:5 rel:333 arr:377.6 tw:420-480)-83d(ac:5 rel:313 arr:440.8 tw:480-540)-61d(ac:5 rel:164 arr:486.6 tw:480-540)-91d(ac:5 rel:330 arr:508.7 tw:480-540)-19(ar:0)-
 Unassigneds(0):
-Progressive Cost:1346.46 Dist:1346.46 Un:0 Routes:15 Time:93.62 Events:114 WaitAtDepot:1 AllowDepotReturns:0
+Progressive Cost:1346.46 Dist:1346.46 Un:0 Routes:15 Time:57.33 Events:114 WaitAtDepot:1 AllowDepotReturns:0
 Skipped: 99
 File:../instances/sddp/stacy/config/temp.dat
 Instance:TWh_RC_9_hom_1 Customers:54
 BBNode count: 390
-Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1346.46 Un:0 Routes:15 Time:93.62 Events:114 Idle:0.565 PDR:No ThType:1 
-Elapsed time: 0 hours, 1 minutes, 33 seconds and 678 milliseconds.(Mon Jan  2 17:12:21 2023
+Alns: 100 Drivers:10 TH:  0 SC:30 Algo:Progressive Dist:1346.46 Un:0 Routes:15 Time:57.33 Events:114 Idle:0.565 PDR:No ThType:1 
+Elapsed time: 0 hours, 0 minutes, 57 seconds and 334 milliseconds.(Tue Jan  3 07:08:13 2023

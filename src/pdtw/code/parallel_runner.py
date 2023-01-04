@@ -41,7 +41,7 @@ def run_bb(problem: str, scenario_id: int):
         subprocess.call(
             f"./cmake-build-debug-wsl/branch_and_bound_solver ../instances/sddp/stacy/config/temp{thread_id}.dat")
     except Exception as e:
-        print("Error: " + e.__str__())
+        print("Error: " + str(e))
 
 
 pool = ThreadPool(processes=10)
