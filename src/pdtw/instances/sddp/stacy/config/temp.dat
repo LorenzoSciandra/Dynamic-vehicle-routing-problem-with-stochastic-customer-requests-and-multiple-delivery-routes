@@ -1,0 +1,11 @@
+----------------------------------------
+DEFAULT
+----------------------------------------
+
+>> GENERATOR
+INSTANCE_TYPE		Stacy
+
+>> PROBLEM
+PROBLEM_NAME		TWr_R_9_hom_1
+ACTUAL_SCENARIO_ID	10
+TW_TYPE			d1
