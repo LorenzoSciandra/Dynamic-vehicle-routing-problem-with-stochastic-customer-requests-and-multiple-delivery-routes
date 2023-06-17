@@ -12,3 +12,8 @@ Per eseguire il codice consigliamo, per semplicità, di eseguire in ordine una s
 1. `runner.py`: seleziona quanti e quali istanze di problema eseguire (default=810) e genera altrettanti files di output .txt contenenti i risultati. Nello specifico saranno generati due file per ogni istanza, dato che queste saranno eseguite sia con il Branch & Bound che con il Branch & Regret;
 2. `extractor.py`: accorpa tutte le informazioni rilevanti contenute nei file generati con l'esecuzione precedente in due tabelle .csv una per il Branch & Bound e l'altra per il Branch & Regret;
 3. `analyzer.py`: genera in maniera interattiva da terminale diversi plot di confronto sui risultati ottenuti.
+
+
+## Disclaimer
+
+> The primary authors of the code are Professor Jean Francois Cote and his colleagues, who are researching these issues. Please note that the code may not be in its final version and therefore may not be suitable for commercial use. As indicated by the headers of the files, it is intended for academic purposes only. If you have any suggestions or would like to propose improvements, please contact Jean-Francois Cote at jean-francois.cote@fsa.ulaval.ca.
