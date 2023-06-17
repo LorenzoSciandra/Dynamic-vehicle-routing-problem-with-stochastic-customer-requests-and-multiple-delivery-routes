@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/clion,c++,cmake
 # Edit at https://www.toptal.com/developers/gitignore?templates=clion,c++,cmake
 
+.idea/
+.vscode/
+build/
+
 ### C++ ###
 # Prerequisites
 *.d
